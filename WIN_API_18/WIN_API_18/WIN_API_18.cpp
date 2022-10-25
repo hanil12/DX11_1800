@@ -97,6 +97,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   // WIN_API -> API : Application Interface
+   // 윈도우 핸들: 윈도우를 조작할 수 있는 객체
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
@@ -121,6 +123,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+
+struct Pos
+{
+    int x;
+    int y;
+};
+
+Pos mousePos;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -131,9 +142,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // 메뉴 선택을 구문 분석합니다:
             switch (wmId)
             {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
                 break;
@@ -142,11 +150,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+    case WM_MOUSEMOVE:
+    {
+        // LPARAM의 HIWORD에 Y좌표, LOWORD에 X좌표가 담겨 윈도우 프로시저로 전달됩니다.
+        mousePos.x = static_cast<int>(LOWORD(lParam));
+        mousePos.y = static_cast<int>(HIWORD(lParam));
+    }
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
+            // HDC : Handle Device Context -> 출력(그리기)에 관여하는 객체
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            MoveToEx(hdc, 150, 150, NULL);
+            LineTo(hdc, mousePos.x, mousePos.y);
+            Rectangle(hdc, 150, 150, 300, 300);
+            Ellipse(hdc, 50, 50, 150, 150); // 렌더 순서
+
             EndPaint(hWnd, &ps);
         }
         break;
