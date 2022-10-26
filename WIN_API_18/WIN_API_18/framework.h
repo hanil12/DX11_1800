@@ -23,6 +23,9 @@ using namespace std;
 // Type
 #include "Types.h"
 
+// Collider
+#include "Collider/RectCollider.h"
+
 // Scene
 #include "Scene/Scene.h"
 

@@ -151,7 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Collider\Collider.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Collider\RectCollider.h" />
     <ClInclude Include="Scene\PaintScene.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Resource.h" />
@@ -161,6 +163,7 @@
     <ClInclude Include="WIN_API_18.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collider\Collider.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">framework.h</PrecompiledHeaderFile>
@@ -171,6 +174,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">framework.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="Collider\RectCollider.cpp" />
     <ClCompile Include="Scene\PaintScene.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />

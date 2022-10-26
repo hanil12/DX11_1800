@@ -3,6 +3,15 @@
 
 PaintScene::PaintScene()
 {
+    _brushes[0] = CreateSolidBrush(RED); // »¡°­
+    _brushes[1] = CreateSolidBrush(GREEN); // ÃÊ·Ï
+    _brushes[2] = CreateSolidBrush(BLUE); // ÆÄ¶û
+
+    _pens[0] = CreatePen(0, 3, RED);
+    _pens[1] = CreatePen(0, 3, GREEN);
+    _pens[2] = CreatePen(0, 3, BLUE);
+
+    _rect = make_shared<RectCollider>(Vector2(225, 255), Vector2(150, 150));
 }
 
 PaintScene::~PaintScene()
@@ -11,12 +20,28 @@ PaintScene::~PaintScene()
 
 void PaintScene::Update()
 {
+    _rect->GetCenter()._x += 0.5f;
 }
 
 void PaintScene::Render(HDC hdc)
 {
+    // ¼±Àº ÆÄ¶û»ö
+    // ¿øÀº ³»ºÎ¸¦ »¡°­ ¼±Àº ÆÄ¶û
+    // »ç°¢Çü ³»ºÎ¸¦ ÃÊ·Ï ¼±Àº ÆÄ¶û
+
+    SelectObject(hdc, _pens[2]);
+    //SelectObject(hdc, _brushes[2]);
+
     MoveToEx(hdc, 150, 150, NULL);
     LineTo(hdc, mousePosX, mousePosY);
-    Rectangle(hdc, 150, 150, 300, 300);
-    Ellipse(hdc, 50, 50, 150, 150); // ·»´õ ¼ø¼­
+
+    SelectObject(hdc, _pens[2]);
+    SelectObject(hdc, _brushes[1]);
+    _rect->Render(hdc);
+
+    SelectObject(hdc, _pens[2]);
+    SelectObject(hdc, _brushes[0]);
+    //Ellipse(hdc, 50, 50, 150, 150); // ·»´õ ¼ø¼­ -> °úÁ¦
+
+    // Collider
 }
