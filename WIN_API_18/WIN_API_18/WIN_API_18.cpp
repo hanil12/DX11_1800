@@ -124,37 +124,34 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //
 
-struct Pos
-{
-    int x;
-    int y;
-};
+int mousePosX;
+int mousePosY;
 
-Pos mousePos;
+unique_ptr<Program> program;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
-        }
+    case WM_CREATE:
+    {
+        program = make_unique<Program>();
+        SetTimer(hWnd, 1, 1, nullptr);
         break;
+    }
+    
+    case WM_TIMER: // 0.01 초마다 메시지 들어옴
+    {
+        program->Update();
+        InvalidateRect(hWnd, nullptr, true);
+        break;
+    }
     case WM_MOUSEMOVE:
     {
         // LPARAM의 HIWORD에 Y좌표, LOWORD에 X좌표가 담겨 윈도우 프로시저로 전달됩니다.
-        mousePos.x = static_cast<int>(LOWORD(lParam));
-        mousePos.y = static_cast<int>(HIWORD(lParam));
+        mousePosX = static_cast<int>(LOWORD(lParam));
+        mousePosY = static_cast<int>(HIWORD(lParam));
+        break;
     }
     case WM_PAINT:
         {
@@ -162,10 +159,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // HDC : Handle Device Context -> 출력(그리기)에 관여하는 객체
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            MoveToEx(hdc, 150, 150, NULL);
-            LineTo(hdc, mousePos.x, mousePos.y);
-            Rectangle(hdc, 150, 150, 300, 300);
-            Ellipse(hdc, 50, 50, 150, 150); // 렌더 순서
+            program->Render(hdc);
 
             EndPaint(hWnd, &ps);
         }

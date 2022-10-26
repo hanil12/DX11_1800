@@ -11,5 +11,23 @@
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
 #include <malloc.h>
-#include <memory.h>
+#include <memory>
 #include <tchar.h>
+#include <math.h>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+
+using namespace std;
+
+// Type
+#include "Types.h"
+
+// Scene
+#include "Scene/Scene.h"
+
+// Program
+#include "Program/Program.h"
+
+extern int mousePosX;
+extern int mousePosY;
