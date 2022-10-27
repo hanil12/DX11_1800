@@ -11,7 +11,12 @@ PaintScene::PaintScene()
     _pens[1] = CreatePen(0, 3, GREEN);
     _pens[2] = CreatePen(0, 3, BLUE);
 
-    _rect = make_shared<RectCollider>(Vector2(225, 255), Vector2(150, 150));
+    _rect1 = make_shared<RectCollider>(Vector2(225, 255), Vector2(150, 150));
+    _rect2 = make_shared<RectCollider>(Vector2(600, 255), Vector2(150, 150));
+
+    _circle1 = make_shared<CircleCollider>(Vector2(100.0f, 600.0f), 50);
+    _circle2 = make_shared<CircleCollider>(Vector2(400.0f, 600.0f), 50);
+    _circle3 = make_shared<CircleCollider>(Vector2(700.0f, 600.0f), 50);
 }
 
 PaintScene::~PaintScene()
@@ -20,28 +25,36 @@ PaintScene::~PaintScene()
 
 void PaintScene::Update()
 {
-    _rect->GetCenter()._x += 0.5f;
+    //_rect->GetCenter()._x += 0.5f;
+
+    //Vector2 start = _circle1->GetCenter();
+    //Vector2 dest = mousePos;
+    //Vector2 result = dest - start;
+    //Vector2 nomal = result.Normallize();
+
+    //_circle->GetCenter() = { 300.0f,300.0f };
+    // 선형보간
+
+    _circle3->SetCenter(mousePos);
+
+    if (_circle1->IsCollision(mousePos))
+        _circle1->SetRED();
+    else
+        _circle1->SetGREEN();
+
+    if (_circle2->IsCollision(_circle3))
+        _circle2->SetRED();
+    else
+        _circle2->SetGREEN();
 }
 
 void PaintScene::Render(HDC hdc)
 {
-    // 선은 파랑색
-    // 원은 내부를 빨강 선은 파랑
-    // 사각형 내부를 초록 선은 파랑
+    _circle3->Render(hdc);
 
-    SelectObject(hdc, _pens[2]);
-    //SelectObject(hdc, _brushes[2]);
+    _rect1->Render(hdc);
+    _rect2->Render(hdc);
 
-    MoveToEx(hdc, 150, 150, NULL);
-    LineTo(hdc, mousePosX, mousePosY);
-
-    SelectObject(hdc, _pens[2]);
-    SelectObject(hdc, _brushes[1]);
-    _rect->Render(hdc);
-
-    SelectObject(hdc, _pens[2]);
-    SelectObject(hdc, _brushes[0]);
-    //Ellipse(hdc, 50, 50, 150, 150); // 렌더 순서 -> 과제
-
-    // Collider
+    _circle1->Render(hdc);
+    _circle2->Render(hdc);
 }

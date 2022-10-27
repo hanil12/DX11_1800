@@ -124,8 +124,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //
 
-int mousePosX;
-int mousePosY;
+Vector2 mousePos;
 
 unique_ptr<Program> program;
 
@@ -149,8 +148,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_MOUSEMOVE:
     {
         // LPARAM의 HIWORD에 Y좌표, LOWORD에 X좌표가 담겨 윈도우 프로시저로 전달됩니다.
-        mousePosX = static_cast<int>(LOWORD(lParam));
-        mousePosY = static_cast<int>(HIWORD(lParam));
+        mousePos._x = static_cast<int>(LOWORD(lParam));
+        mousePos._y = static_cast<int>(HIWORD(lParam));
         break;
     }
     case WM_PAINT:
