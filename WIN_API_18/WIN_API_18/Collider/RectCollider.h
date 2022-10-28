@@ -1,24 +1,22 @@
 #pragma once
-class RectCollider
+class RectCollider : public Collider
 {
 public:
 	RectCollider();
 	RectCollider(Vector2 center, Vector2 size);
+	virtual ~RectCollider();
 
-	void Update();
-	void Render(HDC hdc);
+	virtual void Update() override;
+	virtual void Render(HDC hdc) override; 
 
-	Vector2& GetCenter() { return _center; }
+	virtual bool IsCollision(Vector2 pos) override;
+	virtual bool IsCollision(shared_ptr<CircleCollider> circle) override;
+	virtual bool IsCollision(shared_ptr<RectCollider> other) override;
 
-	bool IsCollision(const Vector2& pos);
-	bool IsCollision(shared_ptr<CircleCollider> circle);
-	bool IsCollision(shared_ptr<RectCollider> other);
+	Vector2 LeftTop();
+	Vector2 RightBottom();
 
 private:
-	Vector2 _center = Vector2();
 	Vector2 _size = Vector2();
-	// left top right bottom
-	// 중점
-	// 가로 세로 길이
 };
 

@@ -46,6 +46,23 @@ void PaintScene::Update()
         _circle2->SetRED();
     else
         _circle2->SetGREEN();
+
+    if (_rect1->IsCollision(mousePos))
+        _rect1->SetRED();
+    else
+        _rect1->SetGREEN();
+
+    if (_circle3->IsCollision(_rect2))
+        _rect2->SetRED();
+    else
+        _rect2->SetGREEN();
+
+
+    if (GetKeyState(VK_RIGHT) && 0x8000)
+    {
+        Vector2 pos = _rect1->GetCenter() + Vector2(1.0f, 0);
+        _rect1->SetCenter(pos);
+    }
 }
 
 void PaintScene::Render(HDC hdc)

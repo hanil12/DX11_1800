@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "Vector2.h"
 
-Vector2 Vector2::operator+(const Vector2& other)
+Vector2 Vector2::operator+(const Vector2& other) const
 {
     return Vector2(_x + other._x, _y + other._y);
 }
@@ -14,7 +14,7 @@ Vector2& Vector2::operator+=(const Vector2& other)
     return *this;
 }
 
-Vector2 Vector2::operator-(const Vector2& other)
+Vector2 Vector2::operator-(const Vector2& other) const
 {
     return Vector2(_x -other._x, _y - other._y);
 }
@@ -27,12 +27,12 @@ Vector2& Vector2::operator-=(const Vector2& other)
     return *this;
 }
 
-Vector2 Vector2::operator*(const float& value)
+Vector2 Vector2::operator*(const float& value) const
 {
     return Vector2(_x * value, _y * value);
 }
 
-Vector2 Vector2::operator/(const float& value)
+Vector2 Vector2::operator/(const float& value) const
 {
     return Vector2(_x / value, _y /value);
 }

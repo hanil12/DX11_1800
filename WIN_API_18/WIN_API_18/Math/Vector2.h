@@ -5,12 +5,12 @@ public:
 	Vector2() {}
 	Vector2(float x, float y) : _x(x), _y(y) {}
 
-	Vector2 operator+(const Vector2& other);
+	Vector2 operator+(const Vector2& other) const;
 	Vector2& operator+=(const Vector2& other);
-	Vector2 operator-(const Vector2& other);
+	Vector2 operator-(const Vector2& other) const;
 	Vector2& operator-=(const Vector2& other);
-	Vector2 operator*(const float& value);
-	Vector2 operator/(const float& value);
+	Vector2 operator*(const float& value) const;
+	Vector2 operator/(const float& value) const;
 
 	// °úÁ¦
 	//Vector2 Dot(const Vector2& other);
