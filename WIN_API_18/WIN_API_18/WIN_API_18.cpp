@@ -75,7 +75,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINAPI18));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
+    wcex.hbrBackground  = (HBRUSH)(GetStockObject(GRAY_BRUSH));
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WINAPI18);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
@@ -99,8 +99,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    // WIN_API -> API : Application Interface
    // 윈도우 핸들: 윈도우를 조작할 수 있는 객체
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   // 1280
+   // 720
+   HWND hWnd = CreateWindowW(szWindowClass,
+       szTitle,
+       WS_OVERLAPPEDWINDOW,
+      0, 0, 1280, 720, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {

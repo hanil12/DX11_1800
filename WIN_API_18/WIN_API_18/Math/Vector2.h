@@ -13,8 +13,9 @@ public:
 	Vector2 operator/(const float& value) const;
 
 	// 과제
-	//Vector2 Dot(const Vector2& other);
-	//Vector2 Cross(const Vector2& other);
+	float Dot(const Vector2& other);
+	float Cross(const Vector2& other);
+	bool IsBetween(const Vector2& vector1, const Vector2& vector2);
 
 	// 정규화 : 어떤 한 벡터를 길이가 1인 벡터로 만드는 작업
 	// 단위 벡터: 길이 1인 벡터
