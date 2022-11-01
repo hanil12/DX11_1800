@@ -27,6 +27,7 @@ public:
 	virtual bool IsCollision(shared_ptr<CircleCollider> other) abstract;
 
 	const Vector2& GetCenter() { return _center; }
+	Vector2& GetCenterT() { return _center; }
 	void SetCenter(const Vector2& center) { _center = center; }
 
 	ColliderType GetType() { return _type; }

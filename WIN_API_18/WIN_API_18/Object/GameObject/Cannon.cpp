@@ -7,6 +7,14 @@ Cannon::Cannon()
 	_barrel = make_shared<Barrel>();
 	_barrel->_startPos = _body->GetCenter();
 	_barrel->_endPos = _barrel->_startPos + Vector2(_barrelSize, 0);
+
+	_bullets.reserve(30);
+	for (int i = 0; i < _poolCount; i++)
+	{
+		shared_ptr<Bullet> bullet = make_shared<Bullet>();
+		bullet->SetActive(false);
+		_bullets.push_back(bullet);
+	}
 }
 
 Cannon::~Cannon()
@@ -15,8 +23,14 @@ Cannon::~Cannon()
 
 void Cannon::Update()
 {
+	if (_isActive == false)
+		return;
+
 	_barrel->Update();
 	_body->Update();
+
+	for(auto& bullet : _bullets)
+		bullet->Update();
 
 	_barrel->_startPos = _body->GetCenter();
 	_barrel->_endPos._x = _body->GetCenter()._x + _barrelSize * cosf(_angle);
@@ -25,8 +39,14 @@ void Cannon::Update()
 
 void Cannon::Render(HDC hdc)
 {
+	if (_isActive == false)
+		return;
+
 	_barrel->Render(hdc);
 	_body->Render(hdc);
+
+	for (auto& bullet : _bullets)
+		bullet->Render(hdc);
 }
 
 void Cannon::MoveLeft()
@@ -41,4 +61,35 @@ void Cannon::MoveRight()
 	Vector2 temp = _body->GetCenter();
 	temp._x += _speed;
 	_body->SetCenter(temp);
+}
+
+void Cannon::Fire()
+{
+	auto iter = _bullets.begin();
+
+	iter = std::find_if(_bullets.begin(), _bullets.end(), [](const shared_ptr<Bullet> b) -> bool 
+		{
+			if (b->IsActive() == false)
+				return true;
+			return false;
+		});
+
+	if (iter == _bullets.end())
+		return;
+
+	Vector2 dir = _barrel->_endPos - _body->GetCenter();
+	(*iter)->SetActive(true);
+	(*iter)->SetPos(_barrel->_endPos);
+	(*iter)->Fire(dir);
+}
+
+bool Cannon::IsCollision(shared_ptr<Bullet> bullet)
+{
+	if (_isActive == false)
+		return false;
+
+	if (_body->IsCollision(bullet->GetCollider()))
+		return true;
+
+	return false;
 }

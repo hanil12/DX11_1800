@@ -10,16 +10,24 @@ public:
 
 	void MoveLeft();
 	void MoveRight();
+	void Fire();
 
 	shared_ptr<CircleCollider> GetBody() { return _body; }
-	float& GetAngle() { return _angle; }
+	const float& GetAngle() { return _angle; }
+	void SetAngle(float angle) { _angle = angle; }
+
+	bool IsCollision(shared_ptr<Bullet> bullet);
+	vector<shared_ptr<Bullet>> GetBullets() { return _bullets; }
 
 	bool _isActive = true;
 
 private:
 	shared_ptr<CircleCollider> _body;
 	shared_ptr<Barrel> _barrel;
+	// 애초에 메모리풀 잡는다.
+	vector<shared_ptr<Bullet>> _bullets;
 
+	UINT _poolCount = 30;
 	float _speed = 2.0f;
 	float _angle = 0.0f;
 	float _barrelSize = 60.0f;
