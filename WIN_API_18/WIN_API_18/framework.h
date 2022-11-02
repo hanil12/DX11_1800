@@ -38,6 +38,11 @@ using namespace std;
 #include "Object/GameObject/Barrel.h"
 #include "Object/GameObject/Cannon.h"
 
+// Game.Arknoid
+#include "Object/GameObject/Arkanoid/Block.h"
+#include "Object/GameObject/Arkanoid/Ball.h"
+#include "Object/GameObject/Arkanoid/Map.h"
+
 // Scene
 #include "Scene/Scene.h"
 

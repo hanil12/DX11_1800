@@ -151,7 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\GameObject\Arkanoid\Map.h" />
+    <ClInclude Include="Object\GameObject\Arkanoid\Ball.h" />
+    <ClInclude Include="Object\GameObject\Arkanoid\Bar.h" />
+    <ClInclude Include="Object\GameObject\Arkanoid\Block.h" />
+    <ClInclude Include="Scene\Arkanoid.h" />
     <ClInclude Include="Collider\Line.h" />
+    <ClInclude Include="Scene\LineScene2.h" />
     <ClInclude Include="Scene\LineScene.h" />
     <ClInclude Include="Object\GameObject\Barrel.h" />
     <ClInclude Include="Object\GameObject\Bullet.h" />
@@ -171,7 +177,13 @@
     <ClInclude Include="WIN_API_18.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\GameObject\Arkanoid\Map.cpp" />
+    <ClCompile Include="Object\GameObject\Arkanoid\Ball.cpp" />
+    <ClCompile Include="Object\GameObject\Arkanoid\Bar.cpp" />
+    <ClCompile Include="Object\GameObject\Arkanoid\Block.cpp" />
+    <ClCompile Include="Scene\Arkanoid.cpp" />
     <ClCompile Include="Collider\Line.cpp" />
+    <ClCompile Include="Scene\LineScene2.cpp" />
     <ClCompile Include="Scene\LineScene.cpp" />
     <ClCompile Include="Object\GameObject\Barrel.cpp" />
     <ClCompile Include="Object\GameObject\Bullet.cpp" />
