@@ -14,11 +14,18 @@ LineScene2::~LineScene2()
 
 void LineScene2::Update()
 {
-	_line1->Update();
-	_line2->Update();
-	_line3->Update();
+	_line1->Update(); // 고정
+	_line2->Update(); // 마우스
+	_line3->Update(); // 그림자
 
 	_line2->_endPos = mousePos;
+
+	// 그림자 만들기
+	Vector2 a = _line2->_endPos - _line2->_startPos;
+	Vector2 b = _line1->_endPos - _line1->_startPos;
+	b = b.Normallize();
+	float length = a.Dot(b); // 교환법칙 성립
+	_line3->_endPos = _line3->_startPos + b * length;
 }
 
 void LineScene2::Render(HDC hdc)

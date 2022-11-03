@@ -7,6 +7,7 @@
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
+HWND hWnd;
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
@@ -101,7 +102,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    // 윈도우 핸들: 윈도우를 조작할 수 있는 객체
    // 1280
    // 720
-   HWND hWnd = CreateWindowW(szWindowClass,
+   hWnd = CreateWindowW(szWindowClass,
        szTitle,
        WS_OVERLAPPEDWINDOW,
       0, 0, 1280, 720, nullptr, nullptr, hInstance, nullptr);
@@ -146,7 +147,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_TIMER: // 0.01 초마다 메시지 들어옴
     {
         program->Update();
-        InvalidateRect(hWnd, nullptr, true);
+        InvalidateRect(hWnd, nullptr, false);
         break;
     }
     case WM_MOUSEMOVE:
