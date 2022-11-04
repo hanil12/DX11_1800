@@ -20,6 +20,8 @@ Program::Program()
 
 	ReleaseDC(hWnd, hdc);
 
+	srand(static_cast<unsigned int>(time(nullptr)));
+
 	_scenes["PaintScene"] = make_shared<PaintScene>();
 	_scenes["FortrissScene"] = make_shared<FortrissScene>();
 	_scenes["LineScene"] = make_shared<LineScene>();
@@ -28,6 +30,7 @@ Program::Program()
 	_scenes["MazeScene"] = make_shared<MazeScene>();
 
 	_targetScene = _scenes["MazeScene"];
+
 }
 
 Program::~Program()

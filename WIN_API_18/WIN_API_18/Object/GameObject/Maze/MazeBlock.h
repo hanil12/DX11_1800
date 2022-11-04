@@ -6,6 +6,8 @@ public:
 	{
 		ABLE,
 		DISABLE,
+		END,
+		PLAYER,
 		NONE
 	};
 

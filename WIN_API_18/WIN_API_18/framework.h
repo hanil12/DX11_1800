@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory>
+#include <time.h>
 #include <tchar.h>
 #include <math.h>
 #include <vector>
