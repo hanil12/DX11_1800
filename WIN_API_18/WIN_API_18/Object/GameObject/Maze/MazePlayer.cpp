@@ -54,6 +54,33 @@ void MazePlayer::RightHand()
 			_dir = static_cast<Dir>((_dir + 1) % DIRCOUNT);
 		}
 	}
+
+	stack<Vector2> s;
+	vector<Vector2> temp;
+	for (int i = 0; i < _path.size() - 1; i++)
+	{
+		if (s.empty() == false && s.top() == _path[i + 1])
+		{
+			s.pop();
+		}
+		else
+		{
+			s.push(_path[i]);
+		}
+	}
+	temp.push_back(_path.back());
+
+	temp.reserve(s.size());
+	while (true)
+	{
+		if (s.empty() == true)
+			break;
+		temp.push_back(s.top());
+		s.pop();
+	}
+
+	std::reverse(temp.begin(), temp.end());
+	_path = temp;
 }
 
 void MazePlayer::Update()

@@ -17,6 +17,7 @@
 #include <math.h>
 #include <vector>
 #include <unordered_map>
+#include <stack>
 #include <algorithm>
 
 using namespace std;
