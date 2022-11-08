@@ -95,7 +95,7 @@ void MazePlayer::Update()
 		if (_pathIndex != 0)
 		{
 			Vector2 temp = _path[_pathIndex - 1];
-			_maze->GetBlock(temp)->Type() = MazeBlock::BlockType::ABLE;
+			_maze->GetBlock(temp)->Type() = MazeBlock::BlockType::FOOTPRINT;
 		}
 
 		_time = 0.0f;

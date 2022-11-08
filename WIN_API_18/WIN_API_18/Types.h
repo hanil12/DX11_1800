@@ -15,6 +15,7 @@
 #define WHITE	 RGB(255,255,255)
 #define CYAN	 RGB(0,255,255)
 #define MAZENTA	 RGB(255,0,255)
+#define GRAY	 RGB(150,150,150)
 
 #define LERP(s,d,t) (d-s)*t + s
 

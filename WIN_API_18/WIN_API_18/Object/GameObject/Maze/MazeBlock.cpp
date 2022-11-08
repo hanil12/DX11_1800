@@ -5,12 +5,13 @@ MazeBlock::MazeBlock()
 {
 	_rect = make_shared<RectCollider>(Vector2(), Vector2(15,15));
 
-	_brushes.reserve(5);
+	_brushes.reserve(6);
 
 	_brushes.push_back(CreateSolidBrush(GREEN));
 	_brushes.push_back(CreateSolidBrush(RED));
 	_brushes.push_back(CreateSolidBrush(CYAN));
 	_brushes.push_back(CreateSolidBrush(WHITE));
+	_brushes.push_back(CreateSolidBrush(GRAY));
 	_brushes.push_back(CreateSolidBrush(BLACK));
 }
 
@@ -39,8 +40,12 @@ void MazeBlock::Render(HDC hdc)
 	case MazeBlock::BlockType::PLAYER:
 		SelectObject(hdc, _brushes[static_cast<UINT>(BlockType::PLAYER)]);
 		break;
+	case MazeBlock::BlockType::FOOTPRINT:
+		SelectObject(hdc, _brushes[static_cast<UINT>(BlockType::FOOTPRINT)]);
+		break;
 	case MazeBlock::BlockType::NONE:
 		SelectObject(hdc, _brushes[static_cast<UINT>(BlockType::NONE)]);
+		break;
 		break;
 	default:
 		break;
