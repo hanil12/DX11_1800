@@ -16,8 +16,10 @@ struct Vertex
 };
 
 vector<vector<int>> adjacent; // 인접 리스트
-vector<vector<bool>> adjacent2;
-vector<bool> visited;
+vector<vector<bool>> adjacent;
+vector<bool> discovered;
+
+// Win Merge Test
 
 // 그래프
 // 0 : 1 2 4
@@ -64,10 +66,10 @@ void CreateGraph()
 	}
 }
 
-void CreateGraph2()
+void CreateGraph()
 {
-	adjacent2 = vector<vector<bool>>(6, vector<bool>(6, false));
-	visited = vector<bool>(6, false);
+	adjacent = vector<vector<bool>>(6, vector<bool>(6, false));
+	discovered = vector<bool>(6, false);
 	//    [0][1][2][3][4][5]
 	// [0] 0  1  1  0  1  0
 	// [1] 1  0  1  0  0  0
@@ -76,26 +78,26 @@ void CreateGraph2()
 	// [4] 1  0  0  0  0  0
 	// [5] 0  0  1  0  0  0
 
-	adjacent2[0][1] = true;
-	adjacent2[0][2] = true;
-	adjacent2[0][4] = true;
+	adjacent[0][1] = true;
+	adjacent[0][2] = true;
+	adjacent[0][4] = true;
 
-	adjacent2[1][0] = true;
-	adjacent2[1][2] = true;
+	adjacent[1][0] = true;
+	adjacent[1][2] = true;
 
-	adjacent2[2][0] = true;
-	adjacent2[2][1] = true;
-	adjacent2[2][3] = true;
-	adjacent2[2][5] = true;
+	adjacent[2][0] = true;
+	adjacent[2][1] = true;
+	adjacent[2][3] = true;
+	adjacent[2][5] = true;
 
-	adjacent2[3][2] = true;
+	adjacent[3][2] = true;
 
-	adjacent2[4][0] = true;
+	adjacent[4][0] = true;
 
-	adjacent2[5][2] = true;
+	adjacent[5][2] = true;
 
 	// 2에서 5로 연결된 간선이 있습니까?
-	if (adjacent2[2][5] == true)
+	if (adjacent[2][5] == true)
 		cout << "연결되어있습니다." << endl;
 }
 
@@ -104,14 +106,14 @@ void CreateGraph2()
 
 void DFS(int start)
 {
-	visited[start] = true;
+	discovered[start] = true;
 
 	int next;
-	for (int i = 0; i < adjacent2.size(); i++)
+	for (int i = 0; i < adjacent.size(); i++)
 	{
-		if (adjacent2[start][i] == true)
+		if (adjacent[start][i] == true)
 		{
-			if (visited[i] == true) // 방문한 곳이냐?
+			if (discovered[i] == true) // 방문한 곳이냐?
 				continue;
 			next = i;
 			DFS(next); // 재귀함수
@@ -123,9 +125,9 @@ void DFS_ALL()
 {
 	int count = 0; // 뭉탱이 개수
 
-	for (int i = 0; i < adjacent2.size(); i++)
+	for (int i = 0; i < adjacent.size(); i++)
 	{
-		if (visited[i] == false)
+		if (discovered[i] == false)
 		{
 			count++;
 			DFS(i);
@@ -137,7 +139,7 @@ void DFS_ALL()
 
 int main()
 {
-	CreateGraph2();
+	CreateGraph();
 	
 	DFS_ALL();
 

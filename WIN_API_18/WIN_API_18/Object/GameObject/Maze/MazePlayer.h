@@ -8,6 +8,8 @@ public:
 	~MazePlayer();
 
 	void RightHand();
+	void BFS();
+
 	void Update();
 	void SetPos(Vector2 pos) { _pos = pos; }
 
