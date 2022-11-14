@@ -88,3 +88,8 @@ Vector2 Vector2::Normallize()
     float legnth = this->Length();
     return Vector2(_x / legnth, _y / legnth);
 }
+
+int Vector2::Manhattan(const Vector2& other)
+{
+    return (int)(other._x - _x) + (int)(other._y - _y);
+}

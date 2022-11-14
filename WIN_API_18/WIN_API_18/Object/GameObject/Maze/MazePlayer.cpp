@@ -5,7 +5,7 @@ MazePlayer::MazePlayer(shared_ptr<Maze> maze)
 : _maze(maze)
 {
 	_pos = _maze->GetStartPos();
-	BFS();
+	AStar();
 }
 
 MazePlayer::~MazePlayer()
@@ -147,6 +147,187 @@ void MazePlayer::BFS()
 		_path.push_back(finder);
 		finder = parent[finder._y][finder._x];
 		
+		if (finder == start)
+		{
+			_path.push_back(start);
+			break;
+		}
+	}
+
+	std::reverse(_path.begin(), _path.end());
+}
+
+void MazePlayer::Dijkstra()
+{
+	// 인접행렬 : Maze, Cango
+// 시작점, 끝점 : Start, End
+// discorvered
+// parent
+
+	Vector2 frontDir[8] =
+	{
+		Vector2(0,-1), // UP
+		Vector2(-1,0), // Left
+		Vector2(0,1), // Down
+		Vector2(1,0), // Right
+
+		Vector2(-1,-1), // Left Up
+		Vector2(1,-1), // Right Up
+		Vector2(-1,1), // Left Down
+		Vector2(1,1) // Right Down
+	};
+
+	Vector2 start = _maze->GetStartPos();
+	Vector2 end = _maze->GetEndPos();
+	vector<vector<bool>> discorvered = vector<vector<bool>>(25, vector<bool>(25, false));
+	vector<vector<Vector2>> parent = vector<vector<Vector2>>(25, vector<Vector2>(25, Vector2(-1, -1)));
+	vector<vector<float>> best = vector<vector<float>>(25, vector<float>(25,100000));
+	priority_queue<Vertex_Dijkstra, vector<Vertex_Dijkstra>,greater<Vertex_Dijkstra>> pq;
+
+	pq.push(Vertex_Dijkstra(start,0));
+	best[start._y][start._x] = 0;
+	discorvered[start._y][start._x] = true;
+
+	while (true)
+	{
+		if (pq.empty() == true)
+			break;
+
+		// Vector2 here = q.front();
+		Vector2 here = pq.top().pos;
+		float g = pq.top().g;
+		pq.pop();
+
+		if (here == end)
+			break;
+
+		if (best[here._y][here._x] < g)
+			continue;
+
+		for (int i = 0; i < 8; i++)
+		{
+			// 네 방향 중 갈 지점
+			Vector2 there = here + frontDir[i];
+
+			// 갈 수 있는 지점인지
+			if (Cango(there) == false)
+				continue;
+
+			// 더 좋은 경로를 과거에 찾았으면 스킵
+			float nextG;
+			if (i >= 4) // 대각선 확인
+				nextG = best[here._y][here._x] + 1.4f;
+			else
+				nextG = best[here._y][here._x] + 1.0f;
+
+			if (nextG >= best[there._y][there._x])
+				continue;
+
+			pq.push(Vertex_Dijkstra(there,nextG));
+			discorvered[there._y][there._x] = true;
+			best[there._y][there._x] = nextG;
+			_maze->GetBlock(there)->Type() = MazeBlock::BlockType::FOOTPRINT;
+			parent[there._y][there._x] = here;
+		}
+	}
+
+	Vector2 finder = parent[end._y][end._x];
+	_path.push_back(end);
+	while (true)
+	{
+		_path.push_back(finder);
+		finder = parent[finder._y][finder._x];
+
+		if (finder == start)
+		{
+			_path.push_back(start);
+			break;
+		}
+	}
+
+	std::reverse(_path.begin(), _path.end());
+}
+
+void MazePlayer::AStar()
+{
+	Vector2 frontDir[8] =
+	{
+		Vector2(0,-1), // UP
+		Vector2(-1,0), // Left
+		Vector2(0,1), // Down
+		Vector2(1,0), // Right
+
+		Vector2(-1,-1), // Left Up
+		Vector2(1,-1), // Right Up
+		Vector2(-1,1), // Left Down
+		Vector2(1,1) // Right Down
+	};
+
+	Vector2 start = _maze->GetStartPos();
+	Vector2 end = _maze->GetEndPos();
+	vector<vector<bool>> discorvered = vector<vector<bool>>(25, vector<bool>(25, false));
+	vector<vector<Vector2>> parent = vector<vector<Vector2>>(25, vector<Vector2>(25, Vector2(-1, -1)));
+	vector<vector<float>> best = vector<vector<float>>(25, vector<float>(25, 100000));
+	priority_queue<Vertex, vector<Vertex>, greater<Vertex>> pq;
+
+	float h = start.Manhattan(end);
+	pq.push(Vertex(start, 0, h));
+	best[start._y][start._x] = h;
+	discorvered[start._y][start._x] = true;
+
+	while (true)
+	{
+		if (pq.empty() == true)
+			break;
+
+		// Vector2 here = q.front();
+		Vector2 here = pq.top().pos;
+		float g = pq.top().g;
+		float h = pq.top().h;
+		float f = g + h;
+		pq.pop();
+
+		if (here == end)
+			break;
+
+		if (best[here._y][here._x] < f)
+			continue;
+
+		for (int i = 0; i < 8; i++)
+		{
+			// 여덟 방향 중 갈 지점
+			Vector2 there = here + frontDir[i];
+
+			// 갈 수 있는 지점인지
+			if (Cango(there) == false)
+				continue;
+
+			// 더 좋은 경로를 과거에 찾았으면 스킵
+			float nextG;
+			float nextH = there.Manhattan(end);
+			if (i >= 4) // 대각선 확인
+				nextG = g + 1.4f;
+			else
+				nextG = g + 1.0f;
+
+			if (nextG + nextH >= best[there._y][there._x])
+				continue;
+
+			pq.push(Vertex(there, nextG,nextH));
+			discorvered[there._y][there._x] = true;
+			best[there._y][there._x] = nextG + nextH;
+			// _maze->GetBlock(there)->Type() = MazeBlock::BlockType::FOOTPRINT;
+			parent[there._y][there._x] = here;
+		}
+	}
+
+	Vector2 finder = parent[end._y][end._x];
+	_path.push_back(end);
+	while (true)
+	{
+		_path.push_back(finder);
+		finder = parent[finder._y][finder._x];
+
 		if (finder == start)
 		{
 			_path.push_back(start);
