@@ -316,7 +316,7 @@ void MazePlayer::AStar()
 			pq.push(Vertex(there, nextG,nextH));
 			discorvered[there._y][there._x] = true;
 			best[there._y][there._x] = nextG + nextH;
-			// _maze->GetBlock(there)->Type() = MazeBlock::BlockType::FOOTPRINT;
+			_maze->GetBlock(there)->Type() = MazeBlock::BlockType::FOOTPRINT;
 			parent[there._y][there._x] = here;
 		}
 	}
