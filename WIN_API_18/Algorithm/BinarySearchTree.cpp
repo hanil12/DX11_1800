@@ -54,28 +54,121 @@ void BinarySearchTree::PrintTree(Node* root)
 
 Node* BinarySearchTree::Search(Node* root, int key)
 {
-	return nullptr;
+	// 기저사례
+	if (root == nullptr)
+		return root;
+
+	// 구하기
+	if (root->key == key)
+		return root;
+
+	if (root->key > key)
+	{
+		return Search(root->left, key);
+	}
+	else
+	{
+		return Search(root->right, key);
+	}
 }
 
 Node* BinarySearchTree::Min(Node* root)
 {
-	return nullptr;
+	//if (root == nullptr)
+	//	return root;
+
+	//if (root->left == nullptr)
+	//	return root;
+
+	//return Min(root->left);
+
+	if (root == nullptr)
+		return nullptr;
+
+	Node* node = root;
+	while (true)
+	{
+		if (node->left == nullptr)
+			return node;
+		node = node->left;
+	}
 }
 
 Node* BinarySearchTree::Max(Node* root)
 {
-	return nullptr;
+	// 첫 예외처리
+	if (root == nullptr)
+		return root;
+
+	// 기저사항
+	if (root->right == nullptr)
+		return root;
+
+	return Max(root->right);
 }
 
 Node* BinarySearchTree::Previous(Node* node)
 {
-	return nullptr;
+	if (node == nullptr)
+		return node;
+
+	if (node->left != nullptr)
+	{
+		Node* prev = Max(node->left);
+		if (prev == nullptr)
+			return node->left;
+		else
+			return prev;
+	}
+
+	Node* parent = node->parent;
+
+	while (parent != nullptr && node == parent->left)
+	{
+		node = parent;
+		parent = parent->parent;
+	}
+
+	return parent;
 }
 
 void BinarySearchTree::RePlace(Node* node1, Node* node2)
 {
+	// node1이 루트노드일 때
+	if (node1->parent == nullptr)
+		_root = node2;
+
+	// node1이 부모 쪽에서 left에 있는 경우
+	else if (node1 == node1->parent->left)
+	{
+		node1->parent->left = node2;
+	}
+
+	// node1이 부모쪽에서 right
+	else
+	{
+		node1->parent->right = node2;
+	}
+
+	if (node2)
+		node2->parent = node1->parent;
+
+	delete node1;
 }
 
 void BinarySearchTree::Delete(Node* node)
 {
+	if (node == nullptr)
+		return;
+
+	if (node->left == nullptr)
+		RePlace(node, node->right);
+	else if (node->right == nullptr)
+		RePlace(node, node->left);
+	else
+	{
+		Node* prev = Previous(node);
+		node->key = prev->key;
+		Delete(prev);
+	}
 }
