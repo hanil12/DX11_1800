@@ -17,12 +17,11 @@ Maze::Maze()
 		}
 	}
 
-	CreateMap();
+	CreateMap_Kruskal();
 }
 
 Maze::~Maze()
 {
-	_player = nullptr;
 }
 
 void Maze::Update()
@@ -45,9 +44,6 @@ void Maze::Render(HDC hdc)
 			_blocks[y][x]->Render(hdc);
 		}
 	}
-
-	Vector2 playerPos = _player->GetPos();
-	_blocks[(UINT)playerPos._y][(UINT)playerPos._x]->Type() = MazeBlock::BlockType::PLAYER;
 }
 
 void Maze::CreateMap()
@@ -101,6 +97,80 @@ void Maze::CreateMap()
 			else
 				_blocks[y + 1][x]->Type() = MazeBlock::BlockType::ABLE;
 		}
+	}
+}
+
+void Maze::CreateMap_Kruskal()
+{
+	// 노드 뚫기
+	for (int y = 0; y < _poolCountY; y++)
+	{
+		for (int x = 0; x < _poolCountX; x++)
+		{
+			if (x % 2 == 0 || y % 2 == 0)
+				_blocks[y][x]->Type() = MazeBlock::BlockType::DISABLE;
+			else
+				_blocks[y][x]->Type() = MazeBlock::BlockType::ABLE;
+		}
+	}
+
+	vector<Kruskal_edge> edges;
+
+	for (int y = 0; y < _poolCountY; y++)
+	{
+		for (int x = 0; x < _poolCountX; x++)
+		{
+			// 위에서 한 작업... 노드 뚫기
+			if (x % 2 == 0 || y % 2 == 0)
+				continue;
+
+			// 모든 후보를 담아놓는 작업
+			// 우측으로 연결하는 간선 후보
+			if (x < _poolCountX - 2)
+			{
+				const int randValue = rand() % 100;
+				Kruskal_edge edge;
+				edge.cost = randValue;
+				edge.u = Vector2(x,y);
+				edge.v = Vector2(x + 2, y);
+
+				edges.push_back(edge);
+			}
+			
+			// 아래쪽으로 연결하는 간선 후보
+			if (y < _poolCountY - 2)
+			{
+				const int randValue = rand() % 100;
+				Kruskal_edge edge;
+				edge.cost = randValue;
+				edge.u = Vector2(x,y);
+				edge.v = Vector2(x, y + 2);
+
+				edges.push_back(edge);
+			}
+		}
+	}
+
+	std::sort(edges.begin(), edges.end());
+
+	DisJointSet sets(_poolCountX * _poolCountY);
+
+	for (auto& edge : edges)
+	{
+		int u = edge.u._x + edge.u._y * _poolCountY;
+		int v = edge.v._x + edge.v._y * _poolCountY;
+
+		// 그룹이면 스킵
+		if (sets.FindLeader(u) == sets.FindLeader(v))
+			continue;
+
+		sets.Merge(u, v);
+
+		// 맵에 적용... 
+		int x = (edge.u._x + edge.v._x) / 2;
+		int y = (edge.u._y + edge.v._y) / 2;
+
+		_blocks[y][x]->Type() = MazeBlock::BlockType::ABLE;
 	}
 }
 

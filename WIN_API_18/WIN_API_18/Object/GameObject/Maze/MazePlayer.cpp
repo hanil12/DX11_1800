@@ -340,6 +340,8 @@ void MazePlayer::AStar()
 
 void MazePlayer::Update()
 {
+	_maze->GetBlock(_pos)->Type() = MazeBlock::BlockType::PLAYER;
+
 	if (_pathIndex >= _path.size())
 		return;
 

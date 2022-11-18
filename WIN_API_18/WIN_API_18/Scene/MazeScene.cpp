@@ -5,7 +5,6 @@ MazeScene::MazeScene()
 {
 	_maze = make_shared<Maze>();
 	_player = make_shared<MazePlayer>(_maze);
-	_maze->SetPlayer(_player);
 }
 
 MazeScene::~MazeScene()

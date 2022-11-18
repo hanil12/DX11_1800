@@ -26,6 +26,7 @@ using namespace std;
 // Type
 #include "Types.h"
 #include "Math/Vector2.h"
+#include "Math/Disjoint_set.h"
 
 // Collider
 #include "Collider/Line.h"
