@@ -62,6 +62,8 @@ public:
 	MazePlayer(shared_ptr<Maze> maze);
 	~MazePlayer();
 
+	void Init();
+
 	void RightHand();
 	void BFS();
 	void Dijkstra();

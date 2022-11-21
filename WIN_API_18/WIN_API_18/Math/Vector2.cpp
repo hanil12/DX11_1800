@@ -49,7 +49,30 @@ bool Vector2::operator==(const Vector2& other) const
 
 bool Vector2::operator!=(const Vector2& other) const
 {
-    return !(*this == other);
+    if (_x != other._x)
+        return true;
+    if (_y != other._y)
+        return true;
+
+    return false;
+}
+
+bool Vector2::operator>(const Vector2& other) const
+{
+    // 뒤에 const는 내부에서 (이 함수를 호출한)객체를 수정하지 않겠다.
+
+    if (_y != other._y)
+        return _y > other._y;
+
+    return _x > other._x;
+}
+
+bool Vector2::operator<(const Vector2& other) const
+{
+    if (_y != other._y)
+        return _y < other._y;
+
+    return _x < other._x;
 }
 
 float Vector2::Dot(const Vector2& other)
@@ -72,18 +95,18 @@ bool Vector2::IsBetween(const Vector2& vector1, const Vector2& vector2)
     return between < 0.0f;
 }
 
-float Vector2::Length()
+float Vector2::Length() const
 {
     return sqrt(powf(_x, 2) + powf(_y, 2));
 }
 
-float Vector2::Length(const Vector2& other)
+float Vector2::Length(const Vector2& other) const
 {
     Vector2 temp = (*this) - other;
     return temp.Length();
 }
 
-Vector2 Vector2::Normallize()
+Vector2 Vector2::Normallize() const
 {
     float legnth = this->Length();
     return Vector2(_x / legnth, _y / legnth);

@@ -4,13 +4,21 @@
 MazePlayer::MazePlayer(shared_ptr<Maze> maze)
 : _maze(maze)
 {
-	_pos = _maze->GetStartPos();
-	AStar();
+	Init();
 }
 
 MazePlayer::~MazePlayer()
 {
 	_maze = nullptr;
+}
+
+void MazePlayer::Init()
+{
+	_pos = _maze->GetStartPos();
+	_path.clear();
+	_pathIndex = 0;
+
+	AStar();
 }
 
 void MazePlayer::RightHand()
@@ -316,7 +324,7 @@ void MazePlayer::AStar()
 			pq.push(Vertex(there, nextG,nextH));
 			discorvered[there._y][there._x] = true;
 			best[there._y][there._x] = nextG + nextH;
-			_maze->GetBlock(there)->Type() = MazeBlock::BlockType::FOOTPRINT;
+			//_maze->GetBlock(there)->Type() = MazeBlock::BlockType::FOOTPRINT;
 			parent[there._y][there._x] = here;
 		}
 	}
@@ -343,9 +351,14 @@ void MazePlayer::Update()
 	_maze->GetBlock(_pos)->Type() = MazeBlock::BlockType::PLAYER;
 
 	if (_pathIndex >= _path.size())
-		return;
+	{
+		_maze->CreateMap_Prim();
+		Init();
 
-	if (_time >= 1.0f)
+		return;
+	}
+
+	if (_time >= 0.5f)
 	{
 		_pos = _path[_pathIndex];
 
@@ -359,7 +372,7 @@ void MazePlayer::Update()
 		_pathIndex++;
 	}
 
-	_time += 0.2f;
+	_time += 0.1f;
 }
 
 bool MazePlayer::Cango(const Vector2& pos)

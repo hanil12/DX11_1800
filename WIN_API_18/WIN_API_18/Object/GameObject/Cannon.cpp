@@ -6,7 +6,7 @@ Cannon::Cannon()
 	_body = make_shared<CircleCollider>(Vector2(CENTER_X, CENTER_Y), 30);
 	_barrel = make_shared<Barrel>();
 	_barrel->_startPos = _body->GetCenter();
-	_barrel->_endPos = _barrel->_startPos + Vector2(_barrelSize, 0);
+	_barrel->_endPos = _barrel->_startPos + Vector2(_barrelSize, 0.0f);
 
 	_bullets.reserve(30);
 	for (int i = 0; i < _poolCount; i++)

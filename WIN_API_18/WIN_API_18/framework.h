@@ -16,6 +16,7 @@
 #include <tchar.h>
 #include <math.h>
 #include <vector>
+#include <map>
 #include <unordered_map>
 #include <stack>
 #include <queue>

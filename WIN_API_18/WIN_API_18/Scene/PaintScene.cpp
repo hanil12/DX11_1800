@@ -60,7 +60,7 @@ void PaintScene::Update()
 
     if (GetKeyState(VK_RIGHT) && 0x8000)
     {
-        Vector2 pos = _rect1->GetCenter() + Vector2(1.0f, 0);
+        Vector2 pos = _rect1->GetCenter() + Vector2(1.0f, 0.0f);
         _rect1->SetCenter(pos);
     }
 }

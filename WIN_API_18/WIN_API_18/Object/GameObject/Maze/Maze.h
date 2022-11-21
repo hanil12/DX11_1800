@@ -15,6 +15,22 @@ struct Kruskal_edge
 	}
 };
 
+struct Prim_edge
+{
+	int cost = 0;
+	Vector2 v;
+
+	bool operator<(const Prim_edge& other) const
+	{
+		return cost < other.cost;
+	}
+
+	bool operator>(const Prim_edge& other) const
+	{
+		return cost > other.cost;
+	}
+};
+
 class Maze
 {
 public:
@@ -26,6 +42,7 @@ public:
 
 	void CreateMap();
 	void CreateMap_Kruskal();
+	void CreateMap_Prim();
 
 	Vector2 GetStartPos() { return Vector2(1, 1); }
 	Vector2 GetEndPos() { return Vector2(23, 23); }
