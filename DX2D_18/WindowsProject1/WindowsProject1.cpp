@@ -360,22 +360,22 @@ void InitDevice()
 
     v.pos = { 0.5f, -0.5f, 0.0f }; // 오른쪽 아래
     v.color = { 0.0f, 0.0f, 1.0f,1.0f }; // 파랑
-    v.uv = { 1.0f, 1.0f };
+    v.uv = { 2.0f, 2.0f };
     vertices.push_back(v);
 
     v.pos = { -0.5f, -0.5f, 0.0f }; // 왼쪽 아래
     v.color = { 1.0f, 0.0f,0.0f,1.0f }; // 빨강
-    v.uv = { 0.0f, 1.0f };
+    v.uv = { 0.0f, 2.0f };
     vertices.push_back(v);
 
     v.pos = { 0.5f, 0.5f, 0.0f }; // 오른쪽 위
     v.color = { 1.0f, 0.0f,0.0f,1.0f }; // 빨강
-    v.uv = { 1.0f, 0.0f };
+    v.uv = { 2.0f, 0.0f };
     vertices.push_back(v);
 
     v.pos = { 0.5f, -0.5f, 0.0f }; // 오른쪽 아래
     v.color = { 0.0f, 0.0f, 1.0f,1.0f }; // 파랑
-    v.uv = { 1.0f, 1.0f };
+    v.uv = { 2.0f, 2.0f };
     vertices.push_back(v);
 
     v.pos = { -0.5f, 0.5f, 0.0f }; // 왼쪽 위
@@ -409,6 +409,8 @@ void InitDevice()
     sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
     sampDesc.MinLOD = 0;
     sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+    device->CreateSamplerState(&sampDesc, samplerState.GetAddressOf());
 }
 
 void Render()
