@@ -29,5 +29,8 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
 
+// DirectX Tex
+#include "../DirectXTex/DirectXTex.h"
+
 using namespace std;
 using namespace DirectX;

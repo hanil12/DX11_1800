@@ -1,12 +1,33 @@
+Texture2D map :register(t0);
+SamplerState samp : register(s0);
+
+struct VertexInput
+{
+	float4 pos : POSITION;
+	float4 color : COLOR;
+	float2 uv : UV;
+};
+
+struct PixelInput
+{
+	float4 pos : SV_POSITION;
+	float4 color : COLOR;
+	float2 uv : UV;
+};
 
 // VertexShader
-float4 VS(float4 pos : POSITION) : SV_POSITION
+PixelInput VS(VertexInput input)
 {
-	return pos;
+	PixelInput result;
+	result.pos = input.pos;
+	result.color = input.color;
+	result.uv = input.uv;
+
+	return result;
 }
 
 // SV_TARGET -> 그릴 곳... 우리한테는 후면버퍼(RTV)
-float4 PS() : SV_TARGET
+float4 PS(PixelInput input) : SV_TARGET
 {
-	return float4(1.0f,0.7f,0.0f,1.0f);
+	return map.Sample(samp, input.uv);
 }

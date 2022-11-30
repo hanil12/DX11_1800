@@ -47,11 +47,16 @@ Microsoft::WRL::ComPtr<ID3D11VertexShader> vertexShader;
 Microsoft::WRL::ComPtr<ID3D11PixelShader> pixelShader;
 Microsoft::WRL::ComPtr<ID3D11InputLayout> inputLayOut;
 
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> shaderResourceView; // 판박이를 만들어서 가리키는 포인터
+Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState; // 판박이를 붙여주는 사람
+
 HWND hWnd;
 
 struct Vertex
 {
     XMFLOAT3 pos;
+    XMFLOAT4 color;
+    XMFLOAT2 uv;
 };
 
 void InitDevice();
@@ -313,6 +318,14 @@ void InitDevice()
         {
             "POSITION",0, DXGI_FORMAT_R32G32B32_FLOAT,0,0,
             D3D11_INPUT_PER_VERTEX_DATA,0
+        },
+        {
+            "COLOR",0, DXGI_FORMAT_R32G32B32A32_FLOAT,0,12,
+            D3D11_INPUT_PER_VERTEX_DATA,0
+        },
+        {
+            "UV",0, DXGI_FORMAT_R32G32_FLOAT,0,28,
+            D3D11_INPUT_PER_VERTEX_DATA,0
         }
     };
 
@@ -324,7 +337,7 @@ void InitDevice()
     D3DCompileFromFile(L"Shaders/Tutorial.hlsl", nullptr, nullptr,
         "VS", "vs_5_0", flags, 0, vertexBlob.GetAddressOf(), nullptr);
 
-    // Shader 정보 전달
+    // Shader 정보 전달 
     device->CreateInputLayout(layout, layoutSize, vertexBlob->GetBufferPointer(),
         vertexBlob->GetBufferSize(), inputLayOut.GetAddressOf());
 
@@ -338,26 +351,91 @@ void InitDevice()
     device->CreatePixelShader(pixelBlob->GetBufferPointer(), pixelBlob->GetBufferSize(), nullptr,
         pixelShader.GetAddressOf());
 
-    Vertex vertices[] =
-    {
-        XMFLOAT3(0.0f, 0.5f, 0.0f),
-        XMFLOAT3(0.5f, -0.5f, 0.0f),
-        XMFLOAT3(-0.5f, -0.5f, 0.0f)
-    };
+    vector<Vertex> vertices;
+    Vertex v;
+    v.pos = { -0.5f, 0.5f, 0.0f }; // 왼쪽 위
+    v.color = { 0.0f, 1.0f,0.0f,1.0f }; // 초록
+    v.uv = { 0.0f, 0.0f };
+    vertices.push_back(v);
+
+    v.pos = { 0.5f, -0.5f, 0.0f }; // 오른쪽 아래
+    v.color = { 0.0f, 0.0f, 1.0f,1.0f }; // 파랑
+    v.uv = { 1.0f, 1.0f };
+    vertices.push_back(v);
+
+    v.pos = { -0.5f, -0.5f, 0.0f }; // 왼쪽 아래
+    v.color = { 1.0f, 0.0f,0.0f,1.0f }; // 빨강
+    v.uv = { 0.0f, 1.0f };
+    vertices.push_back(v);
+
+    v.pos = { 0.5f, 0.5f, 0.0f }; // 오른쪽 위
+    v.color = { 1.0f, 0.0f,0.0f,1.0f }; // 빨강
+    v.uv = { 1.0f, 0.0f };
+    vertices.push_back(v);
+
+    v.pos = { 0.5f, -0.5f, 0.0f }; // 오른쪽 아래
+    v.color = { 0.0f, 0.0f, 1.0f,1.0f }; // 파랑
+    v.uv = { 1.0f, 1.0f };
+    vertices.push_back(v);
+
+    v.pos = { -0.5f, 0.5f, 0.0f }; // 왼쪽 위
+    v.color = { 0.0f, 1.0f,0.0f,1.0f }; // 초록
+    v.uv = { 0.0f, 0.0f };
+    vertices.push_back(v);
 
     // Vertex 버퍼 : Vertex
     D3D11_BUFFER_DESC bd = {};
     bd.Usage = D3D11_USAGE_DEFAULT;
-    bd.ByteWidth = sizeof(Vertex) * 3;
+    bd.ByteWidth = sizeof(Vertex) * 6;
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
     D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = vertices;
+    initData.pSysMem = vertices.data();
 
     device->CreateBuffer(&bd, &initData, vertexBuffer.GetAddressOf());
+
+    // Texture 준비하고, Shader한테 넘기는 작업
+    ScratchImage image;
+    LoadFromWICFile(L"Resource/2B.png", WIC_FLAGS_NONE, nullptr, image);
+
+    CreateShaderResourceView(device.Get(), image.GetImages(), image.GetImageCount(), image.GetMetadata(),
+        shaderResourceView.GetAddressOf());
+
+    D3D11_SAMPLER_DESC sampDesc = {};
+    sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+    sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+    sampDesc.MinLOD = 0;
+    sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
 }
 
 void Render()
 {
+    FLOAT myColorR = 120.0f / 255.0f;
+    FLOAT myColorG = 120.0f / 255.0f;
+    FLOAT myColorB = 120.0f / 255.0f;
 
+    FLOAT clearColor[4] = { myColorR, myColorG, myColorB, 1.0f };
+
+    deviceContext->ClearRenderTargetView(renderTargetView.Get(), clearColor);
+
+    UINT stride = sizeof(Vertex);
+    UINT offset = 0;
+
+    deviceContext->IASetInputLayout(inputLayOut.Get());
+
+    deviceContext->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
+    deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+    deviceContext->PSSetShaderResources(0, 1, shaderResourceView.GetAddressOf());
+    deviceContext->PSSetSamplers(0, 1, samplerState.GetAddressOf());
+
+    deviceContext->VSSetShader(vertexShader.Get(), nullptr, 0);
+    deviceContext->PSSetShader(pixelShader.Get(), nullptr, 0);
+
+    deviceContext->Draw(6, 0);
+
+    swapChain->Present(0, 0);
 }
