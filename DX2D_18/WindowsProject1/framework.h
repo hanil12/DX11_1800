@@ -29,8 +29,29 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
 
+using namespace std;
+using namespace DirectX;
+
 // DirectX Tex
 #include "../DirectXTex/DirectXTex.h"
 
-using namespace std;
-using namespace DirectX;
+#include "Types.h"
+
+// Device
+#include "Framework/Device/Device.h"
+
+// Render
+#include "Framework/Render/VertexLayOut.h"
+#include "Framework/Render/VertexBuffer.h"
+#include "Framework/Render/VertexShader.h"
+#include "Framework/Render/PixelShader.h"
+
+// Texture
+#include "Framework/Texture/SRV.h"
+#include "Framework/Texture/SamplerState.h"
+
+// Scene
+#include "Scene/Scene.h"
+
+// Program
+#include "Program/Program.h"
