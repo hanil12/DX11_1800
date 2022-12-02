@@ -10,5 +10,6 @@ public:
 
 private:
 	unordered_map<string, shared_ptr<Scene>> _scenes;
+	shared_ptr<Scene> _curScene;
 };
 

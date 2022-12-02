@@ -6,6 +6,7 @@
 Program::Program()
 {
 	_scenes["TextureScene"] = make_shared<TextureScene>();
+	_curScene = _scenes["TextureScene"];
 }
 
 Program::~Program()
@@ -15,7 +16,7 @@ Program::~Program()
 void Program::Update()
 {
 	// Scene Update();
-	_scenes["TextureScene"]->Update();
+	_curScene->Update();
 }
 
 void Program::Render()
@@ -23,7 +24,7 @@ void Program::Render()
 	Device::GetInstance()->Clear();
 
 	// Scene Render
-	_scenes["TextureScene"]->Render();
+	_curScene->Render();
 
 	Device::GetInstance()->Present();
 }

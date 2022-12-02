@@ -3,12 +3,8 @@
 
 TextureScene::TextureScene()
 {
-	_vs = make_shared<VertexShader>(L"Shaders/Tutorial.hlsl");
-	_ps = make_shared<PixelShader>(L"Shaders/Tutorial.hlsl");
-
-	_vBuffer = make_shared<VertexBuffer>();
-	_srv = make_shared<SRV>(L"Resource/2B.png");
-	_sampler = make_shared<SamplerState>();
+	_texture1 = make_shared<Texture>(L"2B.png");
+	_texture2 = make_shared<Texture>(L"BattleMaster.png");
 }
 
 TextureScene::~TextureScene()
@@ -17,19 +13,12 @@ TextureScene::~TextureScene()
 
 void TextureScene::Update()
 {
+	_texture1->Update();
+	_texture2->Update();
 }
 
 void TextureScene::Render()
 {
-	_vBuffer->Set(0);
-
-	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	_srv->Set(0);
-	_sampler->Set(0);
-
-	_vs->Set();
-	_ps->Set();
-
-	DC->Draw(6, 0);
+	_texture1->Render();
+	_texture2->Render();
 }

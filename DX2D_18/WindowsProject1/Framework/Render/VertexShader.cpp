@@ -28,11 +28,7 @@ void VertexShader::CreateInputLayOut()
             D3D11_INPUT_PER_VERTEX_DATA,0
         },
         {
-            "COLOR",0, DXGI_FORMAT_R32G32B32A32_FLOAT,0,12,
-            D3D11_INPUT_PER_VERTEX_DATA,0
-        },
-        {
-            "UV",0, DXGI_FORMAT_R32G32_FLOAT,0,28,
+            "UV",0, DXGI_FORMAT_R32G32_FLOAT,0,12,
             D3D11_INPUT_PER_VERTEX_DATA,0
         }
     };

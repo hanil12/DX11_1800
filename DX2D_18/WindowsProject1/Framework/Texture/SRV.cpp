@@ -8,6 +8,9 @@ SRV::SRV(wstring file)
 
     CreateShaderResourceView(DEVICE.Get(), image.GetImages(), image.GetImageCount(), image.GetMetadata(),
         _shaderResourceView.GetAddressOf());
+
+    _size._x = image.GetMetadata().width;
+    _size._y = image.GetMetadata().height;
 }
 
 SRV::~SRV()

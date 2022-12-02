@@ -8,11 +8,7 @@ public:
 	virtual void Update() override;
 	virtual void Render() override;
 private:
-	shared_ptr<VertexBuffer> _vBuffer;
-	shared_ptr<VertexShader> _vs;
-	shared_ptr<PixelShader> _ps;
-
-	shared_ptr<SamplerState> _sampler;
-	shared_ptr<SRV> _srv;
+	shared_ptr<Texture> _texture1;
+	shared_ptr<Texture> _texture2;
 };
 

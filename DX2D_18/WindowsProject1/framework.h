@@ -37,18 +37,25 @@ using namespace DirectX;
 
 #include "Types.h"
 
+// Math
+#include "Framework/Math/Vector2.h"
+
 // Device
 #include "Framework/Device/Device.h"
 
 // Render
 #include "Framework/Render/VertexLayOut.h"
 #include "Framework/Render/VertexBuffer.h"
+#include "Framework/Render/IndexBuffer.h"
 #include "Framework/Render/VertexShader.h"
 #include "Framework/Render/PixelShader.h"
 
 // Texture
 #include "Framework/Texture/SRV.h"
 #include "Framework/Texture/SamplerState.h"
+
+// Object
+#include "Object/Texture.h"
 
 // Scene
 #include "Scene/Scene.h"
