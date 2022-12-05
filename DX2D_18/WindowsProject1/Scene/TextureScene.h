@@ -11,4 +11,3 @@ private:
 	shared_ptr<Texture> _texture1;
 	shared_ptr<Texture> _texture2;
 };
-

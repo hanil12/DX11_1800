@@ -15,7 +15,7 @@ VertexBuffer::~VertexBuffer()
 
 void VertexBuffer::IASet(int slot)
 {
-    DC->IASetVertexBuffers(slot, 1, vertexBuffer.GetAddressOf(), &_stride, &_offset);
+    DC->IASetVertexBuffers(slot, 1, _vertexBuffer.GetAddressOf(), &_stride, &_offset);
 }
 
 void VertexBuffer::CreateVertexBuffer(void* data)
@@ -29,5 +29,5 @@ void VertexBuffer::CreateVertexBuffer(void* data)
     D3D11_SUBRESOURCE_DATA initData = {};
     initData.pSysMem = data;
 
-    DEVICE->CreateBuffer(&bd, &initData, vertexBuffer.GetAddressOf());
+    DEVICE->CreateBuffer(&bd, &initData, _vertexBuffer.GetAddressOf());
 }

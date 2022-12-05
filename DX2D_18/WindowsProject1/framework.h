@@ -49,6 +49,8 @@ using namespace DirectX;
 #include "Framework/Render/IndexBuffer.h"
 #include "Framework/Render/VertexShader.h"
 #include "Framework/Render/PixelShader.h"
+#include "Framework/Render/ConstantBuffer.h"
+#include "Framework/Render/GlobalBuffer.h"
 
 // Texture
 #include "Framework/Texture/SRV.h"

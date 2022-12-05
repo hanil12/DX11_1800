@@ -10,7 +10,7 @@ public:
 private:
 	void CreateVertexBuffer(void* data);
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> _vertexBuffer;
 
 	UINT _stride;
 	UINT _offset;

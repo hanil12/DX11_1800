@@ -3,8 +3,8 @@
 
 TextureScene::TextureScene()
 {
-	_texture1 = make_shared<Texture>(L"2B.png");
-	_texture2 = make_shared<Texture>(L"BattleMaster.png");
+	_texture1 = make_shared<Texture>(L"2B.png", Vector2(50,50));
+	_texture2 = make_shared<Texture>(L"BattleMaster.png", Vector2 (30,30));
 }
 
 TextureScene::~TextureScene()

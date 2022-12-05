@@ -13,9 +13,28 @@ Texture::Texture(wstring file)
 	_vBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex_UV), _vertices.size());
 	_indexBuffer = make_shared<IndexBuffer>(_indices.data(), _indices.size());
 
-	_vs = make_shared<VertexShader>(L"Shaders/Tutorial.hlsl");
-	_ps = make_shared<PixelShader>(L"Shaders/Tutorial.hlsl");
+	_vs = make_shared<VertexShader>(L"Shaders/TextureVertexShader.hlsl");
+	_ps = make_shared<PixelShader>(L"Shaders/TextureVertexShader.hlsl");
 
+	_worldBuffer = make_shared<MatrixBuffer>();
+}
+
+Texture::Texture(wstring file, Vector2 size)
+{
+	wstring path = L"Resource/Texture/" + file;
+	_srv = make_shared<SRV>(path);
+	_sampler = make_shared<SamplerState>();
+
+	_size = size;
+
+	CreateVertricesAndIndices();
+	_vBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex_UV), _vertices.size());
+	_indexBuffer = make_shared<IndexBuffer>(_indices.data(), _indices.size());
+
+	_vs = make_shared<VertexShader>(L"Shaders/TextureVertexShader.hlsl");
+	_ps = make_shared<PixelShader>(L"Shaders/TexturePixelShader.hlsl");
+
+	_worldBuffer = make_shared<MatrixBuffer>();
 }
 
 Texture::~Texture()
@@ -24,10 +43,22 @@ Texture::~Texture()
 
 void Texture::Update()
 {
+	_scale._x += 0.01f;
+
+	XMMATRIX S = XMMatrixScaling(_scale._x, _scale._y, 0);
+	XMMATRIX R = XMMatrixRotationZ(_angle);
+	XMMATRIX T = XMMatrixTranslation(_pos._x, _pos._y, 0);
+
+	_srtMatrix = S * R * T;
+
+	_worldBuffer->SetData(_srtMatrix);
+	_worldBuffer->Update();
 }
 
 void Texture::Render()
 {
+	_worldBuffer->SetVSBuffer(0);
+
 	_vBuffer->IASet(0);
 	_indexBuffer->IASet();
 
