@@ -14,8 +14,11 @@ VertexShader::~VertexShader()
 
 void VertexShader::CreateBlob(wstring file)
 {
+    wstring path = L"Shaders/";
+    path += file;
+    path += L".hlsl";
 	DWORD flags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_DEBUG;
-	D3DCompileFromFile(L"Shaders/Tutorial.hlsl", nullptr, nullptr,
+	D3DCompileFromFile(path.c_str(), nullptr, nullptr,
 		"VS", "vs_5_0", flags, 0, _vertexBlob.GetAddressOf(), nullptr);
 }
 

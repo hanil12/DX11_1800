@@ -10,10 +10,7 @@ ConstantBuffer::ConstantBuffer(void* data, UINT dataSize)
     bd.ByteWidth = _dataSize;
     bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 
-    D3D11_SUBRESOURCE_DATA initData = {};
-    initData.pSysMem = _data;
-
-    DEVICE->CreateBuffer(&bd, &initData, _buffer.GetAddressOf());
+    DEVICE->CreateBuffer(&bd, nullptr, _buffer.GetAddressOf());
 }
 
 ConstantBuffer::~ConstantBuffer()

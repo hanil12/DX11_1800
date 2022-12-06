@@ -13,8 +13,8 @@ Texture::Texture(wstring file)
 	_vBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex_UV), _vertices.size());
 	_indexBuffer = make_shared<IndexBuffer>(_indices.data(), _indices.size());
 
-	_vs = make_shared<VertexShader>(L"Shaders/TextureVertexShader.hlsl");
-	_ps = make_shared<PixelShader>(L"Shaders/TextureVertexShader.hlsl");
+	_vs = make_shared<VertexShader>(L"TextureVertexShader");
+	_ps = make_shared<PixelShader>(L"TexturePixelShader");
 
 	_worldBuffer = make_shared<MatrixBuffer>();
 }
@@ -31,8 +31,8 @@ Texture::Texture(wstring file, Vector2 size)
 	_vBuffer = make_shared<VertexBuffer>(_vertices.data(), sizeof(Vertex_UV), _vertices.size());
 	_indexBuffer = make_shared<IndexBuffer>(_indices.data(), _indices.size());
 
-	_vs = make_shared<VertexShader>(L"Shaders/TextureVertexShader.hlsl");
-	_ps = make_shared<PixelShader>(L"Shaders/TexturePixelShader.hlsl");
+	_vs = make_shared<VertexShader>(L"TextureVertexShader");
+	_ps = make_shared<PixelShader>(L"TexturePixelShader");
 
 	_worldBuffer = make_shared<MatrixBuffer>();
 }
@@ -43,13 +43,16 @@ Texture::~Texture()
 
 void Texture::Update()
 {
-	_scale._x += 0.01f;
-
-	XMMATRIX S = XMMatrixScaling(_scale._x, _scale._y, 0);
+	XMMATRIX S = XMMatrixScaling(_scale._x, _scale._y, 1);
 	XMMATRIX R = XMMatrixRotationZ(_angle);
 	XMMATRIX T = XMMatrixTranslation(_pos._x, _pos._y, 0);
 
 	_srtMatrix = S * R * T;
+
+	if (_parent != nullptr)
+	{
+		_srtMatrix *= (*_parent);
+	}
 
 	_worldBuffer->SetData(_srtMatrix);
 	_worldBuffer->Update();
@@ -76,8 +79,8 @@ void Texture::Render()
 void Texture::CreateVertricesAndIndices()
 {
 	Vertex_UV v;
-	float widthRate = (_size._x / WIN_WIDTH);
-	float heightRate = (_size._y / WIN_HEIGHT);
+	float widthRate = (_size._x) * 0.5f;
+	float heightRate = (_size._y) * 0.5f;
 	v.pos = { -widthRate, heightRate, 0.0f }; // ¿ÞÂÊ À§
 	v.uv = { 0.0f, 0.0f };
 	_vertices.push_back(v);

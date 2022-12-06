@@ -9,6 +9,13 @@ public:
 	void Update();
 	void Render();
 
+	Vector2& GetScale() { return _scale; }
+	Vector2& GetPos() { return _pos; }
+	float& GetAngle() { return _angle; }
+
+	void SetParent(XMMATRIX* parent) { _parent = parent; }
+	XMMATRIX* GetMatrix() { return &_srtMatrix; }
+
 private:
 	void CreateVertricesAndIndices();
 	vector<Vertex_UV> _vertices;
