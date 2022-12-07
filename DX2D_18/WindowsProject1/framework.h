@@ -39,6 +39,7 @@ using namespace DirectX;
 
 // Math
 #include "Framework/Math/Vector2.h"
+#include "Framework/Math/Transform.h"
 
 // Device
 #include "Framework/Device/Device.h"
@@ -58,6 +59,9 @@ using namespace DirectX;
 
 // Object
 #include "Object/Texture.h"
+
+// GameObj
+#include "Object/GameObj/Planet.h"
 
 // Scene
 #include "Scene/Scene.h"

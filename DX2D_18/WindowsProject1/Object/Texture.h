@@ -9,12 +9,9 @@ public:
 	void Update();
 	void Render();
 
-	Vector2& GetScale() { return _scale; }
-	Vector2& GetPos() { return _pos; }
-	float& GetAngle() { return _angle; }
+	void SetParent(shared_ptr<Transform> parent) { _transform->SetParent(parent); }
 
-	void SetParent(XMMATRIX* parent) { _parent = parent; }
-	XMMATRIX* GetMatrix() { return &_srtMatrix; }
+	shared_ptr<Transform> GetTransform() { return _transform; }
 
 private:
 	void CreateVertricesAndIndices();
@@ -31,13 +28,9 @@ private:
 
 	Vector2 _size = { 1.0f,1.0f };
 
-	Vector2 _scale = { 1.0f,1.0f };
-	float _angle = 0.0f;
-	Vector2 _pos = { 0.0f,0.0f };
-
-	XMMATRIX _srtMatrix = XMMatrixIdentity();
-	shared_ptr<MatrixBuffer> _worldBuffer;
-
-	XMMATRIX* _parent = nullptr;
+	// 오브젝트를 월드에서 움직이기 위한 Matrix
+	// -> 컴포넌트 패턴(부품처럼 붙이는 형식)
+	// => 유니티
+	shared_ptr<Transform> _transform;
 };
 

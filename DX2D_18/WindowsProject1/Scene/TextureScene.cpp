@@ -6,9 +6,9 @@ TextureScene::TextureScene()
 	_texture1 = make_shared<Texture>(L"2B.png", Vector2(100,100));
 	_texture2 = make_shared<Texture>(L"BattleMaster.png", Vector2 (100,100));
 
-	_texture2->SetParent(_texture1->GetMatrix());
+	_texture2->SetParent(_texture1->GetTransform());
 
-	_texture2->GetPos()._x += 200;
+	_texture2->GetTransform()->GetPos()._x += 200;
 
 	_worldBuffer = make_shared<MatrixBuffer>();
 	_viewBuffer = make_shared<MatrixBuffer>();
@@ -29,13 +29,6 @@ TextureScene::~TextureScene()
 
 void TextureScene::Update()
 {
-	XMMATRIX worldS = XMMatrixScaling(1, 1, 1);
-	XMMATRIX worldR = XMMatrixRotationZ(0);
-	XMMATRIX worldT = XMMatrixTranslation(_worldPos.x, _worldPos.y, 0);
-	XMMATRIX worldSRT = worldS * worldR * worldT;
-	_worldBuffer->SetData(worldSRT);
-	_worldBuffer->Update();
-
 	XMMATRIX viewS = XMMatrixScaling(1, 1, 1);
 	XMMATRIX viewR = XMMatrixRotationZ(_cameraAngle);
 	XMMATRIX viewT = XMMatrixTranslation(_cameraPos.x, _cameraPos.y, 0);
