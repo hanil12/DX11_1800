@@ -27,8 +27,10 @@ Program::~Program()
 
 void Program::Update()
 {
-
 	// Scene Update();
+	Keyboard::GetInstance()->Update();
+	Timer::GetInstance()->Update();
+
 	_curScene->Update();
 }
 

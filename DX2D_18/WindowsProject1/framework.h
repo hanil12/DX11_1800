@@ -44,6 +44,10 @@ using namespace DirectX;
 // Device
 #include "Framework/Device/Device.h"
 
+// Utility
+#include "Framework/Utility/Timer.h"
+#include "Framework/Utility/Keyboard.h"
+
 // Render
 #include "Framework/Render/VertexLayOut.h"
 #include "Framework/Render/VertexBuffer.h"

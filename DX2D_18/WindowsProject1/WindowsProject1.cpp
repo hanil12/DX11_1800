@@ -69,6 +69,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 생성
     Device::Create(hWnd);
+    Timer::Create();
+    Keyboard::Create();
+
     shared_ptr<Program> program = make_shared<Program>();
 
     // 기본 메시지 루프입니다:
@@ -91,6 +94,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 삭제
+    Keyboard::Delete();
+    Timer::Delete();
     Device::Delete();
 
     return (int) msg.wParam;

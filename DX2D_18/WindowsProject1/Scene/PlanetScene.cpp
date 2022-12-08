@@ -25,11 +25,36 @@ PlanetScene::~PlanetScene()
 
 void PlanetScene::Update()
 {
-	_sun->GetAngle() += 0.0005f; // 자전
-	_sunTrans->GetAngle() += 0.001f; // 공전
-	_earth->GetAngle() += 0.0005f; // 자전
-	_earthTrans->GetAngle() += 0.001f; // 공전
-	_moon->GetAngle() += 0.005f;
+	if (KEY_PRESS(VK_LEFT))
+	{
+		_sun->Getpos()._x -= 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._x -= 0.5f * DELTA_TIME * 100;
+	}
+
+	if (KEY_PRESS(VK_RIGHT))
+	{
+		_sun->Getpos()._x += 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._x += 0.5f * DELTA_TIME * 100;
+	}
+
+	if (KEY_PRESS(VK_UP))
+	{
+		_sun->Getpos()._y += 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._y += 0.5f * DELTA_TIME * 100;
+	}
+
+	if (KEY_PRESS(VK_DOWN))
+	{
+		_sun->Getpos()._y -= 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos()._y -= 0.5f * DELTA_TIME * 100;
+	}
+
+
+	_sun->GetAngle() += 0.0005f * DELTA_TIME * 100; // 자전
+	_sunTrans->GetAngle() += 0.001f * DELTA_TIME * 100; // 공전
+	_earth->GetAngle() += 0.0005f * DELTA_TIME * 100; // 자전
+	_earthTrans->GetAngle() += 0.001f * DELTA_TIME * 100; // 공전
+	_moon->GetAngle() += 0.005f * DELTA_TIME * 100;
 
 	_sun->Update();
 	_earth->Update();
