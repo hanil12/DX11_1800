@@ -25,6 +25,18 @@ PlanetScene::~PlanetScene()
 
 void PlanetScene::Update()
 {
+	if (KEY_PRESS('O'))
+	{
+		_sun->GetScale()._x -= 0.5f * DELTA_TIME;
+		_sunTrans->GetScale()._x -= 0.5f * DELTA_TIME;
+	}
+
+	if (KEY_PRESS('P'))
+	{
+		_sun->GetScale()._x += 0.5f * DELTA_TIME;
+		_sunTrans->GetScale()._x += 0.5f * DELTA_TIME;
+	}
+
 	if (KEY_PRESS(VK_LEFT))
 	{
 		_sun->Getpos()._x -= 0.5f * DELTA_TIME * 100;
@@ -49,12 +61,14 @@ void PlanetScene::Update()
 		_sunTrans->GetPos()._y -= 0.5f * DELTA_TIME * 100;
 	}
 
-
 	_sun->GetAngle() += 0.0005f * DELTA_TIME * 100; // 자전
 	_sunTrans->GetAngle() += 0.001f * DELTA_TIME * 100; // 공전
 	_earth->GetAngle() += 0.0005f * DELTA_TIME * 100; // 자전
 	_earthTrans->GetAngle() += 0.001f * DELTA_TIME * 100; // 공전
 	_moon->GetAngle() += 0.005f * DELTA_TIME * 100;
+
+	_sun->Getpos() = mousePos;
+	_sunTrans->GetPos() = mousePos;
 
 	_sun->Update();
 	_earth->Update();

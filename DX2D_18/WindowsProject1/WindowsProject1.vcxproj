@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Texture\BlendState.h" />
     <ClInclude Include="Framework\Render\ConstantBuffer.h" />
     <ClInclude Include="Framework\Device\Device.h" />
     <ClInclude Include="framework.h" />
@@ -160,12 +161,14 @@
     <ClInclude Include="Framework\Render\IndexBuffer.h" />
     <ClInclude Include="Framework\Utility\Keyboard.h" />
     <ClInclude Include="Object\GameObj\Planet.h" />
+    <ClInclude Include="Framework\Math\RectCollider.h" />
     <ClInclude Include="Scene\PlanetScene.h" />
     <ClInclude Include="Program\Program.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Framework\Texture\SamplerState.h" />
     <ClInclude Include="Framework\Texture\SRV.h" />
     <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Framework\Texture\StateManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TextureScene.h" />
     <ClInclude Include="Object\Texture.h" />
@@ -178,6 +181,7 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Texture\BlendState.cpp" />
     <ClCompile Include="Framework\Render\ConstantBuffer.cpp" />
     <ClCompile Include="Framework\Device\Device.cpp" />
     <ClCompile Include="framework.cpp">
@@ -199,6 +203,7 @@
     <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
     <ClCompile Include="Object\GameObj\Planet.cpp" />
+    <ClCompile Include="Framework\Math\RectCollider.cpp" />
     <ClCompile Include="Scene\PlanetScene.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
@@ -206,6 +211,7 @@
     <ClCompile Include="Object\Texture.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
+    <ClCompile Include="Framework\Texture\StateManager.cpp" />
     <ClCompile Include="WindowsProject1.cpp" />
   </ItemGroup>
   <ItemGroup>

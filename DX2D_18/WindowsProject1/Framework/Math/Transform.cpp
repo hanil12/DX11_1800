@@ -31,3 +31,19 @@ void Transform::SetWorldBuffer()
 {
 	_worldBuffer->SetVSBuffer(0);
 }
+
+Vector2 Transform::GetWorldPos()
+{
+	if (_parent != nullptr)
+	{
+		XMFLOAT4X4 matrix;
+		XMStoreFloat4x4(&matrix, _srtMatrix);
+		Vector2 result;
+		result._x = matrix._41;
+		result._y = matrix._42;
+
+		return result;
+	}
+
+	return _pos;
+}

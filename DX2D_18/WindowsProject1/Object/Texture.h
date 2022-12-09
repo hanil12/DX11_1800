@@ -23,7 +23,6 @@ private:
 	shared_ptr<VertexShader> _vs;
 	shared_ptr<PixelShader> _ps;
 
-	shared_ptr<SamplerState> _sampler;
 	shared_ptr<SRV> _srv;
 
 	Vector2 _size = { 1.0f,1.0f };

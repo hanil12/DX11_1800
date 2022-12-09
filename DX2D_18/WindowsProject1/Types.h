@@ -16,3 +16,7 @@
 
 #define DELTA_TIME Timer::GetInstance()->GetElasedTime()
 
+#define SAMPLER StateManager::GetInstance()->GetSampler()
+#define AlphaBlendState StateManager::GetInstance()->GetAlphaBlend()
+#define AdditiveBlendState StateManager::GetInstance()->GetAdditiveBlend()
+

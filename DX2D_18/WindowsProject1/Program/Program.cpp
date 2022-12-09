@@ -13,7 +13,7 @@ Program::Program()
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();
 
-	XMMATRIX projectionM = XMMatrixOrthographicLH(WIN_WIDTH, WIN_HEIGHT, 0.0f, 1.0f);
+	XMMATRIX projectionM = XMMatrixOrthographicOffCenterLH(0.0f, WIN_WIDTH, 0, WIN_HEIGHT, -1.0f, 1.0f);
 
 	_projectBuffer->SetData(projectionM);
 
@@ -37,6 +37,8 @@ void Program::Update()
 void Program::Render()
 {
 	Device::GetInstance()->Clear();
+
+	AlphaBlendState->SetState();
 
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);

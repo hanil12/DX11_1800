@@ -5,7 +5,6 @@ Texture::Texture(wstring file)
 {
 	wstring path = L"Resource/Texture/" + file;
 	_srv = make_shared<SRV>(path);
-	_sampler = make_shared<SamplerState>();
 
 	_size = _srv->GetSize();
 
@@ -23,7 +22,6 @@ Texture::Texture(wstring file, Vector2 size)
 {
 	wstring path = L"Resource/Texture/" + file;
 	_srv = make_shared<SRV>(path);
-	_sampler = make_shared<SamplerState>();
 
 	_size = size;
 	_transform = make_shared<Transform>();
@@ -56,7 +54,7 @@ void Texture::Render()
 	DC->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	_srv->Set(0);
-	_sampler->Set(0);
+	SAMPLER->Set(0);
 
 	_vs->Set();
 	_ps->Set();

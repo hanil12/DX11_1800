@@ -14,6 +14,8 @@ public:
 
 	Vector2& GetScale() { return _scale; }
 	Vector2& GetPos() { return _pos; }
+	Vector2 GetWorldPos();
+
 	float& GetAngle() { return _angle; }
 
 	void SetParent(shared_ptr<Transform> parent) { _parent = parent->GetMatrix(); }

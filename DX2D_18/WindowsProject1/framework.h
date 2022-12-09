@@ -60,6 +60,8 @@ using namespace DirectX;
 // Texture
 #include "Framework/Texture/SRV.h"
 #include "Framework/Texture/SamplerState.h"
+#include "Framework/Texture/BlendState.h"
+#include "Framework/Texture/StateManager.h"
 
 // Object
 #include "Object/Texture.h"
@@ -72,3 +74,5 @@ using namespace DirectX;
 
 // Program
 #include "Program/Program.h"
+
+extern Vector2 mousePos;

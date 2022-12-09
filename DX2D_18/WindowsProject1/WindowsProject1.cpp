@@ -26,7 +26,7 @@
 // 영화사 / 엔진
 
 HWND hWnd;
-
+Vector2 mousePos;
 
 
 #define MAX_LOADSTRING 100
@@ -69,6 +69,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 생성
     Device::Create(hWnd);
+    StateManager::Create();
     Timer::Create();
     Keyboard::Create();
 
@@ -96,6 +97,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 삭제
     Keyboard::Delete();
     Timer::Delete();
+    StateManager::Delete();
     Device::Delete();
 
     return (int) msg.wParam;
@@ -194,6 +196,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             EndPaint(hWnd, &ps);
         }
         break;
+
+    case WM_MOUSEMOVE:
+        {
+            // 윈도우 창기준
+            mousePos._x = static_cast<float>(LOWORD(lParam));
+            mousePos._y = WIN_HEIGHT - static_cast<float>(HIWORD(lParam));
+        }
+        break;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
