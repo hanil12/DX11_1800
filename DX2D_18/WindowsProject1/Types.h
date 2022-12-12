@@ -2,8 +2,8 @@
 
 #define WIN_WIDTH		 1980
 #define WIN_HEIGHT		 1080
-#define CENTER_X		 640
-#define CENTER_Y		 360
+#define CENTER_X		 990
+#define CENTER_Y		 540
 
 #define PI				 3.141592
 
@@ -20,3 +20,4 @@
 #define AlphaBlendState StateManager::GetInstance()->GetAlphaBlend()
 #define AdditiveBlendState StateManager::GetInstance()->GetAdditiveBlend()
 
+using Float2 = XMFLOAT2;

@@ -1,11 +1,10 @@
 #include "framework.h"
-#include "Texture.h"
+#include "Quad.h"
 
-Texture::Texture(wstring file)
+Quad::Quad(wstring file)
 {
 	wstring path = L"Resource/Texture/" + file;
-	_srv = make_shared<SRV>(path);
-
+	_srv = SRVManager::GetInstance()->AddSRV(path);
 	_size = _srv->GetSize();
 
 	_transform = make_shared<Transform>();
@@ -18,12 +17,12 @@ Texture::Texture(wstring file)
 	_ps = make_shared<PixelShader>(L"TexturePixelShader");
 }
 
-Texture::Texture(wstring file, Vector2 size)
+Quad::Quad(wstring file, Vector2 size)
+: _size(size)
 {
 	wstring path = L"Resource/Texture/" + file;
-	_srv = make_shared<SRV>(path);
+	_srv = SRVManager::GetInstance()->AddSRV(path);
 
-	_size = size;
 	_transform = make_shared<Transform>();
 
 	CreateVertricesAndIndices();
@@ -32,19 +31,18 @@ Texture::Texture(wstring file, Vector2 size)
 
 	_vs = make_shared<VertexShader>(L"TextureVertexShader");
 	_ps = make_shared<PixelShader>(L"TexturePixelShader");
-
 }
 
-Texture::~Texture()
+Quad::~Quad()
 {
 }
 
-void Texture::Update()
+void Quad::Update()
 {
 	_transform->Update();
 }
 
-void Texture::Render()
+void Quad::Render()
 {
 	_transform->SetWorldBuffer();
 
@@ -62,7 +60,7 @@ void Texture::Render()
 	DC->DrawIndexed(_indices.size(), 0, 0);
 }
 
-void Texture::CreateVertricesAndIndices()
+void Quad::CreateVertricesAndIndices()
 {
 	Vertex_UV v;
 	float widthRate = (_size._x) * 0.5f;

@@ -160,6 +160,8 @@
     <ClInclude Include="Framework\Render\PixelShader.h" />
     <ClInclude Include="Framework\Render\IndexBuffer.h" />
     <ClInclude Include="Framework\Utility\Keyboard.h" />
+    <ClInclude Include="Object\BagicObj\Quad.h" />
+    <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Object\GameObj\Planet.h" />
     <ClInclude Include="Framework\Math\RectCollider.h" />
     <ClInclude Include="Scene\PlanetScene.h" />
@@ -169,9 +171,9 @@
     <ClInclude Include="Framework\Texture\SRV.h" />
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Framework\Texture\StateManager.h" />
+    <ClInclude Include="Framework\Texture\SRVManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Scene\TextureScene.h" />
-    <ClInclude Include="Object\Texture.h" />
     <ClInclude Include="Framework\Math\Transform.h" />
     <ClInclude Include="Framework\Utility\Timer.h" />
     <ClInclude Include="Types.h" />
@@ -202,16 +204,18 @@
     <ClCompile Include="Framework\Texture\SRV.cpp" />
     <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
+    <ClCompile Include="Object\BagicObj\Quad.cpp" />
+    <ClCompile Include="Scene\GunGreed.cpp" />
     <ClCompile Include="Object\GameObj\Planet.cpp" />
     <ClCompile Include="Framework\Math\RectCollider.cpp" />
     <ClCompile Include="Scene\PlanetScene.cpp" />
     <ClCompile Include="Program\Program.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\TextureScene.cpp" />
-    <ClCompile Include="Object\Texture.cpp" />
     <ClCompile Include="Framework\Math\Transform.cpp" />
     <ClCompile Include="Framework\Utility\Timer.cpp" />
     <ClCompile Include="Framework\Texture\StateManager.cpp" />
+    <ClCompile Include="Framework\Texture\SRVManager.cpp" />
     <ClCompile Include="WindowsProject1.cpp" />
   </ItemGroup>
   <ItemGroup>

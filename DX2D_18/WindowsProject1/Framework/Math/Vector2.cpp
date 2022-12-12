@@ -32,6 +32,14 @@ Vector2 Vector2::operator*(const float& value) const
     return Vector2(_x * value, _y * value);
 }
 
+Vector2& Vector2::operator*=(const float& value)
+{
+    _x *= value;
+    _y *= value;
+
+    return *this;
+}
+
 Vector2 Vector2::operator/(const float& value) const
 {
     return Vector2(_x / value, _y /value);
@@ -108,6 +116,11 @@ Vector2 Vector2::Normallize() const
 {
     float legnth = this->Length();
     return Vector2(_x / legnth, _y / legnth);
+}
+
+float Vector2::Angle() const
+{
+    return atan2(_y,_x);
 }
 
 int Vector2::Manhattan(const Vector2& other)

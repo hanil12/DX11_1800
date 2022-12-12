@@ -11,6 +11,7 @@ public:
 	Vector2 operator-(const Vector2& other) const;
 	Vector2& operator-=(const Vector2& other);
 	Vector2 operator*(const float& value) const;
+	Vector2& operator*=(const float& value);
 	Vector2 operator/(const float& value) const;
 
 	bool operator==(const Vector2& other) const;
@@ -26,6 +27,8 @@ public:
 	float Length() const;
 	float Length(const Vector2& other) const;
 	Vector2 Normallize() const;
+
+	float Angle() const;
 
 	int Manhattan(const Vector2& other);
 

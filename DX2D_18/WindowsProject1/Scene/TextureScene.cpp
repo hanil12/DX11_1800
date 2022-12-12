@@ -3,12 +3,12 @@
 
 TextureScene::TextureScene()
 {
-	_texture1 = make_shared<Texture>(L"2B.png", Vector2(100,100));
-	_texture2 = make_shared<Texture>(L"BattleMaster.png", Vector2 (100,100));
+	_quad1 = make_shared<Quad>(L"2B.png", Vector2(100,100));
+	_quad2 = make_shared<Quad>(L"BattleMaster.png", Vector2 (100,100));
 
-	_texture2->SetParent(_texture1->GetTransform());
+	_quad2->GetTransform()->SetParent(_quad1->GetTransform());
 
-	_texture2->GetTransform()->GetPos()._x += 200;
+	_quad2->GetTransform()->GetPos()._x += 200;
 
 	_worldBuffer = make_shared<MatrixBuffer>();
 	_viewBuffer = make_shared<MatrixBuffer>();
@@ -36,8 +36,8 @@ void TextureScene::Update()
 	_viewBuffer->SetData(viewSRT);
 	_viewBuffer->Update();
 
-	_texture1->Update();
-	_texture2->Update();
+	_quad1->Update();
+	_quad2->Update();
 }
 
 void TextureScene::Render()
@@ -46,6 +46,6 @@ void TextureScene::Render()
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);
 
-	_texture1->Render();
-	_texture2->Render();
+	_quad1->Render();
+	_quad2->Render();
 }

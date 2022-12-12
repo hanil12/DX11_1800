@@ -62,9 +62,10 @@ using namespace DirectX;
 #include "Framework/Texture/SamplerState.h"
 #include "Framework/Texture/BlendState.h"
 #include "Framework/Texture/StateManager.h"
+#include "Framework/Texture/SRVManager.h"
 
-// Object
-#include "Object/Texture.h"
+// BagicObj
+#include "Object/BagicObj/Quad.h"
 
 // GameObj
 #include "Object/GameObj/Planet.h"

@@ -17,6 +17,6 @@ private:
 
 	float _cameraAngle = 0.0f; // 카메라 회전
 
-	shared_ptr<Texture> _texture1;
-	shared_ptr<Texture> _texture2;
+	shared_ptr<Quad> _quad1;
+	shared_ptr<Quad> _quad2;
 };

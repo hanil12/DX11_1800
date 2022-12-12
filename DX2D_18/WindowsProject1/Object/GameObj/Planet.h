@@ -8,16 +8,16 @@ public:
 	void Update();
 	void Render();
 
-	void SetParent(shared_ptr<Transform>& parent);
+	void SetParent(shared_ptr<Transform> parent);
 
-	shared_ptr<Transform> GetTransform() { return _texture->GetTransform(); }
+	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
 
-	Vector2& Getpos() { return _texture->GetTransform()->GetPos(); }
-	Vector2& GetScale() { return _texture->GetTransform()->GetScale(); }
-	float& GetAngle() { return _texture->GetTransform()->GetAngle(); }
+	Vector2& Getpos() { return _quad->GetTransform()->GetPos(); }
+	Vector2& GetScale() { return _quad->GetTransform()->GetScale(); }
+	float& GetAngle() { return _quad->GetTransform()->GetAngle(); }
 
 private:
 	string _name;
-	shared_ptr<Texture> _texture;
+	shared_ptr<Quad> _quad;
 };
 
