@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\GameObj\DunGreed\Bullet.h" />
     <ClInclude Include="Framework\Texture\BlendState.h" />
     <ClInclude Include="Framework\Render\ConstantBuffer.h" />
     <ClInclude Include="Framework\Device\Device.h" />
@@ -160,7 +161,9 @@
     <ClInclude Include="Framework\Render\PixelShader.h" />
     <ClInclude Include="Framework\Render\IndexBuffer.h" />
     <ClInclude Include="Framework\Utility\Keyboard.h" />
+    <ClInclude Include="Object\GameObj\DunGreed\Gun.h" />
     <ClInclude Include="Object\BagicObj\Quad.h" />
+    <ClInclude Include="Object\GameObj\DunGreed\Player.h" />
     <ClInclude Include="Scene\GunGreed.h" />
     <ClInclude Include="Object\GameObj\Planet.h" />
     <ClInclude Include="Framework\Math\RectCollider.h" />
@@ -183,6 +186,7 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\GameObj\DunGreed\Bullet.cpp" />
     <ClCompile Include="Framework\Texture\BlendState.cpp" />
     <ClCompile Include="Framework\Render\ConstantBuffer.cpp" />
     <ClCompile Include="Framework\Device\Device.cpp" />
@@ -204,7 +208,9 @@
     <ClCompile Include="Framework\Texture\SRV.cpp" />
     <ClCompile Include="Framework\Render\IndexBuffer.cpp" />
     <ClCompile Include="Framework\Utility\Keyboard.cpp" />
+    <ClCompile Include="Object\GameObj\DunGreed\Gun.cpp" />
     <ClCompile Include="Object\BagicObj\Quad.cpp" />
+    <ClCompile Include="Object\GameObj\DunGreed\Player.cpp" />
     <ClCompile Include="Scene\GunGreed.cpp" />
     <ClCompile Include="Object\GameObj\Planet.cpp" />
     <ClCompile Include="Framework\Math\RectCollider.cpp" />
@@ -222,6 +228,7 @@
     <ResourceCompile Include="WindowsProject1.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resource\Texture\Bullet.png" />
     <Image Include="Resource\Texture\earth.png" />
     <Image Include="Resource\Texture\moon.png" />
     <Image Include="Resource\Texture\sun.png" />

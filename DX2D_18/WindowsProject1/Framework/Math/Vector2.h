@@ -2,7 +2,7 @@
 class Vector2
 {
 public:
-	Vector2() {}
+	Vector2(): _x(0.0f), _y(0.0f) {}
 	Vector2(int x, int y) : _x(float(x)), _y(float(y)) {}
 	Vector2(float x, float y) : _x(x), _y(y) {}
 

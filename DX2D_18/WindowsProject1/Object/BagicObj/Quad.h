@@ -20,8 +20,6 @@ private:
 
 	shared_ptr<VertexBuffer> _vBuffer;
 	shared_ptr<IndexBuffer> _indexBuffer;
-	shared_ptr<VertexShader> _vs;
-	shared_ptr<PixelShader> _ps;
 	// -------------------------------
 
 	Vector2 _size = { 1.0f,1.0f };
@@ -29,6 +27,8 @@ private:
 
 	// Meterial... ÀçÁú
 	shared_ptr<SRV> _srv;
+	shared_ptr<VertexShader> _vs;
+	shared_ptr<PixelShader> _ps;
 	// ----------------------------
 };
 

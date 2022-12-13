@@ -69,6 +69,9 @@ using namespace DirectX;
 
 // GameObj
 #include "Object/GameObj/Planet.h"
+#include "Object/GameObj/DunGreed/Player.h"
+#include "Object/GameObj/DunGreed/Gun.h"
+#include "Object/GameObj/DunGreed/Bullet.h"
 
 // Scene
 #include "Scene/Scene.h"
