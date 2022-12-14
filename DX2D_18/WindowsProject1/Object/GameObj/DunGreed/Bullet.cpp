@@ -13,7 +13,21 @@ Bullet::~Bullet()
 void Bullet::Update()
 {
 	if (_isActive == false)
+	{
+		_lastTime = RUN_TIME;
 		return;
+	}
+	else
+	{
+		_curTime = RUN_TIME;
+	}
+
+	if (_curTime - _lastTime > _delay)
+	{
+		_lastTime = 0.0;
+		_curTime = 0.0;
+		_isActive = false;
+	}
 
 	_quad->Update();
 

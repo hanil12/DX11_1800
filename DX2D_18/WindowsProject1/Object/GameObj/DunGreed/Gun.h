@@ -14,7 +14,9 @@ public:
 
 private:
 	shared_ptr<Quad> _quad;
+	shared_ptr<Transform> _muzzle;
 
-	shared_ptr<class Bullet> _bullet;
+	UINT _poolCount = 20;
+	vector<shared_ptr<class Bullet>> _bullets;
 };
 

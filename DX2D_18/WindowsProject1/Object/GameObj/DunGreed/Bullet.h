@@ -16,7 +16,10 @@ public:
 private:
 	shared_ptr<Quad> _quad;
 
-	float		_speed = 50.0f;
+	double		_lastTime = 0.0;
+	double		_curTime = 0.0;
+	double		_delay = 3.0;
+	float		_speed = 150.0f;
 	Vector2		_dir = Vector2();
 };
 

@@ -25,4 +25,7 @@ void GunGreed::Update()
 void GunGreed::Render()
 {
 	_player->Render();
+
+	ImGui::SliderFloat("PosX", &_player->GetTransform()->GetPos()._x, 0, WIN_WIDTH);
+	ImGui::SliderFloat("PosY", &_player->GetTransform()->GetPos()._y, 0, WIN_HEIGHT);
 }

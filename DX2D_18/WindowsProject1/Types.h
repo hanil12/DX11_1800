@@ -15,6 +15,7 @@
 #define KEY_PRESS(k) Keyboard::GetInstance()->Press(k)
 
 #define DELTA_TIME Timer::GetInstance()->GetElasedTime()
+#define RUN_TIME Timer::GetInstance()->GetRunTime();
 
 #define SAMPLER StateManager::GetInstance()->GetSampler()
 #define AlphaBlendState StateManager::GetInstance()->GetAlphaBlend()
