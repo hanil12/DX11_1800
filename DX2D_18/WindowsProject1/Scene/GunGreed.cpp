@@ -13,9 +13,8 @@ GunGreed::~GunGreed()
 
 void GunGreed::Update()
 {
-	if (KEY_DOWN(VK_LBUTTON))
+	if (KEY_DOWN(VK_LBUTTON) && !ImGui::GetIO().WantCaptureMouse)
 	{
-
 		_player->Fire(mousePos);
 	}
 
