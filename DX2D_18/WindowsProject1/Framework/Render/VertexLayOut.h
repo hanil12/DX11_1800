@@ -1,9 +1,18 @@
 #pragma once
 
-
 struct Vertex_Bagic
 {
-    XMFLOAT3 pos;
+    Vertex_Bagic()
+    {
+    }
+
+    Vertex_Bagic(float x, float y)
+    {
+        this->pos.x = x;
+        this->pos.y = y;
+    }
+
+    XMFLOAT3 pos = { 0.0f,0.0f,0.0f };
 };
 
 struct Vertex_Color

@@ -42,10 +42,6 @@ using namespace DirectX;
 
 #include "Types.h"
 
-// Math
-#include "Framework/Math/Vector2.h"
-#include "Framework/Math/Transform.h"
-
 // Device
 #include "Framework/Device/Device.h"
 
@@ -61,6 +57,13 @@ using namespace DirectX;
 #include "Framework/Render/PixelShader.h"
 #include "Framework/Render/ConstantBuffer.h"
 #include "Framework/Render/GlobalBuffer.h"
+
+// Math
+#include "Framework/Math/Vector2.h"
+#include "Framework/Math/Transform.h"
+#include "Framework/Math/Collider.h"
+#include "Framework/Math/RectCollider.h"
+#include "Framework/Math/CircleCollider.h"
 
 // Texture
 #include "Framework/Texture/SRV.h"

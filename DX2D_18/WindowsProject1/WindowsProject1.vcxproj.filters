@@ -87,9 +87,6 @@
     <ClInclude Include="Framework\Utility\Timer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Math\RectCollider.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Texture\BlendState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -112,6 +109,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\GameObj\DunGreed\Bullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\CircleCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Math\RectCollider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\CollisionScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -173,9 +182,6 @@
     <ClCompile Include="Framework\Utility\Timer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Math\RectCollider.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Texture\BlendState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -198,6 +204,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\GameObj\DunGreed\Bullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\CircleCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\Collider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Math\RectCollider.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\CollisionScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -230,5 +248,7 @@
     <FxCompile Include="Shaders\Tutorial.hlsl" />
     <FxCompile Include="Shaders\TextureVertexShader.hlsl" />
     <FxCompile Include="Shaders\TexturePixelShader.hlsl" />
+    <FxCompile Include="Shaders\Collider\ColliderVertexShader.hlsl" />
+    <FxCompile Include="Shaders\Collider\ColliderPixelShader.hlsl" />
   </ItemGroup>
 </Project>
