@@ -16,6 +16,8 @@ public:
 	virtual bool IsCollision(shared_ptr<RectCollider> rect) override;
 
 private:
+	void CreateVertices();
+
 	float _radius = 0.0f;
 };
 
