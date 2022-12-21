@@ -15,9 +15,12 @@ public:
 	virtual bool IsCollision(shared_ptr<CircleCollider> other) override;
 	virtual bool IsCollision(shared_ptr<RectCollider> rect) override;
 
+	virtual bool IsCollision_OBB(shared_ptr<CircleCollider> circle) override;
+	virtual bool IsCollision_OBB(shared_ptr<RectCollider> other) override;
+
+	float GetWorldRadius();
+
 private:
 	void CreateVertices();
-
 	float _radius = 0.0f;
 };
-

@@ -16,7 +16,7 @@ Vector2& Vector2::operator+=(const Vector2& other)
 
 Vector2 Vector2::operator-(const Vector2& other) const
 {
-    return Vector2(_x -other._x, _y - other._y);
+    return Vector2(_x - other._x, _y - other._y);
 }
 
 Vector2& Vector2::operator-=(const Vector2& other)
@@ -42,7 +42,7 @@ Vector2& Vector2::operator*=(const float& value)
 
 Vector2 Vector2::operator/(const float& value) const
 {
-    return Vector2(_x / value, _y /value);
+    return Vector2(_x / value, _y / value);
 }
 
 bool Vector2::operator==(const Vector2& other) const
@@ -112,18 +112,26 @@ float Vector2::Length(const Vector2& other) const
     return temp.Length();
 }
 
-Vector2 Vector2::Normallize() const
+void Vector2::Normallize()
 {
     float legnth = this->Length();
-    return Vector2(_x / legnth, _y / legnth);
+    _x /= legnth;
+    _y /= legnth;
 }
 
-float Vector2::Angle() const
+Vector2 Vector2::Normal() const
 {
-    return atan2(_y,_x);
+    float legnth = this->Length();
+
+    return Vector2(_x / legnth, _y / legnth);
 }
 
 int Vector2::Manhattan(const Vector2& other)
 {
     return (int)(other._x - _x) + (int)(other._y - _y);
+}
+
+float Vector2::Angle() const
+{
+    return atan2(_y, _x);
 }

@@ -20,7 +20,7 @@ void Transform::Update()
 
 	if (_parent != nullptr)
 	{
-		_srtMatrix *= (*_parent);
+		_srtMatrix *= *(_parent->GetMatrix());
 	}
 
 	_worldBuffer->SetData(_srtMatrix);
@@ -30,6 +30,18 @@ void Transform::Update()
 void Transform::SetWorldBuffer()
 {
 	_worldBuffer->SetVSBuffer(0);
+}
+
+Vector2& Transform::GetScale()
+{
+	return _scale;
+}
+
+Vector2 Transform::GetWorldScale()
+{
+	if (_parent == nullptr)
+		return _scale;
+	return _scale;
 }
 
 Vector2 Transform::GetWorldPos()
@@ -44,6 +56,17 @@ Vector2 Transform::GetWorldPos()
 
 		return result;
 	}
-
 	return _pos;
+}
+
+float& Transform::GetAngle()
+{
+	return _angle;
+}
+
+float Transform::GetWorldAngle()
+{
+	if (_parent != nullptr)
+		return _angle + _parent->GetAngle();
+	return _angle;
 }

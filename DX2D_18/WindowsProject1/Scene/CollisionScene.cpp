@@ -17,6 +17,18 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
+
+	if (_rect->IsCollision(_circle))
+	{
+		_rect->SetRED();
+		_circle->SetRED();
+	}
+	else
+	{
+		_rect->SetGREEN();
+		_circle->SetGREEN();
+	}
+
 	_rect->Update();
 	_circle->Update();
 }

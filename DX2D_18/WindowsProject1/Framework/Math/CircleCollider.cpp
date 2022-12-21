@@ -8,7 +8,7 @@ CircleCollider::CircleCollider()
 }
 
 CircleCollider::CircleCollider(float radius)
-: _radius(radius)
+	: _radius(radius)
 {
 	_type = ColliderType::CIRCLE;
 	CreateVertices();
@@ -20,18 +20,43 @@ CircleCollider::~CircleCollider()
 
 bool CircleCollider::IsCollision(Vector2 pos)
 {
-
+	if ((this->GetTransform()->GetWorldPos() - pos).Length() <= (this->GetWorldRadius()))
+	{
+		return true;
+	}
 	return false;
 }
 
 bool CircleCollider::IsCollision(shared_ptr<CircleCollider> other)
 {
+	if ((this->GetTransform()->GetWorldPos() - other->GetTransform()->GetWorldPos()).Length() <= (this->GetWorldRadius() + other->GetWorldRadius()))
+	{
+		return true;
+	}
 	return false;
 }
 
 bool CircleCollider::IsCollision(shared_ptr<RectCollider> rect)
 {
-	return false;
+	return rect->IsCollision(shared_from_this());
+}
+
+bool CircleCollider::IsCollision_OBB(shared_ptr<CircleCollider> circle)
+{
+	return IsCollision(circle);
+}
+
+bool CircleCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
+{
+	return other->IsCollision_OBB(shared_from_this());
+}
+
+float CircleCollider::GetWorldRadius()
+{
+	float scaleX = _transform->GetScale()._x;
+	float scaleY = _transform->GetScale()._y;
+
+	return _radius * __max(scaleX, scaleY);
 }
 
 void CircleCollider::CreateVertices()
@@ -48,6 +73,5 @@ void CircleCollider::CreateVertices()
 
 	Collider::CreateData();
 
-	_colorBuffer->_data.color = { 0.0f,1.0f,0.0f,1.0f };
-
+	_colorBuffer->_data.color = { 0.0f,255.0f,0.0f,1.0f };
 }
