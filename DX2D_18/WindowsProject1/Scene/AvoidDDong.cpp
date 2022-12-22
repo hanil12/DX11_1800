@@ -24,6 +24,16 @@ void AvoidDDong::Update()
 	for (auto ddong : _ddongs)
 		ddong->Update();
 
+
+	for (auto ddong : _ddongs)
+	{
+		if (ddong->IsCollisionWithPlayer(_player))
+		{
+			ddong->Init();
+			--_player->GetHP();
+		}
+	}
+
 	if (_check > _delay)
 	{
 		for (auto ddong : _ddongs)
@@ -34,15 +44,6 @@ void AvoidDDong::Update()
 				_check = 0.0f;
 				break;
 			}
-		}
-	}
-
-	for (auto ddong : _ddongs)
-	{
-		if (ddong->IsCollisionWithPlayer(_player))
-		{
-			ddong->Init();
-			--_player->GetHP();
 		}
 	}
 
