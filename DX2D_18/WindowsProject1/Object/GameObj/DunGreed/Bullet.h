@@ -11,6 +11,8 @@ public:
 	shared_ptr<Transform> GetTransform() { return _quad->GetTransform(); }
 	shared_ptr<Collider> GetCollider() { return _circleCol; }
 
+	bool IsCollision(shared_ptr<class Player> player);
+	bool IsCollision(shared_ptr<RectCollider> rect);
 	void SetDir(const Vector2& dir) { _dir = dir.Normal(); }
 
 	bool _isActive = false;

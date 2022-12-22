@@ -28,7 +28,7 @@ void GunGreed::Update()
 
 	for (auto bullet : _player->GetGun()->GetBullets())
 	{
-		if (bullet->GetCollider()->IsCollision(_target))
+		if (bullet->IsCollision(_target))
 		{
 			_target->SetRED();
 			break;

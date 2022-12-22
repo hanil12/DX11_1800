@@ -40,12 +40,8 @@ bool RectCollider::IsCollision(shared_ptr<CircleCollider> circle)
 	Vector2 center = circle->GetTransform()->GetWorldPos();
 	float radius = circle->GetWorldRadius();
 
-	if (center._x >= left && center._x <= right
-		&& center._y <= top + radius && center._y >= bottom - radius)
-		return true;
-
-	if (center._x >= left - radius && center._x <= right + radius
-		&& center._y <= top && center._y >= bottom)
+	if (center._x > left - radius && center._x < right + radius
+		&& center._y < top + radius && center._y > bottom - radius)
 		return true;
 
 	if (circle->IsCollision(LeftTop()) || circle->IsCollision(RightBottom())

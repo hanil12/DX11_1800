@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\GameObj\AvoidDDong\AvoidPlayer.h" />
+    <ClInclude Include="Object\GameObj\AvoidDDong\DDong.h" />
+    <ClInclude Include="Scene\AvoidDDong.h" />
     <ClInclude Include="Scene\CollisionScene.h" />
     <ClInclude Include="Framework\Math\CircleCollider.h" />
     <ClInclude Include="Framework\Math\Collider.h" />
@@ -189,6 +192,9 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\GameObj\AvoidDDong\AvoidPlayer.cpp" />
+    <ClCompile Include="Object\GameObj\AvoidDDong\DDong.cpp" />
+    <ClCompile Include="Scene\AvoidDDong.cpp" />
     <ClCompile Include="Scene\CollisionScene.cpp" />
     <ClCompile Include="Framework\Math\CircleCollider.cpp" />
     <ClCompile Include="Framework\Math\Collider.cpp" />
@@ -235,6 +241,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource\Texture\Bullet.png" />
+    <Image Include="Resource\Texture\DDong.png" />
     <Image Include="Resource\Texture\earth.png" />
     <Image Include="Resource\Texture\moon.png" />
     <Image Include="Resource\Texture\sun.png" />
