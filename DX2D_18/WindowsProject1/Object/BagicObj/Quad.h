@@ -9,7 +9,12 @@ public:
 	void Update();
 	void Render();
 
+	Vector2 GetSize() { return _size; }
+
 	shared_ptr<Transform> GetTransform() { return _transform; }
+
+	shared_ptr<VertexShader> _vs;
+	shared_ptr<PixelShader> _ps;
 
 private:
 	void CreateVertricesAndIndices();
@@ -27,8 +32,7 @@ private:
 
 	// Meterial... ÀçÁú
 	shared_ptr<SRV> _srv;
-	shared_ptr<VertexShader> _vs;
-	shared_ptr<PixelShader> _ps;
+
 	// ----------------------------
 };
 

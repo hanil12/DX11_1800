@@ -6,17 +6,19 @@
 #include "../Scene/GunGreed.h"
 #include "../Scene/CollisionScene.h"
 #include "../Scene/AvoidDDong.h"
+#include "../Scene/SpriteScene.h"
 
 Program::Program()
 {
 	srand(static_cast<UINT>(time(nullptr)));
 
-	_scenes["TextureScene"]		 = make_shared<TextureScene>();
-	_scenes["PlanetScene"]		 = make_shared<PlanetScene>();
-	_scenes["GunGreed"]			 = make_shared<GunGreed>();
-	_scenes["Collision"]	 = make_shared<CollisionScene>();
-	_scenes["AvoidDDong"]	 = make_shared<AvoidDDong>();
-	_curScene = _scenes["AvoidDDong"];
+	//_scenes["TextureScene"]		 = make_shared<TextureScene>();
+	//_scenes["PlanetScene"]		 = make_shared<PlanetScene>();
+	//_scenes["GunGreed"]			 = make_shared<GunGreed>();
+	//_scenes["Collision"]			 = make_shared<CollisionScene>();
+	//_scenes["AvoidDDong"]			 = make_shared<AvoidDDong>();
+	_scenes["Sprite"]			 = make_shared<SpriteScene>();
+	_curScene = _scenes["Sprite"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();
@@ -53,6 +55,8 @@ void Program::Render()
 
 	AlphaBlendState->SetState();
 
+	_curScene->PreRender();
+
 	_viewBuffer->SetVSBuffer(1);
 	_projectBuffer->SetVSBuffer(2);
 
@@ -60,6 +64,7 @@ void Program::Render()
 	_curScene->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	_curScene->PostRender();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 

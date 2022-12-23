@@ -44,6 +44,7 @@ void DDong::Init()
 {
 	_quad->GetTransform()->GetPos()._x = rand() % WIN_WIDTH;
 	_quad->GetTransform()->GetPos()._y = WIN_HEIGHT + 50;
+	_quad->GetTransform()->Update();
 	_isActive = false;
 }
 

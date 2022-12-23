@@ -6,7 +6,9 @@ public:
 	virtual ~Scene();
 
 	virtual void Update() abstract;
+	virtual void PreRender() {};
 	virtual void Render() abstract;
+	virtual void PostRender() {};
 
 protected:
 };

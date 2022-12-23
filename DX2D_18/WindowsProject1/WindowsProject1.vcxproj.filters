@@ -132,6 +132,12 @@
     <ClInclude Include="Object\GameObj\AvoidDDong\AvoidPlayer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\GameObj\AvoidDDong\AD_BackGround.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SpriteScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -236,6 +242,12 @@
     <ClCompile Include="Object\GameObj\AvoidDDong\AvoidPlayer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\GameObj\AvoidDDong\AD_BackGround.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SpriteScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -264,6 +276,9 @@
     <Image Include="Resource\Texture\DDong.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\Texture\weather.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Tutorial.hlsl" />
@@ -271,5 +286,6 @@
     <FxCompile Include="Shaders\TexturePixelShader.hlsl" />
     <FxCompile Include="Shaders\Collider\ColliderVertexShader.hlsl" />
     <FxCompile Include="Shaders\Collider\ColliderPixelShader.hlsl" />
+    <FxCompile Include="Shaders\SpritePixelShader.hlsl" />
   </ItemGroup>
 </Project>

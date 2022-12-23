@@ -4,6 +4,10 @@
 AvoidDDong::AvoidDDong()
 {
 	_player = make_shared<AvoidPlayer>();
+	_bg = make_shared<AD_BackGround>();
+	_bg->Update();
+
+	_player->SetLeftRight(_bg->LeftRight());
 
 	for (int i = 0; i < 50; i++)
 	{
@@ -17,12 +21,26 @@ AvoidDDong::~AvoidDDong()
 {
 }
 
+void AvoidDDong::PreRender()
+{
+	_bg->Render();
+}
+
 void AvoidDDong::Update()
 {
 	_player->Update();
 
 	for (auto ddong : _ddongs)
 		ddong->Update();
+
+	for (auto ddong : _ddongs)
+	{
+		if (ddong->IsCollisionWithPlayer(_player))
+		{
+			ddong->Init();
+			--_player->GetHP();
+		}
+	}
 
 	if (_check > _delay)
 	{
@@ -34,15 +52,6 @@ void AvoidDDong::Update()
 				_check = 0.0f;
 				break;
 			}
-		}
-	}
-
-	for (auto ddong : _ddongs)
-	{
-		if (ddong->IsCollisionWithPlayer(_player))
-		{
-			ddong->Init();
-			--_player->GetHP();
 		}
 	}
 
