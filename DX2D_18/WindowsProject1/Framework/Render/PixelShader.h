@@ -1,16 +1,15 @@
 #pragma once
-class PixelShader
+class PixelShader : public Shader
 {
 public:
     PixelShader(wstring file);
-    ~PixelShader();
+    virtual ~PixelShader();
 
-    void Set();
-private:
-    void CreateBlob(wstring file);
+    virtual void CreateBlob(wstring file) override;
     void CreatePixelShader();
 
+    virtual void Set() override;
+private:
     Microsoft::WRL::ComPtr<ID3D11PixelShader> _pixelShader;
-    Microsoft::WRL::ComPtr<ID3DBlob> _pixelBlob;
 };
 

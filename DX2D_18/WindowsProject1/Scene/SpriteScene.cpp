@@ -3,12 +3,9 @@
 
 SpriteScene::SpriteScene()
 {
-	_quad = make_shared<Quad>(L"weather.png", Vector2(50,50));
-	_quad->GetTransform()->GetPos() = { CENTER_X, CENTER_Y };
-	_quad->_ps = make_shared<PixelShader>(L"SpritePixelShader");
-	_maxFrameBuffer = make_shared<SpriteBuffer>();
-	_maxFrameBuffer->_data.maxFrame = { 6,5 };
-	_maxFrameBuffer->_data.curFrame = { 1,0 };
+	_sprite = make_shared<Sprite>(L"weather.png", Vector2(6,5), Vector2(100,100));
+	_sprite->GetTransform()->GetPos() = { CENTER_X, CENTER_Y };
+	_leftRightBuffer = make_shared<LeftRightBuffer>();
 }
 
 SpriteScene::~SpriteScene()
@@ -17,19 +14,20 @@ SpriteScene::~SpriteScene()
 
 void SpriteScene::Update()
 {
-	_quad->Update();
+	_sprite->Update();
+	_sprite->SetSprite(Vector2(_frameX, _frameY));
 }
 
 void SpriteScene::Render()
 {
 	AdditiveBlendState->SetState();
-	_maxFrameBuffer->SetPSBuffer(0);
-	_quad->Render();
-
+	_leftRightBuffer->SetPSBuffer(0);
+	_sprite->Render();
 }
 
 void SpriteScene::PostRender()
 {
-	ImGui::SliderFloat("FrameX", &_maxFrameBuffer->_data.curFrame.x, 0, 5);
-	ImGui::SliderFloat("FrameY", &_maxFrameBuffer->_data.curFrame.y, 0, 4);
+	ImGui::SliderInt("FrameX", &_frameX, 0, 5);
+	ImGui::SliderInt("FrameY", &_frameY, 0, 4);
+	ImGui::SliderInt("LeftRight", &_leftRightBuffer->_data.leftRight, 0, 1);
 }

@@ -10,9 +10,9 @@ public:
 	virtual void PostRender() override;
 
 private:
-	shared_ptr<Quad> _quad;
-	shared_ptr<SpriteBuffer> _maxFrameBuffer;
-	// _quad의 ps 바꾸기
-	// maxFrameBuffer 적용하기
+	shared_ptr<Sprite> _sprite;
+	shared_ptr<LeftRightBuffer> _leftRightBuffer;
+	int _frameX = 0;
+	int _frameY = 0;
 };
 

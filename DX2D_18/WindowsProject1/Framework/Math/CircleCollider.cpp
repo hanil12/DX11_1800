@@ -53,8 +53,8 @@ bool CircleCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
 
 float CircleCollider::GetWorldRadius()
 {
-	float scaleX = _transform->GetScale()._x;
-	float scaleY = _transform->GetScale()._y;
+	float scaleX = _transform->GetScale().x;
+	float scaleY = _transform->GetScale().y;
 
 	return _radius * __max(scaleX, scaleY);
 }

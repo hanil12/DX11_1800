@@ -49,6 +49,9 @@ void Collider::SetGREEN()
 
 bool Collider::IsCollision(shared_ptr<Collider> col, bool isObb)
 {
+    if (_isActive == false)
+        return false;
+
     switch (col->GetType())
     {
     case ColliderType::NONE:

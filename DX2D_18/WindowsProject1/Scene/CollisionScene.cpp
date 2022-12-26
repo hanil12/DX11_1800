@@ -35,8 +35,8 @@ void CollisionScene::Update()
 
 void CollisionScene::Render()
 {
-	ImGui::SliderFloat("PosX", &_rect->GetTransform()->GetPos()._x, 0, WIN_WIDTH);
-	ImGui::SliderFloat("PosY", &_rect->GetTransform()->GetPos()._y, 0, WIN_HEIGHT);
+	ImGui::SliderFloat("PosX", &_rect->GetTransform()->GetPos().x, 0, WIN_WIDTH);
+	ImGui::SliderFloat("PosY", &_rect->GetTransform()->GetPos().y, 0, WIN_HEIGHT);
 
 	_rect->Render();
 	_circle->Render();

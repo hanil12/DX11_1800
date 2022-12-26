@@ -35,12 +35,12 @@ void AvoidPlayer::Render()
 
 void AvoidPlayer::Input()
 {
-	if (KEY_PRESS('A') && (_quad->GetTransform()->GetPos()._x > _leftRight._x))
+	if (KEY_PRESS('A') && (_quad->GetTransform()->GetPos().x > _leftRight.x))
 	{
-		_quad->GetTransform()->GetPos()._x -= _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().x -= _speed * DELTA_TIME;
 	}
-	if (KEY_PRESS('D') && ((_quad->GetTransform()->GetPos()._x < _leftRight._y)))
+	if (KEY_PRESS('D') && ((_quad->GetTransform()->GetPos().x < _leftRight.y)))
 	{
-		_quad->GetTransform()->GetPos()._x += _speed * DELTA_TIME;
+		_quad->GetTransform()->GetPos().x += _speed * DELTA_TIME;
 	}
 }

@@ -12,11 +12,11 @@ PlanetScene::PlanetScene()
 
 	_earth->SetParent(_sunTrans);
 	_earthTrans->SetParent(_sunTrans);
-	_earth->Getpos()._x += 200;
-	_earthTrans->GetPos()._x += 200;
+	_earth->Getpos().x += 200;
+	_earthTrans->GetPos().x += 200;
 
 	_moon->SetParent(_earthTrans);
-	_moon->Getpos()._x += 120;
+	_moon->Getpos().x += 120;
 }
 
 PlanetScene::~PlanetScene()
@@ -27,38 +27,38 @@ void PlanetScene::Update()
 {
 	if (KEY_PRESS('O'))
 	{
-		_sun->GetScale()._x -= 0.5f * DELTA_TIME;
-		_sunTrans->GetScale()._x -= 0.5f * DELTA_TIME;
+		_sun->GetScale().x -= 0.5f * DELTA_TIME;
+		_sunTrans->GetScale().x -= 0.5f * DELTA_TIME;
 	}
 
 	if (KEY_PRESS('P'))
 	{
-		_sun->GetScale()._x += 0.5f * DELTA_TIME;
-		_sunTrans->GetScale()._x += 0.5f * DELTA_TIME;
+		_sun->GetScale().x += 0.5f * DELTA_TIME;
+		_sunTrans->GetScale().x += 0.5f * DELTA_TIME;
 	}
 
 	if (KEY_PRESS(VK_LEFT))
 	{
-		_sun->Getpos()._x -= 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._x -= 0.5f * DELTA_TIME * 100;
+		_sun->Getpos().x -= 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos().x -= 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_RIGHT))
 	{
-		_sun->Getpos()._x += 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._x += 0.5f * DELTA_TIME * 100;
+		_sun->Getpos().x += 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos().x += 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_UP))
 	{
-		_sun->Getpos()._y += 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._y += 0.5f * DELTA_TIME * 100;
+		_sun->Getpos().y += 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos().y += 0.5f * DELTA_TIME * 100;
 	}
 
 	if (KEY_PRESS(VK_DOWN))
 	{
-		_sun->Getpos()._y -= 0.5f * DELTA_TIME * 100;
-		_sunTrans->GetPos()._y -= 0.5f * DELTA_TIME * 100;
+		_sun->Getpos().y -= 0.5f * DELTA_TIME * 100;
+		_sunTrans->GetPos().y -= 0.5f * DELTA_TIME * 100;
 	}
 
 	_sun->GetAngle() += 0.0005f * DELTA_TIME * 100; // ÀÚÀü

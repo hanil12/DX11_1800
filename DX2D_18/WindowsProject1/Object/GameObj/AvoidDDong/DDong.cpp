@@ -19,13 +19,13 @@ void DDong::Update()
 	if (_isActive == false)
 		return;
 
-	if (_quad->GetTransform()->GetPos()._y < 0)
+	if (_quad->GetTransform()->GetPos().y < 0)
 	{
 		Init();
 		return;
 	}
 
-	_quad->GetTransform()->GetPos()._y -= _speed * DELTA_TIME;
+	_quad->GetTransform()->GetPos().y -= _speed * DELTA_TIME;
 
 	_quad->Update();
 	_circleCol->Update();
@@ -42,8 +42,8 @@ void DDong::Render()
 
 void DDong::Init()
 {
-	_quad->GetTransform()->GetPos()._x = rand() % WIN_WIDTH;
-	_quad->GetTransform()->GetPos()._y = WIN_HEIGHT + 50;
+	_quad->GetTransform()->GetPos().x = rand() % WIN_WIDTH;
+	_quad->GetTransform()->GetPos().y = WIN_HEIGHT + 50;
 	_quad->GetTransform()->Update();
 	_isActive = false;
 }

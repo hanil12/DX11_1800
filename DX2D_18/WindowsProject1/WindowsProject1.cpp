@@ -80,6 +80,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Timer::Create();
     Keyboard::Create();
     SRVManager::Create();
+    ShaderManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -103,6 +104,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 삭제
+    ShaderManager::Delete();
     SRVManager::Delete();
     Keyboard::Delete();
     Timer::Delete();
@@ -225,8 +227,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_MOUSEMOVE:
         {
             // 윈도우 창기준
-            mousePos._x = static_cast<float>(LOWORD(lParam));
-            mousePos._y = WIN_HEIGHT - static_cast<float>(HIWORD(lParam));
+            mousePos.x = static_cast<float>(LOWORD(lParam));
+            mousePos.y = WIN_HEIGHT - static_cast<float>(HIWORD(lParam));
         }
         break;
 
