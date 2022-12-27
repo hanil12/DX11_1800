@@ -9,10 +9,15 @@ public:
 	virtual void Render() override;
 	virtual void PostRender() override;
 
+	void CreateAction();
+
 private:
 	shared_ptr<Sprite> _sprite;
-	shared_ptr<LeftRightBuffer> _leftRightBuffer;
+	shared_ptr<Action> _action;
+
 	int _frameX = 0;
 	int _frameY = 0;
+
+	int _leftRight = 0;
 };
 

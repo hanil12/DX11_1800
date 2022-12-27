@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Animation\Action.h" />
     <ClInclude Include="Object\GameObj\AvoidDDong\AD_BackGround.h" />
     <ClInclude Include="Object\GameObj\AvoidDDong\AvoidPlayer.h" />
     <ClInclude Include="Object\GameObj\AvoidDDong\DDong.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Animation\Action.cpp" />
     <ClCompile Include="Object\GameObj\AvoidDDong\AD_BackGround.cpp" />
     <ClCompile Include="Object\GameObj\AvoidDDong\AvoidPlayer.cpp" />
     <ClCompile Include="Object\GameObj\AvoidDDong\DDong.cpp" />
@@ -253,9 +255,11 @@
     <Image Include="Resource\Texture\Bullet.png" />
     <Image Include="Resource\Texture\DDong.png" />
     <Image Include="Resource\Texture\earth.png" />
+    <Image Include="Resource\Texture\Idle.png" />
     <Image Include="Resource\Texture\moon.png" />
     <Image Include="Resource\Texture\sun.png" />
     <Image Include="Resource\Texture\weather.png" />
+    <Image Include="Resource\Texture\X_man.png" />
     <Image Include="small.ico" />
     <Image Include="WindowsProject1.ico" />
   </ItemGroup>
@@ -352,6 +356,9 @@
     <ProjectReference Include="..\ImGUI\ImGUI.vcxproj">
       <Project>{06becb52-521a-4cb5-8519-5f397ca89c32}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resource\Texture\Idle.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

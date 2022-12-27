@@ -11,6 +11,8 @@ public:
 
 	Vector2 GetSize() { return _size; }
 
+	void SetLeftRight(int leftRight);
+
 	shared_ptr<Transform> GetTransform() { return _transform; }
 
 protected:
@@ -28,5 +30,7 @@ protected:
 	shared_ptr<Transform> _transform;
 
 	shared_ptr<SRV> _srv; 
+
+	shared_ptr<LeftRightBuffer> _leftRightBuffer;
 };
 

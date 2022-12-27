@@ -61,6 +61,7 @@ using namespace DirectX;
 #include "Framework/Render/ConstantBuffer.h"
 #include "Framework/Render/GlobalBuffer.h"
 
+
 // Math
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Transform.h"
@@ -74,6 +75,9 @@ using namespace DirectX;
 #include "Framework/Texture/BlendState.h"
 #include "Framework/Texture/StateManager.h"
 #include "Framework/Texture/SRVManager.h"
+
+// Animation
+#include "Framework/Animation/Action.h"
 
 // BagicObj
 #include "Object/BagicObj/Quad.h"
