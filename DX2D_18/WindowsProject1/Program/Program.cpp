@@ -7,6 +7,7 @@
 #include "../Scene/CollisionScene.h"
 #include "../Scene/AvoidDDong.h"
 #include "../Scene/SpriteScene.h"
+#include "../Scene/CupHeadScene.h"
 
 Program::Program()
 {
@@ -17,8 +18,9 @@ Program::Program()
 	//_scenes["GunGreed"]			 = make_shared<GunGreed>();
 	//_scenes["Collision"]			 = make_shared<CollisionScene>();
 	//_scenes["AvoidDDong"]			 = make_shared<AvoidDDong>();
-	_scenes["Sprite"]			 = make_shared<SpriteScene>();
-	_curScene = _scenes["Sprite"];
+	_scenes["Sprite"]				 = make_shared<SpriteScene>();
+	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
+	_curScene = _scenes["CupHead"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();
@@ -37,6 +39,11 @@ Program::~Program()
 
 void Program::Update()
 {
+	if (KEY_DOWN(VK_F1))
+	{
+		Collider::_isDebug = !Collider::_isDebug;
+	}
+
 	// Scene Update();
 	Keyboard::GetInstance()->Update();
 	Timer::GetInstance()->Update();

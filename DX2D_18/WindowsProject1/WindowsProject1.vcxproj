@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\GameObj\CupHead\Cup_Player.h" />
+    <ClInclude Include="Scene\CupHeadScene.h" />
     <ClInclude Include="Framework\Animation\Action.h" />
     <ClInclude Include="Object\GameObj\AvoidDDong\AD_BackGround.h" />
     <ClInclude Include="Object\GameObj\AvoidDDong\AvoidPlayer.h" />
@@ -198,6 +200,8 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\GameObj\CupHead\Cup_Player.cpp" />
+    <ClCompile Include="Scene\CupHeadScene.cpp" />
     <ClCompile Include="Framework\Animation\Action.cpp" />
     <ClCompile Include="Object\GameObj\AvoidDDong\AD_BackGround.cpp" />
     <ClCompile Include="Object\GameObj\AvoidDDong\AvoidPlayer.cpp" />

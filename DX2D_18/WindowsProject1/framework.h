@@ -22,6 +22,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <wrl/client.h>
+#include <functional>
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -91,6 +92,7 @@ using namespace DirectX;
 #include "Object/GameObj/AvoidDDong/AD_BackGround.h"
 #include "Object/GameObj/AvoidDDong/AvoidPlayer.h"
 #include "Object/GameObj/AvoidDDong/DDong.h"
+#include "Object/GameObj/CupHead/Cup_Player.h"
 
 // Scene
 #include "Scene/Scene.h"
