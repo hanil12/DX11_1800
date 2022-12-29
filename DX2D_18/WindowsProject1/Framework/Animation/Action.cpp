@@ -80,8 +80,6 @@ void Action::Stop()
 	_curClipNum = 0;
 	if(_endEvent != nullptr)
 		_endEvent();
-	if (_testEvent != nullptr)
-		_testEvent(0);
 }
 
 void Action::Reset()

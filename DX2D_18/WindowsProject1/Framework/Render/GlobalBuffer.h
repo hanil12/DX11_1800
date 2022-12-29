@@ -81,3 +81,22 @@ public:
 
 	Data _data;
 };
+
+class ActionBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		XMFLOAT2 startPos;
+		XMFLOAT2 imageSize;
+		XMFLOAT2 size;
+		XMFLOAT2 padding;
+	};
+
+	ActionBuffer()
+		: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+
+	Data _data;
+};

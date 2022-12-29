@@ -8,10 +8,12 @@ public:
 	virtual void Update() override;
 	virtual void Render() override;
 
-	void SetSprite(Vector2 curFrame);
-	void SetSprite(const Action::Clip& clip);
+	void SetSpriteByFrame(Vector2 curFrame);
+	void SetSpriteAction(const Action::Clip& clip);
 
 private:
-	shared_ptr<FrameBuffer> _frameBuffer;
+	shared_ptr<ActionBuffer> _actionBuffer;
+
+	Vector2 _maxFrame = { 1.0f, 1.0f };
 };
 

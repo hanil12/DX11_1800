@@ -23,7 +23,8 @@ void SpriteScene::Render()
 {
 	AdditiveBlendState->SetState();
 	_sprite->Render();
-	_sprite->SetSprite(_action->GetCurClip());
+
+	_sprite->SetSpriteByFrame(Vector2(1,1));
 }
 
 void SpriteScene::PostRender()

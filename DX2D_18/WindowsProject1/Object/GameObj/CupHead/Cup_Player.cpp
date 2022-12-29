@@ -3,12 +3,13 @@
 
 Cup_Player::Cup_Player()
 {
-	_sprite = make_shared<Sprite>(L"CupHead/Idle.png", Vector2(5, 1), Vector2(150, 150));
+	_transform = make_shared<Transform>();
 	_collider = make_shared<CircleCollider>(30);
-	_collider->GetTransform()->SetParent(_sprite->GetTransform());
-	CreateAction();
+	_collider->GetTransform()->SetParent(_transform);
+	CreateAction("Idle");
+	CreateAction("Run");
 
-	_sprite->GetTransform()->GetPos() = { CENTER_X, CENTER_Y };
+	_transform->GetPos() = { CENTER_X, CENTER_Y };
 }
 
 Cup_Player::~Cup_Player()
@@ -19,13 +20,11 @@ void Cup_Player::Input()
 {
 	if (KEY_PRESS('A'))
 	{
-		_sprite->GetTransform()->GetPos().x -= DELTA_TIME * _speed;
-		_sprite->SetLeftRight(1);
+		_transform->GetPos().x -= DELTA_TIME * _speed;
 	}
 	if (KEY_PRESS('D'))
 	{
-		_sprite->GetTransform()->GetPos().x += DELTA_TIME * _speed;
-		_sprite->SetLeftRight(0);
+		_transform->GetPos().x += DELTA_TIME * _speed;
 	}
 }
 
@@ -33,44 +32,65 @@ void Cup_Player::Update()
 {
 	Input();
 
-	_action->Update();
+	_transform->Update();
 	_collider->Update();
-	_sprite->Update();
+	_actions[_state]->Update();
+	_sprites[_state]->Update();
 }
 
 void Cup_Player::Render()
 {
-	_sprite->SetSprite(_action->GetCurClip());
-	_sprite->Render();
+	_transform->SetWorldBuffer();
+	_sprites[_state]->SetSpriteAction(_actions[_state]->GetCurClip());
+	_sprites[_state]->Render();
 	_collider->Render();
 }
 
 void Cup_Player::PostRender()
 {
-	ImGui::Text(_text.c_str());
+	ImGui::SliderInt("State", (int*)&_state, 0, 1);
 }
 
-void Cup_Player::CreateAction()
+void Cup_Player::CreateAction(string state)
 {
-	shared_ptr<SRV> srv = SRVManager::GetInstance()->AddSRV(L"CupHead/Idle.png");
+	wstring srvPath;
+	srvPath.assign(state.begin(), state.end());
+	srvPath = L"CupHead/" + srvPath + L".png";
+	shared_ptr<SRV> srv = SRVManager::GetInstance()->AddSRV(srvPath);
 	vector<Action::Clip> clips;
 
-	// <sprite n = "cuphead_idle (0).png" x = "1" y = "1" w = "300" h = "300" pX = "0.5" pY = "0.5" / >
-	// <sprite n = "cuphead_idle_0001 (1).png" x = "303" y = "1" w = "300" h = "300" pX = "0.5" pY = "0.5" / >
-	// <sprite n = "cuphead_idle_0001 (2).png" x = "605" y = "1" w = "300" h = "300" pX = "0.5" pY = "0.5" / >
-	// <sprite n = "cuphead_idle_0001 (3).png" x = "907" y = "1" w = "300" h = "300" pX = "0.5" pY = "0.5" / >
-	// <sprite n = "cuphead_idle_0001 (4).png" x = "1209" y = "1" w = "300" h = "300" pX = "0.5" pY = "0.5" / >
-	Action::Clip clip1 = Action::Clip(1, 1, 300, 300, srv);
-	Action::Clip clip2 = Action::Clip(303, 1, 300, 300, srv);
-	Action::Clip clip3 = Action::Clip(605, 1, 300, 300, srv);
-	Action::Clip clip4 = Action::Clip(907, 1, 300, 300, srv);
-	Action::Clip clip5 = Action::Clip(1209, 1, 300, 300, srv);
-	clips.push_back(clip1);
-	clips.push_back(clip2);
-	clips.push_back(clip3);
-	clips.push_back(clip4);
-	clips.push_back(clip5);
+	shared_ptr<tinyxml2::XMLDocument> document = make_shared<tinyxml2::XMLDocument>();
+	string xmlPath = "Resource/Texture/CupHead/" + state + ".xml";
+	document->LoadFile(xmlPath.c_str());
 
-	_action = make_shared<Action>(clips, "CUP_IDLE", Action::END, 0.2f);
-	_action->Play();
+	tinyxml2::XMLElement* textureAtlas = document->FirstChildElement();
+	tinyxml2::XMLElement* row = textureAtlas->FirstChildElement();
+
+	while (true)
+	{
+		if (row == nullptr)
+			break;
+		int x = row->FindAttribute("x")->IntValue();
+		int y = row->FindAttribute("y")->IntValue();
+		int w = row->FindAttribute("w")->IntValue();
+		int h = row->FindAttribute("h")->IntValue();
+		Action::Clip clip = Action::Clip(x, y, w, h, srv);
+		clips.push_back(clip);
+
+		row = row->NextSiblingElement();
+	}
+
+	shared_ptr<Sprite> sprite;
+	if (state == "Run")
+	{
+		sprite = make_shared<Sprite>(srvPath, Vector2(2, 8), Vector2(65,75));
+	}
+	else
+		sprite = make_shared<Sprite>(srvPath, Vector2(2, 8), Vector2(150, 150));
+
+	sprite->GetTransform()->SetParent(_transform);
+	_sprites.push_back(sprite);
+	shared_ptr<Action> action = make_shared<Action>(clips, state, Action::LOOP, 0.1f);
+	action->Play();
+	_actions.push_back(action);
 }
