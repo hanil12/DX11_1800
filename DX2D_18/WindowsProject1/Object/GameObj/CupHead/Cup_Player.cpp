@@ -9,6 +9,9 @@ Cup_Player::Cup_Player()
 	CreateAction("Idle");
 	CreateAction("Run");
 
+	_actions[State::IDLE]->SetSpeed(0.1f);
+	_actions[State::RUN]->SetSpeed(0.07f);
+
 	_transform->GetPos() = { CENTER_X, CENTER_Y };
 }
 
@@ -21,10 +24,12 @@ void Cup_Player::Input()
 	if (KEY_PRESS('A'))
 	{
 		_transform->GetPos().x -= DELTA_TIME * _speed;
+		SetLeft();
 	}
 	if (KEY_PRESS('D'))
 	{
 		_transform->GetPos().x += DELTA_TIME * _speed;
+		SetRight();
 	}
 }
 
@@ -66,6 +71,10 @@ void Cup_Player::CreateAction(string state)
 	tinyxml2::XMLElement* textureAtlas = document->FirstChildElement();
 	tinyxml2::XMLElement* row = textureAtlas->FirstChildElement();
 
+	int averageW = 0;
+	int averageH = 0;
+	int count = 0;
+
 	while (true)
 	{
 		if (row == nullptr)
@@ -73,7 +82,12 @@ void Cup_Player::CreateAction(string state)
 		int x = row->FindAttribute("x")->IntValue();
 		int y = row->FindAttribute("y")->IntValue();
 		int w = row->FindAttribute("w")->IntValue();
+		averageW += w;
 		int h = row->FindAttribute("h")->IntValue();
+		averageH += h;
+
+		count++;
+
 		Action::Clip clip = Action::Clip(x, y, w, h, srv);
 		clips.push_back(clip);
 
@@ -81,16 +95,30 @@ void Cup_Player::CreateAction(string state)
 	}
 
 	shared_ptr<Sprite> sprite;
-	if (state == "Run")
-	{
-		sprite = make_shared<Sprite>(srvPath, Vector2(2, 8), Vector2(65,75));
-	}
-	else
-		sprite = make_shared<Sprite>(srvPath, Vector2(2, 8), Vector2(150, 150));
+	averageW /= count * 1.5f;
+	averageH /= count * 1.5f;
 
+	sprite = make_shared<Sprite>(srvPath, Vector2(averageW, averageH));
 	sprite->GetTransform()->SetParent(_transform);
+
 	_sprites.push_back(sprite);
 	shared_ptr<Action> action = make_shared<Action>(clips, state, Action::LOOP, 0.1f);
 	action->Play();
 	_actions.push_back(action);
+}
+
+void Cup_Player::SetLeft()
+{
+	for (auto sprite : _sprites)
+	{
+		sprite->SetLeft();
+	}
+}
+
+void Cup_Player::SetRight()
+{
+	for (auto sprite : _sprites)
+	{
+		sprite->SetRight();
+	}
 }

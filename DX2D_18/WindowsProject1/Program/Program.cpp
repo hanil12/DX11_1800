@@ -8,6 +8,7 @@
 #include "../Scene/AvoidDDong.h"
 #include "../Scene/SpriteScene.h"
 #include "../Scene/CupHeadScene.h"
+#include "../Scene/FilterScene.h"
 
 Program::Program()
 {
@@ -20,7 +21,8 @@ Program::Program()
 	//_scenes["AvoidDDong"]			 = make_shared<AvoidDDong>();
 	_scenes["Sprite"]				 = make_shared<SpriteScene>();
 	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
-	_curScene = _scenes["CupHead"];
+	_scenes["Filter"]				 = make_shared<FilterScene>();
+	_curScene = _scenes["Filter"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();

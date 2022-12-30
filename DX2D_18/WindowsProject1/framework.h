@@ -93,6 +93,8 @@ using namespace DirectX;
 #include "Object/GameObj/AvoidDDong/AD_BackGround.h"
 #include "Object/GameObj/AvoidDDong/AvoidPlayer.h"
 #include "Object/GameObj/AvoidDDong/DDong.h"
+
+#include "Object/GameObj/CupHead/Cup_Background.h"
 #include "Object/GameObj/CupHead/Cup_Player.h"
 
 // Scene

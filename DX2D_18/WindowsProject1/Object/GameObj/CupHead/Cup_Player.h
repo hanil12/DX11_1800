@@ -21,6 +21,9 @@ public:
 
 	void SetText() { _text = "IDLE END!!!"; }
 
+	void SetLeft();
+	void SetRight();
+
 private:
 	State _state = State::IDLE;
 

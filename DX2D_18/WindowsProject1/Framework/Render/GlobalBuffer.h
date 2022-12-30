@@ -90,10 +90,47 @@ public:
 		XMFLOAT2 startPos;
 		XMFLOAT2 imageSize;
 		XMFLOAT2 size;
-		XMFLOAT2 padding;
+		int leftRight = 0;
+		int padding;
 	};
 
 	ActionBuffer()
+		: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+
+	Data _data;
+};
+
+class FilterBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		int selected = 0;
+		int value1 = 0;
+		int value2 = 0;
+		int value3 = 0;
+	};
+
+	FilterBuffer()
+		: ConstantBuffer(&_data, sizeof(Data))
+	{
+	}
+
+	Data _data;
+};
+
+class ImageSizeBuffer : public ConstantBuffer
+{
+public:
+	struct Data
+	{
+		XMFLOAT2 imageSize = { 0.0f, 0.0f };
+		XMFLOAT2 padding;
+	};
+
+	ImageSizeBuffer()
 		: ConstantBuffer(&_data, sizeof(Data))
 	{
 	}
