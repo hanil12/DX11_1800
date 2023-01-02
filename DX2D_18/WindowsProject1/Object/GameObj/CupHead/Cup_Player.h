@@ -5,7 +5,8 @@ public:
 	enum State // State фпео
 	{
 		IDLE = 0,
-		RUN = 1
+		RUN = 1,
+		FIRE = 2
 	};
 
 	Cup_Player();
