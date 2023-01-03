@@ -3,8 +3,11 @@
 
 CupHeadScene::CupHeadScene()
 {
+	_bullet = make_shared<Cup_Bullet>();
 	_player = make_shared<Cup_Player>();
 	_bg = make_shared<Cup_Background>();
+
+	_bullet->GetTransform()->GetPos() = { CENTER_X, CENTER_Y };
 }
 
 CupHeadScene::~CupHeadScene()
@@ -13,6 +16,7 @@ CupHeadScene::~CupHeadScene()
 
 void CupHeadScene::Update()
 {
+	_bullet->Update();
 	_player->Update();
 }
 
@@ -23,6 +27,7 @@ void CupHeadScene::PreRender()
 
 void CupHeadScene::Render()
 {
+	_bullet->Render();
 	_player->Render();
 }
 

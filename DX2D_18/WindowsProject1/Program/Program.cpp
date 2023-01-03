@@ -22,7 +22,7 @@ Program::Program()
 	_scenes["Sprite"]				 = make_shared<SpriteScene>();
 	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
 	_scenes["Filter"]				 = make_shared<FilterScene>();
-	_curScene = _scenes["Filter"];
+	_curScene = _scenes["CupHead"];
 
 	_viewBuffer = make_shared<MatrixBuffer>();
 	_projectBuffer = make_shared<MatrixBuffer>();

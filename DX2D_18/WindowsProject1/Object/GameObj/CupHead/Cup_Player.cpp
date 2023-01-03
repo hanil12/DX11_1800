@@ -4,15 +4,27 @@
 Cup_Player::Cup_Player()
 {
 	_transform = make_shared<Transform>();
+	_firePos = make_shared<Transform>();
+	_firePos->SetParent(_transform);
+	_firePos->GetPos().x += 50;
 	_collider = make_shared<CircleCollider>(30);
 	_collider->GetTransform()->SetParent(_transform);
 	CreateAction("Idle");
 	CreateAction("Run");
+	CreateAction("AimStraightShot");
 
 	_actions[State::IDLE]->SetSpeed(0.1f);
 	_actions[State::RUN]->SetSpeed(0.07f);
+	_actions[State::SHOT]->SetRepeatType(Action::Type::END);
+	_actions[State::SHOT]->SetEndEvent(std::bind(&Cup_Player::SetIdle, this));
 
-	_transform->GetPos() = { CENTER_X, CENTER_Y };
+	_transform->GetPos() = { CENTER_X, CENTER_Y - 200 };
+
+	for (int i = 0; i < 30; i++)
+	{
+		shared_ptr<Cup_Bullet> bullet = make_shared<Cup_Bullet>();
+		_bullets.push_back(bullet);
+	}
 }
 
 Cup_Player::~Cup_Player()
@@ -21,34 +33,73 @@ Cup_Player::~Cup_Player()
 
 void Cup_Player::Input()
 {
+	if (_state == State::SHOT)
+		return;
+
+	_state = State::IDLE;
 	if (KEY_PRESS('A'))
 	{
 		_transform->GetPos().x -= DELTA_TIME * _speed;
 		SetLeft();
+		_state = State::RUN;
 	}
 	if (KEY_PRESS('D'))
 	{
 		_transform->GetPos().x += DELTA_TIME * _speed;
 		SetRight();
+		_state = State::RUN;
 	}
+}
+
+void Cup_Player::Shot()
+{
+	if (KEY_DOWN(VK_SPACE))
+	{
+		_state = State::SHOT;
+		_actions[_state]->Play();
+
+		for (auto bullet : _bullets)
+		{
+			if (bullet->isActive == false)
+			{
+				bullet->isActive = true;
+				bullet->SetDirection(_firePos->GetPos().Normal());
+				bullet->GetTransform()->GetPos() = _firePos->GetWorldPos();
+				bullet->GetTransform()->Update();
+				break;
+			}
+		}
+	}
+}
+
+void Cup_Player::SetIdle()
+{
+	_state = State::IDLE;
 }
 
 void Cup_Player::Update()
 {
+	Shot();
 	Input();
 
 	_transform->Update();
+	_firePos->Update();
 	_collider->Update();
 	_actions[_state]->Update();
 	_sprites[_state]->Update();
+
+	for (auto bullet : _bullets)
+		bullet->Update();
 }
 
 void Cup_Player::Render()
 {
-	_transform->SetWorldBuffer();
 	_sprites[_state]->SetSpriteAction(_actions[_state]->GetCurClip());
 	_sprites[_state]->Render();
 	_collider->Render();
+
+	for (auto bullet : _bullets)
+		bullet->Render();
 }
 
 void Cup_Player::PostRender()
@@ -60,12 +111,12 @@ void Cup_Player::CreateAction(string state)
 {
 	wstring srvPath;
 	srvPath.assign(state.begin(), state.end());
-	srvPath = L"CupHead/" + srvPath + L".png";
+	srvPath = L"CupHead/Player/" + srvPath + L".png";
 	shared_ptr<SRV> srv = SRVManager::GetInstance()->AddSRV(srvPath);
 	vector<Action::Clip> clips;
 
 	shared_ptr<tinyxml2::XMLDocument> document = make_shared<tinyxml2::XMLDocument>();
-	string xmlPath = "Resource/Texture/CupHead/" + state + ".xml";
+	string xmlPath = "Resource/Texture/CupHead/Player/" + state + ".xml";
 	document->LoadFile(xmlPath.c_str());
 
 	tinyxml2::XMLElement* textureAtlas = document->FirstChildElement();
@@ -109,6 +160,7 @@ void Cup_Player::CreateAction(string state)
 
 void Cup_Player::SetLeft()
 {
+	_firePos->GetPos().x = -30;
 	for (auto sprite : _sprites)
 	{
 		sprite->SetLeft();
@@ -117,6 +169,7 @@ void Cup_Player::SetLeft()
 
 void Cup_Player::SetRight()
 {
+	_firePos->GetPos().x = 30;
 	for (auto sprite : _sprites)
 	{
 		sprite->SetRight();
