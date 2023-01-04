@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Camera\Camera.h" />
+    <ClInclude Include="Framework\Math\MathUtility.h" />
     <ClInclude Include="Object\GameObj\CupHead\Cup_Bullet.h" />
     <ClInclude Include="Scene\FilterScene.h" />
     <ClInclude Include="Object\GameObj\CupHead\Cup_Background.h" />
@@ -204,6 +206,8 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Camera\Camera.cpp" />
+    <ClCompile Include="Framework\Math\MathUtility.cpp" />
     <ClCompile Include="Object\GameObj\CupHead\Cup_Bullet.cpp" />
     <ClCompile Include="Scene\FilterScene.cpp" />
     <ClCompile Include="Object\GameObj\CupHead\Cup_Background.cpp" />

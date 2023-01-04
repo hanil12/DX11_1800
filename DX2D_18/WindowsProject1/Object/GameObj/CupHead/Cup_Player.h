@@ -27,6 +27,8 @@ public:
 	void SetLeft();
 	void SetRight();
 
+	shared_ptr<Transform> GetTransform() { return _transform; }
+
 private:
 	State _state = State::IDLE;
 

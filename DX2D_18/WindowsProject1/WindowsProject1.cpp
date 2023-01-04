@@ -81,6 +81,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Keyboard::Create();
     SRVManager::Create();
     ShaderManager::Create();
+    Camera::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -104,6 +105,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 삭제
+    Camera::Delete();
     ShaderManager::Delete();
     SRVManager::Delete();
     Keyboard::Delete();

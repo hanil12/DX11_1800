@@ -23,16 +23,6 @@ Program::Program()
 	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
 	_scenes["Filter"]				 = make_shared<FilterScene>();
 	_curScene = _scenes["CupHead"];
-
-	_viewBuffer = make_shared<MatrixBuffer>();
-	_projectBuffer = make_shared<MatrixBuffer>();
-
-	XMMATRIX projectionM = XMMatrixOrthographicOffCenterLH(0.0f, WIN_WIDTH, 0, WIN_HEIGHT, -1.0f, 1.0f);
-
-	_projectBuffer->SetData(projectionM);
-
-	_viewBuffer->Update();
-	_projectBuffer->Update();
 }
 
 Program::~Program()
@@ -46,11 +36,12 @@ void Program::Update()
 		Collider::_isDebug = !Collider::_isDebug;
 	}
 
-	// Scene Update();
 	Keyboard::GetInstance()->Update();
 	Timer::GetInstance()->Update();
 
 	_curScene->Update();
+
+	Camera::GetInstance()->Update();
 }
 
 void Program::Render()
@@ -62,17 +53,19 @@ void Program::Render()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	AlphaBlendState->SetState();
+	Camera::GetInstance()->SetProjectionBuffer(WIN_WIDTH, WIN_HEIGHT);
+	Camera::GetInstance()->SetCameraWorldBuffer();
 
 	_curScene->PreRender();
 
-	_viewBuffer->SetVSBuffer(1);
-	_projectBuffer->SetVSBuffer(2);
+	Camera::GetInstance()->SetViewPort();
+	AlphaBlendState->SetState();
 
 	// Scene Render
 	_curScene->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	Camera::GetInstance()->PostRender();
 	_curScene->PostRender();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
