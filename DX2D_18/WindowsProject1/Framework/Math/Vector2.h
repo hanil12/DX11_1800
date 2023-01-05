@@ -33,4 +33,7 @@ public:
 
 	float Angle() const;
 	void Angle(const float& angle);
+
+	// º¤ÅÍ¿Í Çà·ÄÀÇ °ö
+	static Vector2 TransformCoord(const Vector2& vector, const XMMATRIX& matrix);
 };

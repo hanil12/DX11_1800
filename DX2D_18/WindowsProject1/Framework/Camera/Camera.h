@@ -37,6 +37,8 @@ public:
 	void SetRightTop(Vector2 value) { _rightTop = value; }
 	void SetOffSet(Vector2 value) { _offset = value; }
 
+	Vector2 GetWorldMousePos();
+
 private:
 	void Shake();
 	void FreeMode();

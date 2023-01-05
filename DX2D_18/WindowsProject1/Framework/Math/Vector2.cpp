@@ -141,3 +141,15 @@ void Vector2::Angle(const float& angle)
     x = x * cos(angle);
     y = y * sin(angle);
 }
+
+Vector2 Vector2::TransformCoord(const Vector2& vector, const XMMATRIX& matrix)
+{
+    XMVECTOR temp = XMLoadFloat2(&vector);
+
+    temp = XMVector2TransformCoord(temp, matrix);
+
+    Vector2 result;
+    XMStoreFloat2(&result, temp);
+
+    return result;
+}

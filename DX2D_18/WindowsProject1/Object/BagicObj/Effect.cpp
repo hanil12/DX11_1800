@@ -6,6 +6,7 @@ Effect::Effect(wstring file,Vector2 maxFrame, Vector2 size, float speed, Action:
 	_sprite = make_shared<Sprite>(file, maxFrame, size);
 
 	CreateAction(file, maxFrame, speed, type);
+	_action->SetEndEvent(std::bind(&Effect::End, this));
 }
 
 Effect::~Effect()
@@ -14,10 +15,20 @@ Effect::~Effect()
 
 void Effect::Update()
 {
+	if (isActive == false)
+		return;
+
+	_sprite->Update();
+	_action->Update();
+	_sprite->SetSpriteAction(_action->GetCurClip());
 }
 
 void Effect::Render()
 {
+	if (isActive == false)
+		return;
+
+	_sprite->Render();
 }
 
 void Effect::PostRender()
@@ -35,18 +46,27 @@ void Effect::CreateAction(wstring file, Vector2 maxFrame, float speed, Action::T
 	{
 		for (int x = 0; x < maxFrame.x; x++)
 		{
-			Action::Clip clip = Action::Clip(x, y, w, h, SRVManager::GetInstance()->AddSRV(file));
+			Action::Clip clip = Action::Clip(x * w, y * h, w, h, SRVManager::GetInstance()->AddSRV(file));
 			clips.push_back(clip);
 		}
 	}
 
 	string effectName(file.begin(), file.end());
-	//Resource/Texture/Effects/explosion.png
-	//effectName.substr()
+
+	effectName = effectName.substr(effectName.find_last_of("/") + 1, effectName.size());
+	effectName = effectName.substr(0, effectName.find_last_of("."));
 
 	_action = make_shared<Action>(clips, effectName, type, speed);
 }
 
 void Effect::Play(Vector2 pos)
 {
+	isActive = true;
+	_sprite->GetTransform()->GetPos() = pos;
+	_action->Play();
+}
+
+void Effect::End()
+{
+	isActive = false;
 }
