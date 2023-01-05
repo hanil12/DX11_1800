@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\BagicObj\Effect.h" />
+    <ClInclude Include="Scene\EffectScene.h" />
     <ClInclude Include="Framework\Camera\Camera.h" />
     <ClInclude Include="Framework\Math\MathUtility.h" />
     <ClInclude Include="Object\GameObj\CupHead\Cup_Bullet.h" />
@@ -206,6 +208,8 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\BagicObj\Effect.cpp" />
+    <ClCompile Include="Scene\EffectScene.cpp" />
     <ClCompile Include="Framework\Camera\Camera.cpp" />
     <ClCompile Include="Framework\Math\MathUtility.cpp" />
     <ClCompile Include="Object\GameObj\CupHead\Cup_Bullet.cpp" />
@@ -285,6 +289,7 @@
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png" />
     <Image Include="Resource\Texture\DDong.png" />
     <Image Include="Resource\Texture\earth.png" />
+    <Image Include="Resource\Texture\Effects\explosion.png" />
     <Image Include="Resource\Texture\Idle.png" />
     <Image Include="Resource\Texture\moon.png" />
     <Image Include="Resource\Texture\sun.png" />

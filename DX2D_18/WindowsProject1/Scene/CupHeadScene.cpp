@@ -3,11 +3,8 @@
 
 CupHeadScene::CupHeadScene()
 {
-	_bullet = make_shared<Cup_Bullet>();
 	_player = make_shared<Cup_Player>();
 	_bg = make_shared<Cup_Background>();
-
-	_bullet->GetTransform()->GetPos() = { CENTER_X, CENTER_Y };
 
 	Camera::GetInstance()->SetTarget(_player->GetTransform());
 	Camera::GetInstance()->SetOffSet({ CENTER_X, 160 });
@@ -26,7 +23,6 @@ void CupHeadScene::Update()
 		Camera::GetInstance()->ShakeStart(3.0f, 0.3f);
 	}
 
-	_bullet->Update();
 	_player->Update();
 }
 
@@ -37,7 +33,6 @@ void CupHeadScene::PreRender()
 
 void CupHeadScene::Render()
 {
-	_bullet->Render();
 	_player->Render();
 }
 

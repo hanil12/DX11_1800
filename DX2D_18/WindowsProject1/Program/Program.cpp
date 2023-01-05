@@ -9,6 +9,7 @@
 #include "../Scene/SpriteScene.h"
 #include "../Scene/CupHeadScene.h"
 #include "../Scene/FilterScene.h"
+#include "../Scene/EffectScene.h"
 
 Program::Program()
 {
@@ -22,7 +23,8 @@ Program::Program()
 	_scenes["Sprite"]				 = make_shared<SpriteScene>();
 	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
 	_scenes["Filter"]				 = make_shared<FilterScene>();
-	_curScene = _scenes["CupHead"];
+	_scenes["Effect"]				 = make_shared<EffectScene>();
+	_curScene = _scenes["Effect"];
 }
 
 Program::~Program()

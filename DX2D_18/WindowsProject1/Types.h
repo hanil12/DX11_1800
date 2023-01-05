@@ -28,6 +28,8 @@
 #define ADD_VS(k) ShaderManager::GetInstance()->AddVS(k)
 #define ADD_PS(k) ShaderManager::GetInstance()->AddPS(k)
 
+#define CAMERA Camera::GetInstance()
+
 #define LERP(s,e,t) s + (e - s) * t
 
 using Float2 = XMFLOAT2;

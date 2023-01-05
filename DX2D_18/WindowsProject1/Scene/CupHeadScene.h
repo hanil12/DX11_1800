@@ -11,7 +11,6 @@ public:
 	virtual void PostRender() override;
 
 private:
-	shared_ptr<Cup_Bullet> _bullet;
 	shared_ptr<Cup_Player> _player;
 	shared_ptr<Cup_Background> _bg;
 };

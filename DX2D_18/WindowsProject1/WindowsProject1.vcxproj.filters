@@ -174,6 +174,12 @@
     <ClInclude Include="Framework\Math\MathUtility.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\EffectScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\BagicObj\Effect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -320,6 +326,12 @@
     <ClCompile Include="Framework\Math\MathUtility.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\EffectScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\BagicObj\Effect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -397,6 +409,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\Effects\explosion.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
