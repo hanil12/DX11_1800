@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\BagicObj\EffectManager.h" />
     <ClInclude Include="Object\BagicObj\Effect.h" />
     <ClInclude Include="Scene\EffectScene.h" />
     <ClInclude Include="Framework\Camera\Camera.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\BagicObj\EffectManager.cpp" />
     <ClCompile Include="Object\BagicObj\Effect.cpp" />
     <ClCompile Include="Scene\EffectScene.cpp" />
     <ClCompile Include="Framework\Camera\Camera.cpp" />
