@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\Utility\Audio.h" />
     <ClInclude Include="Object\BagicObj\EffectManager.h" />
     <ClInclude Include="Object\BagicObj\Effect.h" />
     <ClInclude Include="Scene\EffectScene.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\Utility\Audio.cpp" />
     <ClCompile Include="Object\BagicObj\EffectManager.cpp" />
     <ClCompile Include="Object\BagicObj\Effect.cpp" />
     <ClCompile Include="Scene\EffectScene.cpp" />
@@ -430,6 +432,12 @@
     <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
     <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />
     <Xml Include="Resource\Texture\Idle.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource\Sound\attack.wav" />
+    <Media Include="Resource\Sound\BGM.mp3" />
+    <Media Include="Resource\Sound\drumloop.wav" />
+    <Media Include="Resource\Sound\jump.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

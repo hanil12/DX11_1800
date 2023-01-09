@@ -183,6 +183,9 @@
     <ClInclude Include="Object\BagicObj\EffectManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Utility\Audio.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -338,6 +341,9 @@
     <ClCompile Include="Object\BagicObj\EffectManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Utility\Audio.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -443,5 +449,17 @@
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />
     <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resource\Sound\attack.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="Resource\Sound\BGM.mp3" />
+    <Media Include="Resource\Sound\drumloop.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
+    <Media Include="Resource\Sound\jump.wav">
+      <Filter>리소스 파일</Filter>
+    </Media>
   </ItemGroup>
 </Project>

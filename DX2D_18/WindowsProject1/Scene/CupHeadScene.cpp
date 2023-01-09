@@ -10,6 +10,9 @@ CupHeadScene::CupHeadScene()
 	Camera::GetInstance()->SetOffSet({ CENTER_X, 160 });
 	Camera::GetInstance()->SetLeftBottom(_bg->GetSize() * 0.5f * -1.0f + _bg->GetMainPos());
 	Camera::GetInstance()->SetRightTop(_bg->GetSize() * 0.5f + _bg->GetMainPos());
+
+	SOUND->Add("bagic_bgm", "Resource/Sound/BGM.mp3", true);
+	SOUND->Play("bagic_bgm");
 }
 
 CupHeadScene::~CupHeadScene()

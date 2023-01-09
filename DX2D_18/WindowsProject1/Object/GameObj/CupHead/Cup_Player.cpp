@@ -26,6 +26,8 @@ Cup_Player::Cup_Player()
 		shared_ptr<Cup_Bullet> bullet = make_shared<Cup_Bullet>();
 		_bullets.push_back(bullet);
 	}
+
+	SOUND->Add("cup_jump", "Resource/Sound/jump.wav");
 }
 
 Cup_Player::~Cup_Player()
@@ -59,6 +61,7 @@ void Cup_Player::Jump()
 		_state = State::JUMP;
 		_actions[_state]->Play();
 		_jumpPower = 500.0f;
+		SOUND->Play("cup_jump");
 	}
 
 	if (KEY_PRESS('A') && _state == JUMP)
