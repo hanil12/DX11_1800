@@ -10,6 +10,11 @@ Audio::Audio()
 
 Audio::~Audio()
 {
+	for (auto pair : _soundMap)
+	{
+		delete pair.second;
+	}
+
 	_soundSystem->release();
 }
 

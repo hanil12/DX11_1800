@@ -8,7 +8,7 @@ private:
 		FMOD::Channel*		_channel = nullptr;
 
 		SoundInfo() {}
-		~SoundInfo() {}
+		~SoundInfo() { _sound->release(); }
 	};
 
 	Audio();
