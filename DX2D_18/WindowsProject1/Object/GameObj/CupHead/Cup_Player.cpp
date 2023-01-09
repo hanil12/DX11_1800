@@ -12,6 +12,7 @@ Cup_Player::Cup_Player()
 	CreateAction("Idle");
 	CreateAction("Run");
 	CreateAction("AimStraightShot");
+	CreateAction("Jump");
 
 	_actions[State::IDLE]->SetSpeed(0.1f);
 	_actions[State::RUN]->SetSpeed(0.07f);
@@ -33,7 +34,7 @@ Cup_Player::~Cup_Player()
 
 void Cup_Player::Input()
 {
-	if (_state == State::SHOT)
+	if (_state == State::SHOT || _state == State::JUMP)
 		return;
 
 	_state = State::IDLE;
@@ -51,9 +52,41 @@ void Cup_Player::Input()
 	}
 }
 
-void Cup_Player::Shot()
+void Cup_Player::Jump()
 {
 	if (KEY_DOWN(VK_SPACE))
+	{
+		_state = State::JUMP;
+		_actions[_state]->Play();
+		_jumpPower = 500.0f;
+	}
+
+	if (KEY_PRESS('A') && _state == JUMP)
+	{
+		_transform->GetPos().x -= DELTA_TIME * _speed;
+		SetLeft();
+	}
+	if (KEY_PRESS('D') && _state == JUMP)
+	{
+		_transform->GetPos().x += DELTA_TIME * _speed;
+		SetRight();
+	}
+
+	_transform->GetPos().y += _jumpPower * DELTA_TIME;
+
+	_jumpPower -= GRAVITY * GRAVITY * DELTA_TIME;
+
+	if (_transform->GetPos().y < 160.0f)
+	{
+		_transform->GetPos().y = 160.0f;
+		_jumpPower = 0.0f;
+		_state = State::IDLE;
+	}
+}
+
+void Cup_Player::Shot()
+{
+	if (KEY_DOWN(VK_LBUTTON))
 	{
 		_state = State::SHOT;
 		_actions[_state]->Play();
@@ -79,6 +112,7 @@ void Cup_Player::SetIdle()
 
 void Cup_Player::Update()
 {
+	Jump();
 	Shot();
 	Input();
 

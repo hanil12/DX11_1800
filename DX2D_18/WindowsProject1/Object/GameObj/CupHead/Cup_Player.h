@@ -6,13 +6,15 @@ public:
 	{
 		IDLE = 0,
 		RUN = 1,
-		SHOT = 2
+		SHOT = 2,
+		JUMP = 3
 	};
 
 	Cup_Player();
 	~Cup_Player();
 
 	void Input();
+	void Jump();
 	void Shot();
 	void SetIdle();
 
@@ -41,6 +43,9 @@ private:
 	vector<shared_ptr<Action>> _actions;
 
 	float _speed = 300.0f;
+
+	float _jumpPower = 0.0f;
+
 	string _text = "Hello World!!!";
 };
 

@@ -289,9 +289,11 @@
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_flag.png" />
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_sign_light.png" />
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png" />
+    <Image Include="Resource\Texture\CupHead\Player\Jump.png" />
     <Image Include="Resource\Texture\DDong.png" />
     <Image Include="Resource\Texture\earth.png" />
     <Image Include="Resource\Texture\Effects\explosion.png" />
+    <Image Include="Resource\Texture\Effects\JumpDustA.png" />
     <Image Include="Resource\Texture\Idle.png" />
     <Image Include="Resource\Texture\moon.png" />
     <Image Include="Resource\Texture\sun.png" />
@@ -425,6 +427,8 @@
   <ItemGroup>
     <Xml Include="Resource\Texture\CupHead\AimStraightShot.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
+    <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
+    <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />
     <Xml Include="Resource\Texture\Idle.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

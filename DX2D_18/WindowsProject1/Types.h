@@ -10,6 +10,7 @@
 #define CENTER_Y		 360
 
 #define PI				 3.141592
+#define GRAVITY			 30
 
 #define DEVICE Device::GetInstance()->GetDevice()
 #define DC Device::GetInstance()->GetDeviceContext()

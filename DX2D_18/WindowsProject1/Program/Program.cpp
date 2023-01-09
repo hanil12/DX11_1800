@@ -21,10 +21,10 @@ Program::Program()
 	//_scenes["Collision"]			 = make_shared<CollisionScene>();
 	//_scenes["AvoidDDong"]			 = make_shared<AvoidDDong>();
 	//_scenes["Sprite"]				 = make_shared<SpriteScene>();
-	//_scenes["CupHead"]				 = make_shared<CupHeadScene>();
+	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
 	//_scenes["Filter"]				 = make_shared<FilterScene>();
-	_scenes["Effect"]				 = make_shared<EffectScene>();
-	_curScene = _scenes["Effect"];
+	//_scenes["Effect"]				 = make_shared<EffectScene>();
+	_curScene = _scenes["CupHead"];
 }
 
 Program::~Program()
