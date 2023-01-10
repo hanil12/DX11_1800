@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Utility\Audio.h" />
+    <ClInclude Include="Framework\Utility\MyXML.h" />
     <ClInclude Include="Object\BagicObj\EffectManager.h" />
     <ClInclude Include="Object\BagicObj\Effect.h" />
     <ClInclude Include="Scene\EffectScene.h" />
@@ -211,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\Audio.cpp" />
+    <ClCompile Include="Framework\Utility\MyXML.cpp" />
     <ClCompile Include="Object\BagicObj\EffectManager.cpp" />
     <ClCompile Include="Object\BagicObj\Effect.cpp" />
     <ClCompile Include="Scene\EffectScene.cpp" />

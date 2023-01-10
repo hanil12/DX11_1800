@@ -89,6 +89,7 @@ using namespace DirectX;
 
 // Animation
 #include "Framework/Animation/Action.h"
+#include "Framework/Utility/MyXML.h"
 
 // BagicObj
 #include "Object/BagicObj/Quad.h"

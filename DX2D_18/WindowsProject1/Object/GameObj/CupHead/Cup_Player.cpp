@@ -28,11 +28,46 @@ Cup_Player::Cup_Player()
 	}
 
 	SOUND->Add("cup_jump", "Resource/Sound/jump.wav");
+	EFFECT->AddEffect(L"Effects/JumpDustA.png", Vector2(2, 10), Vector2(70, 70), 0.1f, Action::END, true);
+
+	_state = State::JUMP;
 }
 
 Cup_Player::~Cup_Player()
 {
 }
+
+void Cup_Player::Update()
+{
+	Jump();
+	Shot();
+	Input();
+
+	_transform->Update();
+	_firePos->Update();
+	_collider->Update();
+	_actions[_state]->Update();
+	_sprites[_state]->Update();
+
+	for (auto bullet : _bullets)
+		bullet->Update();
+}
+
+void Cup_Player::Render()
+{
+	_sprites[_state]->SetSpriteAction(_actions[_state]->GetCurClip());
+	_sprites[_state]->Render();
+	_collider->Render();
+
+	for (auto bullet : _bullets)
+		bullet->Render();
+}
+
+void Cup_Player::PostRender()
+{
+	ImGui::SliderInt("State", (int*)&_state, 0, 1);
+}
+
 
 void Cup_Player::Input()
 {
@@ -83,7 +118,14 @@ void Cup_Player::Jump()
 	{
 		_transform->GetPos().y = 160.0f;
 		_jumpPower = 0.0f;
-		_state = State::IDLE;
+
+		if (_state == State::JUMP)
+		{
+			Vector2 dustPos = _transform->GetPos();
+			dustPos.y -= 50;
+			EFFECT->Play("JumpDustA", dustPos);
+			_state = State::IDLE;
+		}
 	}
 }
 
@@ -113,83 +155,20 @@ void Cup_Player::SetIdle()
 	_state = State::IDLE;
 }
 
-void Cup_Player::Update()
-{
-	Jump();
-	Shot();
-	Input();
-
-	_transform->Update();
-	_firePos->Update();
-	_collider->Update();
-	_actions[_state]->Update();
-	_sprites[_state]->Update();
-
-	for (auto bullet : _bullets)
-		bullet->Update();
-}
-
-void Cup_Player::Render()
-{
-	_sprites[_state]->SetSpriteAction(_actions[_state]->GetCurClip());
-	_sprites[_state]->Render();
-	_collider->Render();
-
-	for (auto bullet : _bullets)
-		bullet->Render();
-}
-
-void Cup_Player::PostRender()
-{
-	ImGui::SliderInt("State", (int*)&_state, 0, 1);
-}
-
 void Cup_Player::CreateAction(string state)
 {
-	wstring srvPath;
-	srvPath.assign(state.begin(), state.end());
-	srvPath = L"CupHead/Player/" + srvPath + L".png";
-	shared_ptr<SRV> srv = SRVManager::GetInstance()->AddSRV(srvPath);
-	vector<Action::Clip> clips;
-
-	shared_ptr<tinyxml2::XMLDocument> document = make_shared<tinyxml2::XMLDocument>();
-	string xmlPath = "Resource/Texture/CupHead/Player/" + state + ".xml";
-	document->LoadFile(xmlPath.c_str());
-
-	tinyxml2::XMLElement* textureAtlas = document->FirstChildElement();
-	tinyxml2::XMLElement* row = textureAtlas->FirstChildElement();
-
-	int averageW = 0;
-	int averageH = 0;
-	int count = 0;
-
-	while (true)
-	{
-		if (row == nullptr)
-			break;
-		int x = row->FindAttribute("x")->IntValue();
-		int y = row->FindAttribute("y")->IntValue();
-		int w = row->FindAttribute("w")->IntValue();
-		averageW += w;
-		int h = row->FindAttribute("h")->IntValue();
-		averageH += h;
-
-		count++;
-
-		Action::Clip clip = Action::Clip(x, y, w, h, srv);
-		clips.push_back(clip);
-
-		row = row->NextSiblingElement();
-	}
+	wstring path = wstring(state.begin(), state.end());
+	path = L"CupHead/Player/" + path + L".png";
+	MyXML xml = MyXML(path);
 
 	shared_ptr<Sprite> sprite;
-	averageW /= count * 1.5f;
-	averageH /= count * 1.5f;
-
-	sprite = make_shared<Sprite>(srvPath, Vector2(averageW, averageH));
+	
+	Vector2 averWH = xml.GetAverage();
+	sprite = make_shared<Sprite>(path, averWH);
 	sprite->GetTransform()->SetParent(_transform);
 
 	_sprites.push_back(sprite);
+	vector<Action::Clip> clips = xml.GetClips();
 	shared_ptr<Action> action = make_shared<Action>(clips, state, Action::LOOP, 0.1f);
 	action->Play();
 	_actions.push_back(action);

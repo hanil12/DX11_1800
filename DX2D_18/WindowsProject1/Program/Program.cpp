@@ -42,6 +42,7 @@ void Program::Update()
 	Timer::GetInstance()->Update();
 
 	_curScene->Update();
+	EFFECT->Update();
 
 	Camera::GetInstance()->Update();
 }
@@ -65,6 +66,7 @@ void Program::Render()
 
 	// Scene Render
 	_curScene->Render();
+	EFFECT->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
 	Camera::GetInstance()->PostRender();

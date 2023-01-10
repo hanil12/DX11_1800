@@ -25,7 +25,7 @@ public:
 	void Update();
 	void Render();
 
-	void AddEffect(wstring path, Vector2 maxFrame, Vector2 size, float speed = 0.1f, Action::Type type = Action::Type::END);
+	void AddEffect(wstring path, Vector2 maxFrame, Vector2 size, float speed = 0.1f, Action::Type type = Action::Type::END, bool isxml = false);
 	void Play(string name, Vector2 pos);
 
 private:

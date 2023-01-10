@@ -33,7 +33,7 @@ void EffectManager::Render()
 	}
 }
 
-void EffectManager::AddEffect(wstring path, Vector2 maxFrame, Vector2 size, float speed, Action::Type type)
+void EffectManager::AddEffect(wstring path, Vector2 maxFrame, Vector2 size, float speed, Action::Type type, bool isxml)
 {
 	string temp = string(path.begin(), path.end());
 	temp = temp.substr(temp.find_last_of("/") + 1, temp.npos);
@@ -46,7 +46,11 @@ void EffectManager::AddEffect(wstring path, Vector2 maxFrame, Vector2 size, floa
 
 	for (int i = 0; i < _poolCount; i++)
 	{
-		shared_ptr<Effect> effect = make_shared<Effect>(path, maxFrame, size, speed, type);
+		shared_ptr<Effect> effect;
+		if (isxml == false)
+			effect = make_shared<Effect>(path, maxFrame, size, speed, type);
+		else
+			effect = make_shared<Effect>(path, maxFrame, size, speed, type, isxml);
 		effect->isActive = false;
 		_effectTable[temp].push_back(effect);
 	}

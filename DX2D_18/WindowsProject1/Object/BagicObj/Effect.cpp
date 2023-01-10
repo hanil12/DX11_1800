@@ -1,11 +1,15 @@
 #include "framework.h"
 #include "Effect.h"
 
-Effect::Effect(wstring file,Vector2 maxFrame, Vector2 size, float speed, Action::Type type)
+Effect::Effect(wstring file,Vector2 maxFrame, Vector2 size, float speed, Action::Type type, bool isxml)
 {
 	_sprite = make_shared<Sprite>(file, maxFrame, size);
 
-	CreateAction(file, maxFrame, speed, type);
+	if (isxml == false)
+		CreateAction(file, maxFrame, speed, type);
+	else
+		CreateActionByXML(file, speed, type);
+
 	_action->SetEndEvent(std::bind(&Effect::End, this));
 }
 
@@ -58,6 +62,19 @@ void Effect::CreateAction(wstring file, Vector2 maxFrame, float speed, Action::T
 
 	_action = make_shared<Action>(clips, effectName, type, speed);
 }
+
+void Effect::CreateActionByXML(wstring file,float speed, Action::Type type)
+{
+	MyXML xml = MyXML(file);
+	vector<Action::Clip> clips = xml.GetClips();
+
+	string effectName(file.begin(), file.end());
+
+	effectName = effectName.substr(effectName.find_last_of("/") + 1, effectName.size());
+	effectName = effectName.substr(0, effectName.find_last_of("."));
+	_action = make_shared<Action>(clips, effectName, type, speed);
+}
+
 
 void Effect::Play(Vector2 pos)
 {
