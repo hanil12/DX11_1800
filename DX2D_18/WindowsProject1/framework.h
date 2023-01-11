@@ -56,6 +56,8 @@ using namespace DirectX;
 #include "Framework/Utility/Keyboard.h"
 #include "Framework/Utility/tinyxml2.h"
 #include "Framework/Utility/Audio.h"
+#include "Framework/Utility/BinaryWriter.h"
+#include "Framework/Utility/BinaryReader.h"
 
 // Render
 #include "Framework/Render/VertexLayOut.h"
