@@ -88,3 +88,14 @@ void Cup_Bullet::SetDirection(Vector2 dir)
 	_direction = dir;
 	_sprite->GetTransform()->GetAngle() = angle - PI * 0.5f;
 }
+
+void Cup_Bullet::SetTarget(shared_ptr<Collider> other)
+{
+	_target = other;
+}
+
+bool Cup_Bullet::IsCollision()
+{
+	if(!_target.expired())
+		return _collider->IsCollision(_target.lock());
+}
