@@ -32,6 +32,20 @@ void Transform::SetWorldBuffer(int slot)
 	_worldBuffer->SetVSBuffer(slot);
 }
 
+void Transform::SetSRT()
+{
+	XMMATRIX S = XMMatrixScaling(_scale.x, _scale.y, 1);
+	XMMATRIX R = XMMatrixRotationZ(_angle);
+	XMMATRIX T = XMMatrixTranslation(_pos.x, _pos.y, 0);
+
+	_srtMatrix = S * R * T;
+
+	if (_parent != nullptr)
+	{
+		_srtMatrix *= *(_parent->GetMatrix());
+	}
+}
+
 Vector2& Transform::GetScale()
 {
 	return _scale;

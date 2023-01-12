@@ -87,7 +87,7 @@ void Cup_Boss::Fire(shared_ptr<Cup_Player> player)
 			bullet->isActive = true;
 
 			Vector2 dir = player->GetTransform()->GetWorldPos() - _firePos->GetWorldPos();
-			bullet->GetTransform()->GetPos() = _firePos->GetWorldPos();
+			bullet->GetTransform()->SetPos(_firePos->GetWorldPos());
 			bullet->SetDirection(dir.Normal());
 
 			break;

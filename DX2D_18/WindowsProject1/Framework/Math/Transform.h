@@ -10,6 +10,9 @@ public:
 
 	void Update();
 	void SetWorldBuffer(int slot = 0);
+	void SetSRT();
+
+	void SetPos(Vector2 pos) { _pos = pos; SetSRT(); return; }
 
 	Vector2& GetScale();
 	Vector2 GetWorldScale();
