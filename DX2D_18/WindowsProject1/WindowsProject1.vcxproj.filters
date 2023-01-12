@@ -195,6 +195,9 @@
     <ClInclude Include="Framework\Utility\BinaryReader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\GameObj\CupHead\Cup_Boss.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -362,6 +365,9 @@
     <ClCompile Include="Framework\Utility\BinaryReader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\GameObj\CupHead\Cup_Boss.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -450,6 +456,9 @@
     <Image Include="Resource\Texture\CupHead\Player\Jump.png">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="Resource\Texture\CupHead\Boss\Clown_Page_Last_Spawn_Penguin_Start.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\Tutorial.hlsl" />
@@ -467,6 +476,7 @@
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />
     <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
+    <Xml Include="Resource\Texture\CupHead\Boss\Clown_Page_Last_Spawn_Penguin_Start.xml" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resource\Sound\attack.wav">

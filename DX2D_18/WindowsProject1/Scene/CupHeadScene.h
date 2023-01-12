@@ -16,5 +16,6 @@ public:
 private:
 	shared_ptr<Cup_Player> _player;
 	shared_ptr<Cup_Background> _bg;
+	shared_ptr<Cup_Boss> _boss;
 };
 

@@ -30,6 +30,7 @@ public:
 	void SetRight();
 
 	shared_ptr<Transform> GetTransform() { return _transform; }
+	shared_ptr<Collider> GetCollider() { return _collider; }
 
 private:
 	State _state = State::IDLE;

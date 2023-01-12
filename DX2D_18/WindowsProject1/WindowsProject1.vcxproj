@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Object\GameObj\CupHead\Cup_Boss.h" />
     <ClInclude Include="Framework\Utility\BinaryReader.h" />
     <ClInclude Include="Framework\Utility\BinaryWriter.h" />
     <ClInclude Include="Framework\Utility\Audio.h" />
@@ -213,6 +214,7 @@
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Object\GameObj\CupHead\Cup_Boss.cpp" />
     <ClCompile Include="Framework\Utility\BinaryReader.cpp" />
     <ClCompile Include="Framework\Utility\BinaryWriter.cpp" />
     <ClCompile Include="Framework\Utility\Audio.cpp" />
@@ -296,6 +298,7 @@
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_left_sign.png" />
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_flag.png" />
     <Image Include="Resource\Texture\CupHead\BackGround\clown_fg_right_sign_light.png" />
+    <Image Include="Resource\Texture\CupHead\Boss\Clown_Page_Last_Spawn_Penguin_Start.png" />
     <Image Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.png" />
     <Image Include="Resource\Texture\CupHead\Player\Jump.png" />
     <Image Include="Resource\Texture\DDong.png" />
@@ -434,6 +437,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resource\Texture\CupHead\AimStraightShot.xml" />
+    <Xml Include="Resource\Texture\CupHead\Boss\Clown_Page_Last_Spawn_Penguin_Start.xml" />
     <Xml Include="Resource\Texture\CupHead\Bullet\Special_Bullet_Loop.xml" />
     <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
     <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />

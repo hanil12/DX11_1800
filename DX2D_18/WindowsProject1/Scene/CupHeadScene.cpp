@@ -5,6 +5,10 @@ CupHeadScene::CupHeadScene()
 {
 	_player = make_shared<Cup_Player>();
 	_bg = make_shared<Cup_Background>();
+	_boss = make_shared<Cup_Boss>();
+	// _boss->SetPlayer(_player);
+
+	_boss->GetTransform()->GetPos().x += 500.0f;
 
 	Camera::GetInstance()->SetTarget(_player->GetTransform());
 	Camera::GetInstance()->SetOffSet({ CENTER_X, 160 });
@@ -22,12 +26,17 @@ CupHeadScene::~CupHeadScene()
 
 void CupHeadScene::Update()
 {
+	_boss->Fire(_player);
+
 	if (KEY_DOWN(VK_SPACE))
 	{
 		Camera::GetInstance()->ShakeStart(3.0f, 0.3f);
 	}
 
 	_player->Update();
+	_boss->Update();
+
+	_boss->Attack(_player);
 }
 
 void CupHeadScene::PreRender()
@@ -38,6 +47,7 @@ void CupHeadScene::PreRender()
 void CupHeadScene::Render()
 {
 	_player->Render();
+	_boss->Render();
 }
 
 void CupHeadScene::PostRender()

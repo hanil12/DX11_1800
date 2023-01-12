@@ -111,6 +111,7 @@ using namespace DirectX;
 #include "Object/GameObj/CupHead/Cup_Background.h"
 #include "Object/GameObj/CupHead/Cup_Bullet.h"
 #include "Object/GameObj/CupHead/Cup_Player.h"
+#include "Object/GameObj/CupHead/Cup_Boss.h"
 
 // Scene
 #include "Scene/Scene.h"
