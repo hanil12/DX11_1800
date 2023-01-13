@@ -20,9 +20,12 @@ RectCollider::~RectCollider()
 
 bool RectCollider::IsCollision(Vector2 pos)
 {
-	if (pos.x > this->LeftTop().x && pos.x < this->RightBottom().x)
+	Vector2 leftTop = this->LeftTop();
+	Vector2 rightBottom = this->RightBottom();
+
+	if (pos.x > leftTop.x && pos.x < rightBottom.x)
 	{
-		if (pos.y < this->LeftTop().y && pos.y > this->RightBottom().y)
+		if (pos.y < leftTop.y && pos.y > rightBottom.y)
 		{
 			return true;
 		}
@@ -227,8 +230,8 @@ Vector2 RectCollider::GetWorldSize()
 	XMFLOAT4X4 matrix;
 	XMStoreFloat4x4(&matrix, *_transform->GetMatrix());
 
-	result.x = _size.x * _transform->GetScale().x;
-	result.y = _size.y * _transform->GetScale().y;
+	result.x = _size.x * matrix._11;
+	result.y = _size.y * matrix._22;
 
 	return result;
 }

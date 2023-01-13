@@ -69,6 +69,7 @@ void Program::Render()
 	EFFECT->Render();
 
 	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	CAMERA->SetUICameraBuffer();
 	Camera::GetInstance()->PostRender();
 	_curScene->PostRender();
 	ImGui::Render();

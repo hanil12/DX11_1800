@@ -18,6 +18,11 @@ CupHeadScene::CupHeadScene()
 	SOUND->Add("bagic_bgm", "Resource/Sound/BGM.mp3", true);
 	SOUND->Play("bagic_bgm");
 	// Load();
+
+	_button = make_shared<Button>(L"UI/Button.png");
+	_button->SetPostion(Vector2(CENTER_X, CENTER_Y));
+	_button->SetScale(Vector2(0.07f, 0.07f));
+	_button->SetEvent(std::bind(&CupHeadScene::Save, this));
 }
 
 CupHeadScene::~CupHeadScene()
@@ -37,6 +42,8 @@ void CupHeadScene::Update()
 	_boss->Update();
 
 	_boss->Attack(_player);
+
+	_button->Update();
 }
 
 void CupHeadScene::PreRender()
@@ -53,6 +60,7 @@ void CupHeadScene::Render()
 void CupHeadScene::PostRender()
 {
 	_player->PostRender();
+	_button->PostRender();
 
 	if (ImGui::Button("Save", ImVec2(50, 50)))
 		Save();
