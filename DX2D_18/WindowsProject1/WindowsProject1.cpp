@@ -76,6 +76,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ImGui_ImplDX11_Init(DEVICE.Get(), DC.Get());
 
     // 생성
+    DirectWrite::Create();
     StateManager::Create();
     Timer::Create();
     Keyboard::Create();
@@ -115,6 +116,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Keyboard::Delete();
     Timer::Delete();
     StateManager::Delete();
+    DirectWrite::Delete();
 
     // imGui
     ImGui_ImplDX11_Shutdown();

@@ -68,12 +68,18 @@ void Program::Render()
 	_curScene->Render();
 	EFFECT->Render();
 
-	ImGui::Text("FPS : %d", Timer::GetInstance()->GetFPS());
+	wstring fps = L"FPS : " + to_wstring((int)Timer::GetInstance()->GetFPS());
+	RECT rect = { 0,0,100,100 };
+
+	DirectWrite::GetInstance()->GetDC()->BeginDraw();
+	DirectWrite::GetInstance()->RenderText(fps, rect);
+
 	CAMERA->SetUICameraBuffer();
 	Camera::GetInstance()->PostRender();
 	_curScene->PostRender();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
+	DirectWrite::GetInstance()->GetDC()->EndDraw();
 	Device::GetInstance()->Present();
 }

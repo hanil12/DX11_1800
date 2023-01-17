@@ -19,5 +19,7 @@ private:
 	shared_ptr<Cup_Boss> _boss;
 
 	shared_ptr<Button> _button;
+
+	Button::TextInfo _info;
 };
 

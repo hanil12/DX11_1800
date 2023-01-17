@@ -23,6 +23,9 @@ CupHeadScene::CupHeadScene()
 	_button->SetPostion(Vector2(CENTER_X, CENTER_Y));
 	_button->SetScale(Vector2(0.07f, 0.07f));
 	_button->SetEvent(std::bind(&CupHeadScene::Save, this));
+
+	_info.text = L"Save";
+	_button->SetText(_info);
 }
 
 CupHeadScene::~CupHeadScene()
@@ -60,6 +63,9 @@ void CupHeadScene::Render()
 void CupHeadScene::PostRender()
 {
 	_player->PostRender();
+
+	_button->SetText(_info);
+
 	_button->PostRender();
 
 	if (ImGui::Button("Save", ImVec2(50, 50)))

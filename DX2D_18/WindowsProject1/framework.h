@@ -30,9 +30,7 @@
 
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"d3dcompiler.lib")
-
-using namespace std;
-using namespace DirectX;
+#pragma comment(lib,"dxguid.lib")
 
 // DirectX Tex
 #include "../DirectXTex/DirectXTex.h"
@@ -46,10 +44,20 @@ using namespace DirectX;
 #include "../ImGUI/imgui_impl_win32.h"
 #include "../ImGUI/imgui_impl_dx11.h"
 
-#include "Types.h"
+// DirectWrite
+#include <d2d1_1.h>
+#include <dwrite.h>
+
+#pragma comment(lib,"d2d1.lib")
+#pragma comment(lib,"dwrite.lib")
+
+using namespace std;
+using namespace DirectX;
 
 // Device
 #include "Framework/Device/Device.h"
+
+#include "Types.h"
 
 // Utility
 #include "Framework/Utility/Timer.h"
@@ -58,6 +66,7 @@ using namespace DirectX;
 #include "Framework/Utility/Audio.h"
 #include "Framework/Utility/BinaryWriter.h"
 #include "Framework/Utility/BinaryReader.h"
+#include "Framework/Utility/DirectWrite.h"
 
 // Render
 #include "Framework/Render/VertexLayOut.h"

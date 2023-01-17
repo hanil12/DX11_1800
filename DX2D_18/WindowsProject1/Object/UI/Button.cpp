@@ -55,6 +55,11 @@ void Button::PostRender()
 	_buttonInfoBuffer->SetPSBuffer(1);
 	_quad->Render();
 	_collider->Render();
+
+	RECT rect = { _collider->LeftTop().x + 23, _collider->LeftTop().y + 13,
+		_collider->RightBottom().x , _collider->RightBottom().y + 13 };
+
+	DirectWrite::GetInstance()->RenderText(_textInfo.text, rect, _textInfo.size, L"³ª´®½ºÄù¾î¶ó¿îµåOTF", _textInfo.color);
 }
 
 void Button::SetPostion(Vector2 pos)
