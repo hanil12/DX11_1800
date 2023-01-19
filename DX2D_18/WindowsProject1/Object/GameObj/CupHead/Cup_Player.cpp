@@ -69,6 +69,12 @@ void Cup_Player::PostRender()
 }
 
 
+void Cup_Player::Init()
+{
+	for (auto bullet : _bullets)
+		bullet->isActive = false;
+}
+
 void Cup_Player::Input()
 {
 	if (_state == State::SHOT || _state == State::JUMP)

@@ -57,7 +57,7 @@
     <ClInclude Include="Scene\Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\TextureScene.h">
+    <ClInclude Include="Scene\BagicScene\TextureScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Render\IndexBuffer.h">
@@ -72,7 +72,7 @@
     <ClInclude Include="Framework\Render\GlobalBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\PlanetScene.h">
+    <ClInclude Include="Scene\BagicScene\PlanetScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\GameObj\Planet.h">
@@ -93,7 +93,7 @@
     <ClInclude Include="Framework\Texture\StateManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\GunGreed.h">
+    <ClInclude Include="Scene\BagicScene\GunGreed.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\BagicObj\Quad.h">
@@ -120,10 +120,10 @@
     <ClInclude Include="Framework\Math\RectCollider.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\CollisionScene.h">
+    <ClInclude Include="Scene\BagicScene\CollisionScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\AvoidDDong.h">
+    <ClInclude Include="Scene\BagicScene\AvoidDDong.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\GameObj\AvoidDDong\DDong.h">
@@ -135,7 +135,7 @@
     <ClInclude Include="Object\GameObj\AvoidDDong\AD_BackGround.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SpriteScene.h">
+    <ClInclude Include="Scene\BagicScene\SpriteScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\BagicObj\Sprite.h">
@@ -150,7 +150,7 @@
     <ClInclude Include="Framework\Animation\Action.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\CupHeadScene.h">
+    <ClInclude Include="Scene\BagicScene\CupHeadScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\GameObj\CupHead\Cup_Player.h">
@@ -162,7 +162,7 @@
     <ClInclude Include="Object\GameObj\CupHead\Cup_Background.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\FilterScene.h">
+    <ClInclude Include="Scene\BagicScene\FilterScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\GameObj\CupHead\Cup_Bullet.h">
@@ -174,7 +174,7 @@
     <ClInclude Include="Framework\Math\MathUtility.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\EffectScene.h">
+    <ClInclude Include="Scene\BagicScene\EffectScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\BagicObj\Effect.h">
@@ -202,6 +202,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Utility\DirectWrite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,7 +239,7 @@
     <ClCompile Include="Scene\Scene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\TextureScene.cpp">
+    <ClCompile Include="Scene\BagicScene\TextureScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Render\IndexBuffer.cpp">
@@ -248,7 +251,7 @@
     <ClCompile Include="Framework\Render\ConstantBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\PlanetScene.cpp">
+    <ClCompile Include="Scene\BagicScene\PlanetScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\GameObj\Planet.cpp">
@@ -269,7 +272,7 @@
     <ClCompile Include="Framework\Texture\StateManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\GunGreed.cpp">
+    <ClCompile Include="Scene\BagicScene\GunGreed.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\BagicObj\Quad.cpp">
@@ -296,10 +299,10 @@
     <ClCompile Include="Framework\Math\RectCollider.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\CollisionScene.cpp">
+    <ClCompile Include="Scene\BagicScene\CollisionScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\AvoidDDong.cpp">
+    <ClCompile Include="Scene\BagicScene\AvoidDDong.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\GameObj\AvoidDDong\DDong.cpp">
@@ -311,7 +314,7 @@
     <ClCompile Include="Object\GameObj\AvoidDDong\AD_BackGround.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SpriteScene.cpp">
+    <ClCompile Include="Scene\BagicScene\SpriteScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\BagicObj\Sprite.cpp">
@@ -326,7 +329,7 @@
     <ClCompile Include="Framework\Animation\Action.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\CupHeadScene.cpp">
+    <ClCompile Include="Scene\BagicScene\CupHeadScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\GameObj\CupHead\Cup_Player.cpp">
@@ -338,7 +341,7 @@
     <ClCompile Include="Object\GameObj\CupHead\Cup_Background.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\FilterScene.cpp">
+    <ClCompile Include="Scene\BagicScene\FilterScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\GameObj\CupHead\Cup_Bullet.cpp">
@@ -350,7 +353,7 @@
     <ClCompile Include="Framework\Math\MathUtility.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\EffectScene.cpp">
+    <ClCompile Include="Scene\BagicScene\EffectScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\BagicObj\Effect.cpp">
@@ -378,6 +381,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Utility\DirectWrite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

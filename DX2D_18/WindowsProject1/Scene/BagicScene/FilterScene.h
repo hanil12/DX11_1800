@@ -9,6 +9,8 @@ public:
 	virtual void Render() override;
 	virtual void PostRender() override;
 
+	virtual void PrevScene() override;
+
 private:
 	shared_ptr<Quad> _quad;
 	shared_ptr<FilterBuffer> _filterBuffer;

@@ -85,6 +85,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     Camera::Create();
     EffectManager::Create();
     Audio::Create();
+    SceneManager::Create();
 
     shared_ptr<Program> program = make_shared<Program>();
 
@@ -108,6 +109,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     // 삭제
+    SceneManager::Delete();
     Audio::Delete();
     EffectManager::Delete();
     Camera::Delete();

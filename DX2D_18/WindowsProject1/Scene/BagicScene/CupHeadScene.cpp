@@ -22,14 +22,22 @@ CupHeadScene::CupHeadScene()
 	_button = make_shared<Button>(L"UI/Button.png");
 	_button->SetPostion(Vector2(CENTER_X, CENTER_Y));
 	_button->SetScale(Vector2(0.07f, 0.07f));
-	_button->SetEvent(std::bind(&CupHeadScene::Save, this));
+	_button->SetEvent(std::bind(&CupHeadScene::NextScene, this));
 
-	_info.text = L"Save";
+	_info.text = L"NextScene";
+	_info.size = 13.0f;
 	_button->SetText(_info);
 }
 
 CupHeadScene::~CupHeadScene()
 {
+}
+
+void CupHeadScene::Init()
+{
+	Load();
+	_player->Init();
+	_boss->Init();
 }
 
 void CupHeadScene::Update()
@@ -106,4 +114,10 @@ void CupHeadScene::Load()
 
 	void* ptr = temp.data();
 	reader.Byte(&ptr, sizeof(Vector2) * size);
+}
+
+void CupHeadScene::NextScene()
+{
+	SCENE->ChangeScene("Filter");
+	Init();
 }

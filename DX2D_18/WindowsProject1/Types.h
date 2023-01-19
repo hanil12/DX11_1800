@@ -35,6 +35,8 @@
 
 #define SOUND Audio::GetInstance()
 
+#define SCENE SceneManager::GetInstance()
+
 #define MOUSE_POS CAMERA->GetWorldMousePos()
 
 #define LERP(s,e,t) s + (e - s) * t

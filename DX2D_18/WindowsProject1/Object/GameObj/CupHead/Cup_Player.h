@@ -13,6 +13,7 @@ public:
 	Cup_Player();
 	~Cup_Player();
 
+	void Init();
 	void Input();
 	void Jump();
 	void Shot();

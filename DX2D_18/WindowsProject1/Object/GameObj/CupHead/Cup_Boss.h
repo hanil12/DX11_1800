@@ -7,6 +7,7 @@ public:
 
 	void CreateAction();
 
+	void Init();
 	void Update();
 	void Render();
 

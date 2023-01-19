@@ -10,6 +10,11 @@ public:
 	virtual void Render() abstract;
 	virtual void PostRender() {};
 
+	virtual void PrevScene() {}
+	virtual void NextScene() {}
+
+	virtual void Init() {}
+
 protected:
 };
 

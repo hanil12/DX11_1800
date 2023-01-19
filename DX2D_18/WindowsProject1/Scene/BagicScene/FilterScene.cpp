@@ -39,4 +39,14 @@ void FilterScene::PostRender()
 	ImGui::SliderInt("Value1", &_filterBuffer->_data.value1, 0, 100);
 	ImGui::SliderInt("Value2", &_filterBuffer->_data.value2, 0, 100);
 	ImGui::SliderInt("Value3", &_filterBuffer->_data.value3, 0, 100);
+
+	if (ImGui::Button("CupScene", ImVec2(50, 50)))
+	{
+		PrevScene();
+	}
+}
+
+void FilterScene::PrevScene()
+{
+	SCENE->ChangeScene("CupHead");
 }

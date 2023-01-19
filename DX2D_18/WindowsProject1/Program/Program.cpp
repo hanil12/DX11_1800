@@ -1,30 +1,9 @@
 #include "framework.h"
 #include "Program.h"
 
-#include "../Scene/TextureScene.h"
-#include "../Scene/PlanetScene.h"
-#include "../Scene/GunGreed.h"
-#include "../Scene/CollisionScene.h"
-#include "../Scene/AvoidDDong.h"
-#include "../Scene/SpriteScene.h"
-#include "../Scene/CupHeadScene.h"
-#include "../Scene/FilterScene.h"
-#include "../Scene/EffectScene.h"
-
 Program::Program()
 {
 	srand(static_cast<UINT>(time(nullptr)));
-
-	//_scenes["TextureScene"]		 = make_shared<TextureScene>();
-	//_scenes["PlanetScene"]		 = make_shared<PlanetScene>();
-	//_scenes["GunGreed"]			 = make_shared<GunGreed>();
-	//_scenes["Collision"]			 = make_shared<CollisionScene>();
-	//_scenes["AvoidDDong"]			 = make_shared<AvoidDDong>();
-	//_scenes["Sprite"]				 = make_shared<SpriteScene>();
-	_scenes["CupHead"]				 = make_shared<CupHeadScene>();
-	//_scenes["Filter"]				 = make_shared<FilterScene>();
-	//_scenes["Effect"]				 = make_shared<EffectScene>();
-	_curScene = _scenes["CupHead"];
 }
 
 Program::~Program()
@@ -41,7 +20,7 @@ void Program::Update()
 	Keyboard::GetInstance()->Update();
 	Timer::GetInstance()->Update();
 
-	_curScene->Update();
+	SCENE->Update();
 	EFFECT->Update();
 
 	Camera::GetInstance()->Update();
@@ -59,13 +38,13 @@ void Program::Render()
 	Camera::GetInstance()->SetProjectionBuffer(WIN_WIDTH, WIN_HEIGHT);
 	Camera::GetInstance()->SetCameraWorldBuffer();
 
-	_curScene->PreRender();
+	SCENE->PreRender();
 
 	Camera::GetInstance()->SetViewPort();
 	AlphaBlendState->SetState();
 
 	// Scene Render
-	_curScene->Render();
+	SCENE->Render();
 	EFFECT->Render();
 
 	wstring fps = L"FPS : " + to_wstring((int)Timer::GetInstance()->GetFPS());
@@ -76,7 +55,7 @@ void Program::Render()
 
 	CAMERA->SetUICameraBuffer();
 	Camera::GetInstance()->PostRender();
-	_curScene->PostRender();
+	SCENE->PostRender();
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 

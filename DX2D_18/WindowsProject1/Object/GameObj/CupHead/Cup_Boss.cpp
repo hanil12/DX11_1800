@@ -34,6 +34,12 @@ void Cup_Boss::CreateAction()
 	_collider = make_shared<RectCollider>(averageSize);
 }
 
+void Cup_Boss::Init()
+{
+	for (auto bullet : _bullets)
+		bullet->isActive = false;
+}
+
 void Cup_Boss::Update()
 {
 	_fireCheck += DELTA_TIME;
