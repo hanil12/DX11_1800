@@ -110,6 +110,7 @@ using namespace DirectX;
 
 // UI
 #include "Object/UI/Button.h"
+#include "Object/UI/HPBar.h"
 
 // GameObj
 #include "Object/GameObj/Planet.h"

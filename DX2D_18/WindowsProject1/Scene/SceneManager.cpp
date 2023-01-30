@@ -5,6 +5,7 @@
 #include "../Scene/BagicScene/FilterScene.h"
 #include "../Scene/BagicScene/EffectScene.h"
 #include "../Scene/BagicScene/InstancingScene.h"
+#include "../Scene/BagicScene/UIScene.h"
 
 SceneManager* SceneManager::_instance = nullptr;
 
@@ -19,10 +20,13 @@ SceneManager::SceneManager()
 	shared_ptr<Scene> effectScene = make_shared<EffectScene>();
 	_sceneTable["Effect"] = effectScene;
 
-	shared_ptr<Scene> intanceScene = make_shared<InstancingScene>();
-	_sceneTable["Instance"] = intanceScene;
+	shared_ptr<Scene> instanceScene = make_shared<InstancingScene>();
+	_sceneTable["Instance"] = instanceScene;
 
-	_curScene = intanceScene;
+	shared_ptr<Scene> uiScene = make_shared<UIScene>();
+	_sceneTable["UI"] = uiScene;
+
+	_curScene = uiScene;
 }
 
 SceneManager::~SceneManager()

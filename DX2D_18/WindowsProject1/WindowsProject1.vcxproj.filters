@@ -210,6 +210,12 @@
     <ClInclude Include="Scene\BagicScene\InstancingScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\BagicScene\UIScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\UI\HPBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -392,6 +398,12 @@
     <ClCompile Include="Scene\BagicScene\InstancingScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\BagicScene\UIScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\UI\HPBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -499,6 +511,7 @@
     <FxCompile Include="Shaders\ButtonPixelShader.hlsl" />
     <FxCompile Include="Shaders\InstanceVertexShader.hlsl" />
     <FxCompile Include="Shaders\InstancePixelShader.hlsl" />
+    <FxCompile Include="Shaders\HPBarPixelShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resource\Texture\Idle.xml" />

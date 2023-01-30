@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Utility\DirectWrite.h" />
+    <ClInclude Include="Object\UI\HPBar.h" />
     <ClInclude Include="Scene\BagicScene\InstancingScene.h" />
     <ClInclude Include="Object\UI\Button.h" />
     <ClInclude Include="Object\GameObj\CupHead\Cup_Boss.h" />
@@ -215,10 +216,12 @@
     <ClInclude Include="Framework\Render\VertexBuffer.h" />
     <ClInclude Include="Framework\Render\VertexLayOut.h" />
     <ClInclude Include="Framework\Render\VertexShader.h" />
+    <ClInclude Include="Scene\BagicScene\UIScene.h" />
     <ClInclude Include="WindowsProject1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\DirectWrite.cpp" />
+    <ClCompile Include="Object\UI\HPBar.cpp" />
     <ClCompile Include="Scene\BagicScene\InstancingScene.cpp" />
     <ClCompile Include="Object\UI\Button.cpp" />
     <ClCompile Include="Object\GameObj\CupHead\Cup_Boss.cpp" />
@@ -286,6 +289,7 @@
     <ClCompile Include="Object\BagicObj\Sprite.cpp" />
     <ClCompile Include="Framework\Render\ShaderManager.cpp" />
     <ClCompile Include="Framework\Render\Shader.cpp" />
+    <ClCompile Include="Scene\BagicScene\UIScene.cpp" />
     <ClCompile Include="WindowsProject1.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -380,6 +384,20 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shaders\Filter\FilterShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shaders\HPBarPixelShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
