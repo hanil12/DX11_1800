@@ -216,6 +216,12 @@
     <ClInclude Include="Object\UI\HPBar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\BagicScene\InventoryScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\UI\ItemIcon.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -404,6 +410,12 @@
     <ClCompile Include="Object\UI\HPBar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\BagicScene\InventoryScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\UI\ItemIcon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -512,6 +524,8 @@
     <FxCompile Include="Shaders\InstanceVertexShader.hlsl" />
     <FxCompile Include="Shaders\InstancePixelShader.hlsl" />
     <FxCompile Include="Shaders\HPBarPixelShader.hlsl" />
+    <FxCompile Include="Shaders\ItemIconVertexShader.hlsl" />
+    <FxCompile Include="Shaders\ItemIconPixelShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resource\Texture\Idle.xml" />

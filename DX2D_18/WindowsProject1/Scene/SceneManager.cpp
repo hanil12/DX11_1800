@@ -6,6 +6,7 @@
 #include "../Scene/BagicScene/EffectScene.h"
 #include "../Scene/BagicScene/InstancingScene.h"
 #include "../Scene/BagicScene/UIScene.h"
+#include "../Scene/BagicScene/InventoryScene.h"
 
 SceneManager* SceneManager::_instance = nullptr;
 
@@ -23,10 +24,10 @@ SceneManager::SceneManager()
 	shared_ptr<Scene> instanceScene = make_shared<InstancingScene>();
 	_sceneTable["Instance"] = instanceScene;
 
-	shared_ptr<Scene> uiScene = make_shared<UIScene>();
-	_sceneTable["UI"] = uiScene;
+	shared_ptr<Scene> inventory = make_shared<InventoryScene>();
+	_sceneTable["inventory"] = inventory;
 
-	_curScene = uiScene;
+	_curScene = inventory;
 }
 
 SceneManager::~SceneManager()
