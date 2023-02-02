@@ -4,9 +4,8 @@
 
 InventoryScene::InventoryScene()
 {
-	_icon = make_shared<ItemIcon>();
-
-
+	_inventory = make_shared<ItemInventory>();
+	_inventory->SetPos({ CENTER_X, CENTER_Y });
 }
 
 InventoryScene::~InventoryScene()
@@ -15,10 +14,10 @@ InventoryScene::~InventoryScene()
 
 void InventoryScene::Update()
 {
-	_icon->SetIcon("Sword", { CENTER_X, CENTER_Y });
+	_inventory->Update();
 }
 
 void InventoryScene::Render()
 {
-	_icon->Render();
+	_inventory->PostRender();
 }

@@ -152,7 +152,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Utility\DirectWrite.h" />
+    <ClInclude Include="Object\UI\ItemInventory.h" />
     <ClInclude Include="Object\UI\ItemIcon.h" />
+    <ClInclude Include="Object\UI\ItemIcon_Instance.h" />
     <ClInclude Include="Scene\BagicScene\InventoryScene.h" />
     <ClInclude Include="Object\UI\HPBar.h" />
     <ClInclude Include="Scene\BagicScene\InstancingScene.h" />
@@ -223,7 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\DirectWrite.cpp" />
+    <ClCompile Include="Object\UI\ItemInventory.cpp" />
     <ClCompile Include="Object\UI\ItemIcon.cpp" />
+    <ClCompile Include="Object\UI\ItemIcon_Instance.cpp" />
     <ClCompile Include="Scene\BagicScene\InventoryScene.cpp" />
     <ClCompile Include="Object\UI\HPBar.cpp" />
     <ClCompile Include="Scene\BagicScene\InstancingScene.cpp" />
@@ -325,6 +329,7 @@
     <Image Include="Resource\Texture\moon.png" />
     <Image Include="Resource\Texture\sun.png" />
     <Image Include="Resource\Texture\UI\Button.png" />
+    <Image Include="Resource\Texture\UI\InventoryPanel.png" />
     <Image Include="Resource\Texture\weather.png" />
     <Image Include="Resource\Texture\X_man.png" />
     <Image Include="small.ico" />

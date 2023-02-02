@@ -17,6 +17,9 @@ Sprite::Sprite(wstring file, Vector2 maxFrame, Vector2 size)
 	_actionBuffer->_data.imageSize = _srv->GetSize();
 	_maxFrame = maxFrame;
 
+	_actionBuffer->_data.size.x = _actionBuffer->_data.imageSize.x / _maxFrame.x;
+	_actionBuffer->_data.size.y = _actionBuffer->_data.imageSize.y / _maxFrame.y;
+
 	_ps = ADD_PS(L"ActionPixelShader");
 }
 
@@ -47,8 +50,6 @@ void Sprite::Render()
 
 void Sprite::SetSpriteByFrame(Vector2 curFrame)
 {
-	_actionBuffer->_data.size.x = _actionBuffer->_data.imageSize.x / _maxFrame.x;
-	_actionBuffer->_data.size.y = _actionBuffer->_data.imageSize.y / _maxFrame.y;
 	_actionBuffer->_data.startPos.x = _actionBuffer->_data.imageSize.x * (curFrame.x / _maxFrame.x);
 	_actionBuffer->_data.startPos.y = _actionBuffer->_data.imageSize.y * (curFrame.y / _maxFrame.y);
 }

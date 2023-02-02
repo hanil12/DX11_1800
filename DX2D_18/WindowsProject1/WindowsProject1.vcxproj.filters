@@ -219,7 +219,13 @@
     <ClInclude Include="Scene\BagicScene\InventoryScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\UI\ItemIcon_Instance.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Object\UI\ItemIcon.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\UI\ItemInventory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -413,7 +419,13 @@
     <ClCompile Include="Scene\BagicScene\InventoryScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\UI\ItemIcon_Instance.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="Object\UI\ItemIcon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\UI\ItemInventory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -508,6 +520,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Resource\Texture\UI\Button.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Resource\Texture\UI\InventoryPanel.png">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

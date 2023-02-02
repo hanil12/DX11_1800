@@ -2,39 +2,32 @@
 class ItemIcon
 {
 public:
-	struct InstanceData
+	enum ItemKinds
 	{
-		Vector2 maxFrame;
-		Vector2 curFrame;
-		XMMATRIX matrix;
+		NONE,
+		SWORD, // 100 ~ 199
+		ARMOR, // 200 ~ 299
+		SHOES, // 300 ~ 399
+		POTION, // 400 ~ 499
+		LAMP, // 500 ~ 599
+		BEER // 600 ~ 699
 	};
 
-	struct IconData
-	{
-		bool isActive;
-		string name;
-		InstanceData* data;
-		shared_ptr<Transform> transform;
-	};
-
-	ItemIcon();
+	ItemIcon(UINT id, string name);
 	~ItemIcon();
 
-	void Render();
+	void Update();
+	void PostRender();
 
-	void SetIcon(string name, Vector2 pos);
+	shared_ptr<Transform> GetTransform() { return _sprite->GetTransform(); }
+	void SetItemIconScale(float value) { _sprite->GetTransform()->GetScale() *= value; }
+	void SetItemIcon(Vector2 pos) { _sprite->GetTransform()->GetPos() = pos; }
 
 private:
-	void SetItemIconTable();
+	void CreateIcon();
 
-	unordered_map<string, vector<IconData>> _iconTable;
-	shared_ptr<Quad> _quad;
-
-	vector<InstanceData> _instanceData;
-
-	shared_ptr<VertexBuffer> _instanceBuffer;
-
-	UINT _poolCount = 30;
-	UINT _itemCount = 6;
+	UINT _itemID = 0;
+	string _name;
+	shared_ptr<Sprite> _sprite;
 };
 

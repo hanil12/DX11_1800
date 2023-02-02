@@ -45,3 +45,11 @@ using Float2 = XMFLOAT2;
 
 using CallBack = std::function<void()>;
 using CallBack_1 = std::function<void(int)>;
+
+enum ItemType
+{
+	NONE,
+	WEAPON,
+	ARMOR,
+	POTION
+};

@@ -9,6 +9,6 @@ public:
 	virtual void Render() override;
 
 private:
-	shared_ptr<ItemIcon> _icon;
+	shared_ptr<ItemInventory> _inventory;
 };
 

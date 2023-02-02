@@ -128,6 +128,7 @@ using namespace DirectX;
 
 // Inventory
 #include "Object/UI/ItemIcon.h"
+#include "Object/UI/ItemInventory.h"
 
 // Scene
 #include "Scene/Scene.h"
