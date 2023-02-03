@@ -51,6 +51,23 @@ bool CircleCollider::IsCollision_OBB(shared_ptr<RectCollider> other)
 	return other->IsCollision_OBB(shared_from_this());
 }
 
+bool CircleCollider::Block(shared_ptr<CircleCollider> other)
+{
+	if (this->IsCollision(other))
+	{
+		Vector2 dir = other->GetTransform()->GetWorldPos() - _transform->GetWorldPos();
+		float length = dir.Length();
+		float radiusSum = other->GetWorldRadius() + GetWorldRadius();
+
+		float overlap = radiusSum - length;
+		dir.Normallize();
+
+		other->GetTransform()->GetPos() += dir * overlap;
+
+		return true;
+	}
+}
+
 float CircleCollider::GetWorldRadius()
 {
 	float scaleX = _transform->GetScale().x;

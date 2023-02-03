@@ -18,6 +18,8 @@ public:
 	virtual bool IsCollision_OBB(shared_ptr<CircleCollider> circle) override;
 	virtual bool IsCollision_OBB(shared_ptr<RectCollider> other) override;
 
+	bool Block(shared_ptr<CircleCollider> other);
+
 	float GetWorldRadius();
 
 private:

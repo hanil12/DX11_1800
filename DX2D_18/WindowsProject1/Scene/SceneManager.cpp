@@ -7,6 +7,7 @@
 #include "../Scene/BagicScene/InstancingScene.h"
 #include "../Scene/BagicScene/UIScene.h"
 #include "../Scene/BagicScene/InventoryScene.h"
+#include "../Scene/BagicScene/CollisionScene.h"
 
 SceneManager* SceneManager::_instance = nullptr;
 
@@ -27,7 +28,10 @@ SceneManager::SceneManager()
 	shared_ptr<Scene> inventory = make_shared<InventoryScene>();
 	_sceneTable["inventory"] = inventory;
 
-	_curScene = inventory;
+	shared_ptr<Scene> collision = make_shared<CollisionScene>();
+	_sceneTable["collision"] = collision;
+
+	_curScene = collision;
 }
 
 SceneManager::~SceneManager()

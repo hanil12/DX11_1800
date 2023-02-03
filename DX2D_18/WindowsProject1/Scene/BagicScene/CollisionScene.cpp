@@ -9,6 +9,16 @@ CollisionScene::CollisionScene()
 	_circle = make_shared<CircleCollider>(50);
 	_circle->GetTransform()->GetPos() = { CENTER_X + 100, CENTER_Y };
 	_circle->SetGREEN();
+
+
+	_circle1 = make_shared<CircleCollider>(50);
+	_circle1->GetTransform()->GetPos() = { CENTER_X + 100, CENTER_Y };
+	_circle1->SetGREEN();
+
+
+	_circle2 = make_shared<CircleCollider>(50);
+	_circle2->GetTransform()->GetPos() = { CENTER_X + 100, CENTER_Y };
+	_circle2->SetGREEN();
 }
 
 CollisionScene::~CollisionScene()
@@ -17,17 +27,12 @@ CollisionScene::~CollisionScene()
 
 void CollisionScene::Update()
 {
+	_circle1->GetTransform()->GetPos() = mousePos;
 
-	if (_rect->IsCollision(_circle))
-	{
-		_rect->SetRED();
-		_circle->SetRED();
-	}
-	else
-	{
-		_rect->SetGREEN();
-		_circle->SetGREEN();
-	}
+	_circle1->Block(_circle2);
+
+	_circle1->Update();
+	_circle2->Update();
 
 	_rect->Update();
 	_circle->Update();
@@ -35,9 +40,9 @@ void CollisionScene::Update()
 
 void CollisionScene::Render()
 {
-	ImGui::SliderFloat("PosX", &_rect->GetTransform()->GetPos().x, 0, WIN_WIDTH);
-	ImGui::SliderFloat("PosY", &_rect->GetTransform()->GetPos().y, 0, WIN_HEIGHT);
-
 	_rect->Render();
 	_circle->Render();
+
+	_circle1->Render();
+	_circle2->Render();
 }

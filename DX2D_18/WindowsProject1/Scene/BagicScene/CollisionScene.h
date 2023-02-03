@@ -11,5 +11,7 @@ public:
 private:
 	shared_ptr<Collider> _rect;
 	shared_ptr<Collider> _circle;
+	shared_ptr<CircleCollider> _circle1;
+	shared_ptr<CircleCollider> _circle2;
 };
 
