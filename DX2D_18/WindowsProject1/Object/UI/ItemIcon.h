@@ -20,8 +20,9 @@ public:
 	void PostRender();
 
 	shared_ptr<Transform> GetTransform() { return _sprite->GetTransform(); }
+	void SetItemIcon(ItemData data);
 	void SetItemIconScale(float value) { _sprite->GetTransform()->GetScale() *= value; }
-	void SetItemIcon(Vector2 pos) { _sprite->GetTransform()->GetPos() = pos; }
+	void SetItemIconPos(Vector2 pos) { _sprite->GetTransform()->GetPos() = pos; }
 
 private:
 	void CreateIcon();

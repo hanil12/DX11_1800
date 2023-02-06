@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Framework\Utility\DirectWrite.h" />
+    <ClInclude Include="Object\UI\ItemDataManager.h" />
     <ClInclude Include="Object\UI\ItemInventory.h" />
     <ClInclude Include="Object\UI\ItemIcon.h" />
     <ClInclude Include="Object\UI\ItemIcon_Instance.h" />
@@ -225,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Utility\DirectWrite.cpp" />
+    <ClCompile Include="Object\UI\ItemDataManager.cpp" />
     <ClCompile Include="Object\UI\ItemInventory.cpp" />
     <ClCompile Include="Object\UI\ItemIcon.cpp" />
     <ClCompile Include="Object\UI\ItemIcon_Instance.cpp" />
@@ -548,6 +550,7 @@
     <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
     <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />
     <Xml Include="Resource\Texture\Idle.xml" />
+    <Xml Include="Resource\XML\ItemData.xml" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resource\Sound\attack.wav" />

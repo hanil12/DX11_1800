@@ -23,6 +23,11 @@ void ItemIcon::PostRender()
 	_sprite->Render();
 }
 
+void ItemIcon::SetItemIcon(ItemData data)
+{
+	_sprite->SetSpriteByFrame(Vector2((float)data.frameX, (float)data.frameY));
+}
+
 void ItemIcon::CreateIcon()
 {
 	_sprite = make_shared<Sprite>(L"Item_11x5.png", Vector2(11, 5), Vector2(100, 100));

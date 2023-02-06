@@ -90,3 +90,11 @@ void ItemInventory::LoadSlotPos()
 		_icons[i]->GetTransform()->GetPos() = temp[i];
 	}
 }
+
+void ItemInventory::SetItemIcon(int slot, ItemData data)
+{
+	if (slot < 0 || slot > _icons.size() - 1)
+		return;
+
+	_icons[slot]->SetItemIcon(data);
+}

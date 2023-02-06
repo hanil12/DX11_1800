@@ -53,3 +53,14 @@ enum ItemType
 	ARMOR,
 	POTION
 };
+
+struct ItemData
+{
+	string name;
+	UINT price;
+	UINT endurance;
+	UINT health;
+	UINT attack;
+	UINT frameX;
+	UINT frameY;
+};

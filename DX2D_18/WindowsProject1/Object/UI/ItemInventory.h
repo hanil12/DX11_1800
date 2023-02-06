@@ -13,10 +13,16 @@ public:
 	void SaveSlotPos();
 	void LoadSlotPos();
 
+	void SetItemIcon(int slot, ItemData data);
+
 	bool debug = false;
+
+	void SetItemManager(shared_ptr<ItemDataManager> itemDataManager) { if (_dataManager.expired() == true) { _dataManager = itemDataManager; } }
 private:
 	shared_ptr<Quad> _bg;
 
 	vector<shared_ptr<ItemIcon>> _icons;
+
+	weak_ptr<ItemDataManager> _dataManager;
 };
 

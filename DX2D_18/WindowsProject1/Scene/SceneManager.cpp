@@ -31,7 +31,7 @@ SceneManager::SceneManager()
 	shared_ptr<Scene> collision = make_shared<CollisionScene>();
 	_sceneTable["collision"] = collision;
 
-	_curScene = collision;
+	_curScene = inventory;
 }
 
 SceneManager::~SceneManager()

@@ -228,6 +228,9 @@
     <ClInclude Include="Object\UI\ItemInventory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object\UI\ItemDataManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowsProject1.cpp">
@@ -428,6 +431,9 @@
     <ClCompile Include="Object\UI\ItemInventory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Object\UI\ItemDataManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowsProject1.rc">
@@ -549,6 +555,7 @@
     <Xml Include="Resource\Texture\Effects\JumpDustA.xml" />
     <Xml Include="Resource\Texture\CupHead\Player\Jump.xml" />
     <Xml Include="Resource\Texture\CupHead\Boss\Clown_Page_Last_Spawn_Penguin_Start.xml" />
+    <Xml Include="Resource\XML\ItemData.xml" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resource\Sound\attack.wav">

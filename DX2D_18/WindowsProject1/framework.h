@@ -127,6 +127,7 @@ using namespace DirectX;
 #include "Object/GameObj/CupHead/Cup_Boss.h"
 
 // Inventory
+#include "Object/UI/ItemDataManager.h"
 #include "Object/UI/ItemIcon.h"
 #include "Object/UI/ItemInventory.h"
 
