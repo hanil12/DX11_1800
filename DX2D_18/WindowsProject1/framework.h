@@ -130,6 +130,7 @@ using namespace DirectX;
 #include "Object/UI/ItemDataManager.h"
 #include "Object/UI/ItemIcon.h"
 #include "Object/UI/ItemInventory.h"
+#include "Object/UI/Store.h"
 
 // Scene
 #include "Scene/Scene.h"

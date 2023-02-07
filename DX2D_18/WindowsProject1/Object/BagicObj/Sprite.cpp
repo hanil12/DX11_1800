@@ -59,3 +59,12 @@ void Sprite::SetSpriteAction(const Action::Clip& clip)
 	_actionBuffer->_data.size = clip.size;
 	_actionBuffer->_data.startPos = clip.startPos;
 }
+
+Vector2 Sprite::GetFrameSize_Scale()
+{
+	Vector2 result;
+	result.x = _size.x * _transform->GetWorldScale().x;
+	result.y = _size.y * _transform->GetWorldScale().y;
+
+	return result;
+}

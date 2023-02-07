@@ -12,5 +12,6 @@ public:
 private:
 	shared_ptr<ItemDataManager> _dataManager;
 	shared_ptr<ItemInventory> _inventory;
+	shared_ptr<Store> _store;
 };
 

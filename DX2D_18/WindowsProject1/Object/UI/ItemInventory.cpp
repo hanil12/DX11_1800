@@ -6,9 +6,11 @@ ItemInventory::ItemInventory()
 	_bg = make_shared<Quad>(L"UI/InventoryPanel.png");
 	// 512, 512
 
+	_itemDataes.resize(9);
+
 	for (int i = 0; i < 9; i++)
 	{
-		shared_ptr<ItemIcon> icon = make_shared<ItemIcon>(200, "Armor");
+		shared_ptr<ItemIcon> icon = make_shared<ItemIcon>(0, "");
 		icon->SetItemIconScale(0.7f);
 		icon->GetTransform()->SetParent(_bg->GetTransform());
 		_icons.push_back(icon);
@@ -96,5 +98,7 @@ void ItemInventory::SetItemIcon(int slot, ItemData data)
 	if (slot < 0 || slot > _icons.size() - 1)
 		return;
 
-	_icons[slot]->SetItemIcon(data);
+	_itemDataes[slot] = data; // 실제 정보
+
+	_icons[slot]->SetItemIcon(_itemDataes[slot]); // 보이기 용
 }

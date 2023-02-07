@@ -22,6 +22,7 @@ private:
 	shared_ptr<Quad> _bg;
 
 	vector<shared_ptr<ItemIcon>> _icons;
+	vector<ItemData>			 _itemDataes;
 
 	weak_ptr<ItemDataManager> _dataManager;
 };

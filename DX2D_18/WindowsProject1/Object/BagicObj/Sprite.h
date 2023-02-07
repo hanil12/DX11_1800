@@ -12,6 +12,7 @@ public:
 	void SetSpriteAction(const Action::Clip& clip);
 	void SetLeft() { _actionBuffer->_data.leftRight = 1; }
 	void SetRight() { _actionBuffer->_data.leftRight = 0; }
+	Vector2 GetFrameSize_Scale();
 		 
 private:
 	shared_ptr<ActionBuffer> _actionBuffer;

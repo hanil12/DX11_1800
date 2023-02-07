@@ -4,7 +4,7 @@ class Button
 public:
 	struct TextInfo
 	{
-		wstring text;
+		wstring text = L"";
 		RECT rect;
 		float size = 20.0f;
 		XMFLOAT4 color = { 1,1,1,1 };
@@ -18,6 +18,7 @@ public:
 	};
 
 	Button(wstring path);
+	Button(Vector2 size);
 	~Button();
 
 	void Update();
@@ -30,6 +31,8 @@ public:
 	void SetEvent_String(std::function<void(string)> callBack) { _callBack_string = callBack; }
 
 	void SetText(TextInfo info) { _textInfo = info; }
+
+	void SetParent(shared_ptr<Transform> transform);
 
 	Vector2 LeftTop() { return _collider->LeftTop(); }
 	Vector2 RightBottom() { return _collider->RightBottom(); }
