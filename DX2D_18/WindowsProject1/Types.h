@@ -61,6 +61,6 @@ struct ItemData
 	UINT endurance = 0;
 	UINT health = 0;
 	UINT attack = 0;
-	UINT frameX = 0;
-	UINT frameY = 0;
+	UINT frameX = 10;
+	UINT frameY = 4;
 };

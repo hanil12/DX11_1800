@@ -13,8 +13,8 @@ SceneManager* SceneManager::_instance = nullptr;
 
 SceneManager::SceneManager()
 {
-	shared_ptr<Scene> cupScene = make_shared<CupHeadScene>();
-	_sceneTable["CupHead"] = cupScene;
+	//shared_ptr<Scene> cupScene = make_shared<CupHeadScene>();
+	//_sceneTable["CupHead"] = cupScene;
 
 	shared_ptr<Scene> filterScene = make_shared<FilterScene>();
 	_sceneTable["Filter"] = filterScene;

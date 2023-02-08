@@ -51,8 +51,8 @@ void Button::Update()
 		{
 			if(_callBack != nullptr)
 				_callBack();
-			if (_callBack_string != nullptr)
-				_callBack_string("");
+			if (_callBack_int != nullptr)
+				_callBack_int(0);
 		}
 	}
 	else

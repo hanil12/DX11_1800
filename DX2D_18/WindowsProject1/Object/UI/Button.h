@@ -28,6 +28,7 @@ public:
 	void SetScale(Vector2 scale);
 
 	void SetEvent(CallBack callBack) { _callBack = callBack; }
+	void SetEvent_INT(CallBack_1 callBack) { _callBack_int = callBack; }
 	void SetEvent_String(std::function<void(string)> callBack) { _callBack_string = callBack; }
 
 	void SetText(TextInfo info) { _textInfo = info; }
@@ -47,6 +48,7 @@ private:
 	TextInfo _textInfo;
 
 	CallBack _callBack;
+	CallBack_1 _callBack_int;
 	std::function<void(string)> _callBack_string;
 };
 

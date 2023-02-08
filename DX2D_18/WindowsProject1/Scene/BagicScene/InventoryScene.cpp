@@ -11,6 +11,9 @@ InventoryScene::InventoryScene()
 	_inventory->SetItemManager(_dataManager);
 
 	_store = make_shared<Store>();
+	_store->SetItemManager(_dataManager);
+	_store->SetInventory(_inventory);
+	_store->SetItems();
 	_store->SetPos({ CENTER_X - 300, CENTER_Y });
 }
 

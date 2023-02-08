@@ -102,3 +102,26 @@ void ItemInventory::SetItemIcon(int slot, ItemData data)
 
 	_icons[slot]->SetItemIcon(_itemDataes[slot]); // 보이기 용
 }
+
+void ItemInventory::BuyItem(ItemData itemdata)
+{
+	if (itemdata.price > _money)
+		return;
+
+	int index = -1;
+	for (int i = 0; i < 9; i++)
+	{
+		if (_itemDataes[i].name == "")
+		{
+			index = i;
+			break;
+		}
+	}
+
+	if (index == -1)
+		return;
+
+	_itemDataes[index] = itemdata;
+	_icons[index]->SetItemIcon(itemdata);
+	_money -= itemdata.price;
+}

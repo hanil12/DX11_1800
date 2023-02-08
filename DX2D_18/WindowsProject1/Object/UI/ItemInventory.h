@@ -18,6 +18,8 @@ public:
 	bool debug = false;
 
 	void SetItemManager(shared_ptr<ItemDataManager> itemDataManager) { if (_dataManager.expired() == true) { _dataManager = itemDataManager; } }
+
+	void BuyItem(ItemData itemdata);
 private:
 	shared_ptr<Quad> _bg;
 
@@ -25,5 +27,7 @@ private:
 	vector<ItemData>			 _itemDataes;
 
 	weak_ptr<ItemDataManager> _dataManager;
+
+	UINT _money = 1000;
 };
 
