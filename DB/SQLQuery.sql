@@ -1,12 +1,10 @@
+USE BaseballData;
 -- FROM table
 -- WHERE (조건)
 -- SELECT (속성)
 -- OREDER BY
 
 -- * : all
-SELECT *
-FROM players
-WHERE birthYear = 1950
 
 SELECT lahmanID as lahmanKey, playerID as ID, birthYear, birthMonth
 FROM players
@@ -39,3 +37,29 @@ SELECT lahmanID, deathYear, deathMonth
 FROM players
 WHERE deathYear IS NOT NULL
 ORDER BY deathYear DESC, deathMonth DESC
+
+-- players에서 birthYear가 1950인 분들의 명수
+SELECT COUNT(lahmanID)
+FROM players
+WHERE birthYear = 1950
+
+--  player에서 birthYear의 평균을 구해주세요
+SELECT AVG(birthYear) as 평균생년
+FROM players
+WHERE birthYear IS NOT NULL
+
+-- player에서 살아있는 분들의 나이의 평균을 뽑아주세요
+SELECT AVG(2023 - birthYear) as 평균나이
+FROM players
+WHERE deathYear IS NULL AND birthYear IS NOT NULL
+
+-- player에서 살아있는 분들의 최소령의 나이를 뽑아주세요
+SELECT MIN(2023 - birthYear) as 평균나이
+FROM players
+WHERE deathYear IS NULL AND birthYear IS NOT NULL
+
+-- players에서 모든 플레이어의 데뷔날짜
+SELECT YEAR(CONVERT(DATETIME,debut)) as debutDate
+FROM players
+WHERE debut IS NOT NULL
+ORDER BY debutDate
