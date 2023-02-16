@@ -63,3 +63,46 @@ SELECT YEAR(CONVERT(DATETIME,debut)) as debutDate
 FROM players
 WHERE debut IS NOT NULL
 ORDER BY debutDate
+
+-- 중복제거
+-- players에서 중복없이 birthCity를 출력해주세요
+SELECT COUNT(DISTINCT birthCity)
+FROM players
+
+-- players에서 평균 몸무게를 출력할건데, (단 몸무게 정보가 NULL인 얘들은 0으로 처리)
+SELECT AVG(
+CASE 
+WHEN weight IS NULL THEN 0 
+ELSE weight END)
+FROM players
+
+
+SELECT *
+FROM batting
+--1) 보스턴 소속 선수들의 정보들만 모두 출력해주세요
+SELECT *
+FROM batting
+WHERE teamID = 'BOS'
+
+--2) 보스턴 소속 선수들의 수는 몇명입니까?(단 중복은 제거)
+SELECT COUNT(DISTINCT playerID)
+FROM batting
+WHERE teamID = 'BOS'
+--3) 보스턴 팀이 2004년도에 친 홈런 개수
+SELECT SUM(HR)
+FROM batting
+WHERE teamID = 'BOS' AND yearID = 2004
+--4) 보스턴 팀 소속으로 단일 년도 최다 홈런을 친 친사람의 정보
+SELECT TOP(1) *
+FROM batting
+WHERE teamID = 'BOS'
+ORDER BY HR DESC
+
+-- playerID는 외래키라고 한다.
+SELECT nameFirst, nameLast
+FROM players
+WHERE playerID = 
+(SELECT TOP(1) playerID
+FROM batting
+WHERE teamID = 'BOS'
+ORDER BY HR DESC)
