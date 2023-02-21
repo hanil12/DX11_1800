@@ -106,3 +106,51 @@ WHERE playerID =
 FROM batting
 WHERE teamID = 'BOS'
 ORDER BY HR DESC)
+
+-- FROM			책상에서
+-- WHERE		공을
+-- GROUP BY		색상별로 분류해서
+-- HAVING		분류한 중에 빨강공은 빼고
+-- SELECT		갖고와서
+-- OREDER BY	크기 별로 나열해주세요
+
+SELECT *
+FROM batting
+
+-- 팀들의 홈런 개수를 보여주세요
+SELECT teamID, yearID ,SUM(HR) as homeRUN
+FROM batting
+GROUP BY teamID, yearID
+HAVING SUM(HR) >= 200
+ORDER BY homeRUN DESC
+
+SELECT SUM(HR)
+FROM batting
+WHERE teamID = 'HOU'
+
+-- 두 테이블의 결합
+-- JOIN
+
+SELECT *
+FROM players
+
+SELECT *
+FROM salaries
+
+SELECT *
+FROM players
+	INNER JOIN salaries
+	ON players.playerID = salaries.playerID
+
+
+-- salaries 정보가 있고, players에는 정보가 없는 얘들의 playerID를 출력해주세요
+SELECT *
+FROM players
+	RIGHT JOIN salaries
+	ON players.playerID = salaries.playerID
+
+SELECT DISTINCT salaries.playerID
+FROM players
+	RIGHT JOIN salaries
+	ON players.playerID = salaries.playerID
+WHERE players.playerID IS NULL

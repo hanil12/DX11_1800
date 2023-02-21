@@ -4,6 +4,7 @@
 Program::Program()
 {
 	srand(static_cast<UINT>(time(nullptr)));
+	Timer::GetInstance()->SetLockFPS(60);
 }
 
 Program::~Program()

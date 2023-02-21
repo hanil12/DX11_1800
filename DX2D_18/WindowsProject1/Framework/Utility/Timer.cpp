@@ -22,6 +22,7 @@ void Timer::Update()
 	QueryPerformanceCounter((LARGE_INTEGER*)&_curTime); // 10000
 	// (지금까지 진동한 횟수 - 처음에 진동한 횟수) * ( 1 / 초당 진동한 횟수)
 	// (10000 - 0) * ( 1 / 10000) -> Update 한번에 걸린 시간 : 1초 -> Delta Time
+	_timeElased = (double)(_curTime - _lastTime) * _timeScale;
 
 	if (_lockFPS != 0)
 	{
@@ -31,10 +32,6 @@ void Timer::Update()
 			// 딱 한 프레임만큼 경과한 시간
 			_timeElased = (double)(_curTime - _lastTime) * _timeScale;
 		}
-	}
-	else
-	{
-		_timeElased = (double)(_curTime - _lastTime) * _timeScale;
 	}
 
 	_lastTime = _curTime;
